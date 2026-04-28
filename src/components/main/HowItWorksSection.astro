@@ -1,0 +1,125 @@
+---
+interface Props {
+	/** ID video YouTube (dari URL: youtube.com/watch?v=VIDEO_ID) */
+	youtubeVideoId?: string;
+}
+const { youtubeVideoId = 'PDB2FM7JAYY' } = Astro.props;
+---
+
+<section id="workings" class="min-h-screen w-full snap-start flex flex-col items-center justify-center px-6 md:px-12 py-24 relative overflow-hidden bg-[#f8fafc]">
+	<div class="text-center mb-12 md:mb-16 space-y-2">
+		<h2 class="text-3xl md:text-4xl font-black tracking-tight flex items-center justify-center gap-3 text-slate-900">
+			Bagaimana <span class="text-blue-600">Cara Kerjanya?</span>
+		</h2>
+		<p class="text-slate-400 font-bold tracking-[0.2em] text-[9px] md:text-[10px] uppercase max-w-xs md:max-w-none mx-auto">Teknologi sensor real-time yang bekerja dalam hitungan detik.</p>
+	</div>
+	
+	<div class="relative w-full max-w-6xl mx-auto p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] bg-white border border-slate-100 shadow-sm">
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center relative z-10">
+			<div class="space-y-6 flex flex-col items-center">
+				<div class="size-20 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100 text-blue-600">
+					<span class="material-symbols-outlined text-4xl">podcasts</span>
+				</div>
+				<div class="space-y-2">
+					<h4 class="text-lg font-black text-blue-600">1. SENSOR AKTIF</h4>
+					<p class="text-slate-500 text-sm leading-relaxed px-4 text-balance">Pemanfaatan 200+ sensor aktif di wilayah uji coba terbatas.</p>
+				</div>
+			</div>
+			<div class="space-y-6 flex flex-col items-center">
+				<div class="size-20 rounded-2xl bg-emerald-50 flex items-center justify-center border border-emerald-100 text-emerald-600">
+					<span class="material-symbols-outlined text-4xl">cloud_sync</span>
+				</div>
+				<div class="space-y-2">
+					<h4 class="text-lg font-black text-emerald-600">2. DATA PROCESSING</h4>
+					<p class="text-slate-500 text-sm leading-relaxed px-4 text-balance">Pengolahan data gempa sebelum guncangannya terasa di beberapa wilayah.</p>
+				</div>
+			</div>
+			<div class="space-y-6 flex flex-col items-center">
+				<div class="size-20 rounded-2xl bg-blue-50 flex items-center justify-center border border-blue-100 text-blue-600">
+					<span class="material-symbols-outlined text-4xl">notifications_active</span>
+				</div>
+				<div class="space-y-2">
+					<h4 class="text-lg font-black text-blue-600">3. DISEMINASI</h4>
+					<p class="text-slate-500 text-sm leading-relaxed px-4 text-balance">Pengiriman notifikasi otomatis ke aplikasi InaEEWS dan media lainnya.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Video YouTube + kontrol play/pause. Set prop youtubeVideoId (dari URL: ?v=VIDEO_ID) -->
+		<div class="mt-12 w-full max-w-3xl mx-auto">
+			<div id="yt-player-wrap" class="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200">
+				<div id="howitworks-yt-player" class="w-full h-full absolute inset-0"></div>
+				{!youtubeVideoId && (
+					<div class="absolute inset-0 flex items-center justify-center text-slate-500 text-sm font-medium p-4 text-center">
+						Set prop <code class="bg-slate-800 px-2 py-1 rounded text-slate-300">youtubeVideoId</code> untuk menampilkan video.
+					</div>
+				)}
+			</div>
+			{youtubeVideoId && (
+				<div class="flex items-center justify-center gap-4 mt-4">
+					<button type="button" id="yt-play-btn" class="flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold uppercase tracking-wider transition-colors shadow-sm" aria-label="Putar video">
+						<span class="material-symbols-outlined text-xl">play_arrow</span>
+						Putar
+					</button>
+					<button type="button" id="yt-pause-btn" class="flex items-center gap-2 px-6 py-3 rounded-full bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-bold uppercase tracking-wider transition-colors" aria-label="Jeda video">
+						<span class="material-symbols-outlined text-xl">pause</span>
+						Jeda
+					</button>
+				</div>
+			)}
+		</div>
+	</div>
+</section>
+
+<script define:vars={{ youtubeVideoId }}>
+	(function () {
+		const videoId = typeof youtubeVideoId === 'string' ? youtubeVideoId.trim() : '';
+		if (!videoId) return;
+
+		const containerId = 'howitworks-yt-player';
+		const playBtn = document.getElementById('yt-play-btn');
+		const pauseBtn = document.getElementById('yt-pause-btn');
+
+		let player = null;
+
+		function loadYouTubeAPI() {
+			if (window.YT && window.YT.Player) {
+				initPlayer();
+				return;
+			}
+			const tag = document.createElement('script');
+			tag.src = 'https://www.youtube.com/iframe_api';
+			const firstScript = document.getElementsByTagName('script')[0];
+			firstScript.parentNode.insertBefore(tag, firstScript);
+		}
+
+		window.onYouTubeIframeAPIReady = function () {
+			initPlayer();
+		};
+
+		function initPlayer() {
+			if (player) return;
+			player = new window.YT.Player(containerId, {
+				videoId: videoId,
+				width: '100%',
+				height: '100%',
+				playerVars: {
+					autoplay: 0,
+					controls: 0,
+					rel: 0,
+					modestbranding: 1,
+					enablejsapi: 1,
+					origin: window.location.origin
+				},
+				events: {
+					onReady: function () {
+						playBtn?.addEventListener('click', () => player?.playVideo());
+						pauseBtn?.addEventListener('click', () => player?.pauseVideo());
+					}
+				}
+			});
+		}
+
+		loadYouTubeAPI();
+	})();
+</script>

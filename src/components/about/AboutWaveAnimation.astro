@@ -1,0 +1,220 @@
+---
+---
+
+<section class="min-h-screen snap-start w-full flex items-center py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 overflow-hidden relative">
+  <div class="container mx-auto px-6">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      
+      <!-- Text Content Area -->
+      <div class="lg:w-1/2 space-y-8 z-10 text-left">
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-300 text-sm font-bold uppercase tracking-widest border border-orange-200 dark:border-orange-800">
+          <span class="material-symbols-outlined text-sm mr-2">waves</span>
+          Konsep Deteksi
+        </div>
+        
+        <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+          Gelombang <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600 font-black">Primer & Sekunder</span>
+        </h2>
+        
+        <div class="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed text-left">
+          <p>
+            InaEEWS memanfaatkan jaringan sensor gempa untuk mendeteksi getaran awal <strong class="text-blue-500 font-bold">(Gelombang P)</strong> yang bergerak lebih cepat namun tidak berbahaya.
+          </p>
+          <p>
+            Data ini diproses dalam hitungan detik untuk memperkirakan area yang akan terdampak guncangan lebih kuat <strong class="text-red-500 font-bold">(Gelombang S)</strong>, lalu sistem segera mengirimkan peringatan ke aplikasi.
+          </p>
+          <div class="p-6 rounded-2xl bg-orange-50 dark:bg-orange-900/10 border-l-4 border-orange-500 shadow-sm">
+            <p class="font-bold text-slate-800 dark:text-slate-200">
+              Prinsip Selisih Waktu:
+            </p>
+            <p class="text-sm md:text-base mt-2 italic">
+              "Karena gelombang S lebih lambat dari gelombang P, pengguna berpeluang menerima peringatan beberapa detik sebelum guncangan merusak terasa."
+            </p>
+          </div>
+        </div>
+
+        <!-- Single Play/Restart Button -->
+        <div class="flex items-center gap-4">
+          <button id="wave-controller" class="flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold hover:scale-105 active:scale-95 transition-all shadow-xl shadow-blue-500/20 group">
+            <span id="controller-icon" class="material-symbols-outlined group-hover:rotate-12 transition-transform">play_arrow</span>
+            <span id="controller-text">Mulai Animasi</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Animation Viewport -->
+      <div class="lg:w-1/2 w-full h-[450px] md:h-[550px] relative bg-white dark:bg-slate-900 rounded-[3rem] shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden group">
+        <!-- Progress Bar (Always visible track) -->
+        <div class="absolute inset-x-0 top-0 h-1.5 bg-slate-100 dark:bg-slate-800 z-20">
+           <div id="progress-bar" class="h-full bg-blue-600 w-0 transition-all duration-100"></div>
+        </div>
+        
+        <svg id="wave-svg" viewBox="0 0 800 600" class="w-full h-full">
+           <!-- Epicenter Components -->
+           <circle id="epicenter-glow" cx="150" cy="450" r="14" fill="#ef4444" opacity="0" />
+           <circle cx="150" cy="450" r="6" fill="#ef4444" />
+           <text x="110" y="490" fill="#ef4444" class="text-[10px] font-black opacity-0" id="epicenter-label">Sumber Gempa</text>
+
+           <!-- Dynamic Waves (Both share the same source) -->
+           <circle id="p-wave-circle" cx="150" cy="450" r="0" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="10 6" opacity="0" />
+           <circle id="s-wave-circle" cx="150" cy="450" r="0" fill="none" stroke="#ef4444" stroke-width="16" opacity="0" />
+
+           <!-- Labels with dynamic tracking -->
+           <text x="0" y="0" id="p-label" fill="#3b82f6" class="text-[10px] font-black opacity-0 tracking-tighter">P-WAVE</text>
+           <text x="0" y="0" id="s-label" fill="#ef4444" class="text-[10px] font-black opacity-0 tracking-tighter">S-WAVE</text>
+
+           <!-- Sensor Infrastructure -->
+           <g id="sensor" transform="translate(380, 250)" class="opacity-0">
+              <rect x="0" y="0" width="60" height="60" rx="16" fill="#3b82f6" opacity="0.1" />
+              <circle cx="30" cy="30" r="20" stroke="#3b82f6" stroke-width="1" fill="none" stroke-dasharray="4 2" />
+              <circle cx="30" cy="30" r="4" fill="#3b82f6" id="sensor-dot" />
+              <text x="-15" y="80" fill="#3b82f6" class="text-[10px] font-black uppercase tracking-widest">Sensor BMKG</text>
+           </g>
+
+           <!-- User Endpoint (Smartphone on the Right) -->
+           <g id="phone" transform="translate(680, 250)" class="opacity-0">
+              <rect x="0" y="0" width="45" height="85" rx="10" fill="#1e293b" />
+              <rect x="4" y="4" width="37" height="65" rx="6" fill="#334155" id="app-screen" />
+              <path d="M18 75 H27" stroke="#475569" stroke-width="3" stroke-linecap="round" />
+              <circle id="app-alert" cx="22.5" cy="35" r="0" fill="#ef4444" opacity="0.9" />
+              <text id="app-alert-txt" x="12" y="38" fill="white" class="text-[8px] font-black opacity-0">ALERT</text>
+              <text x="-10" y="105" fill="#64748b" class="text-[10px] font-black">PENGGUNA</text>
+           </g>
+        </svg>
+
+        <!-- Floating Notification -->
+        <div id="notify-overlay" class="absolute top-10 left-1/2 -translate-x-1/2 px-6 py-2 bg-red-600 text-white rounded-full font-black text-xs tracking-widest opacity-0 transform translate-y-6 shadow-xl z-10 transition-all duration-300">
+          PERINGATAN TERKIRIM !
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Include required libraries -->
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script is:inline>
+  function runWaveAnimation() {
+    if (typeof gsap === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mainBtn = document.getElementById('wave-controller');
+    const controllerIcon = document.getElementById('controller-icon');
+    const controllerLabel = document.getElementById('controller-text');
+    const waveProgress = document.getElementById('progress-bar');
+    
+    // Core Timeline Configuration
+    const waveTimeline = gsap.timeline({
+      paused: true,
+      onStart: () => {
+        controllerIcon.textContent = 'restart_alt';
+        controllerLabel.textContent = 'Reset Animasi';
+      },
+      onComplete: () => {
+        controllerIcon.textContent = 'play_arrow';
+        controllerLabel.textContent = 'Mulai Animasi';
+      },
+      onUpdate: function() {
+        gsap.set(waveProgress, { width: (this.progress() * 100) + '%' });
+      }
+    });
+
+    // Reset Visual Elements
+    const applyInitialStates = () => {
+       gsap.set(["#p-wave-circle", "#s-wave-circle", "#sensor", "#phone", "#epicenter-label", "#p-label", "#s-label", "#notify-overlay", "#epicenter-glow", "#app-alert-txt"], { opacity: 0 });
+       gsap.set(["#p-wave-circle", "#s-wave-circle", "#app-alert"], { attr: { r: 0 } });
+       gsap.set("#phone", { x: 0, y: 0 });
+       gsap.set("#app-screen", { fill: "#334155" });
+       gsap.set("#sensor-dot", { scale: 1, fill: "#3b82f6" });
+       gsap.set("#notify-overlay", { y: 24, opacity: 0 });
+       gsap.set(waveProgress, { width: '0%' });
+    };
+
+    // Construct Animation
+    waveTimeline
+      .add(applyInitialStates)
+      .to("#epicenter-label", { opacity: 1, duration: 0.4 })
+      .to("#epicenter-glow", { opacity: 0.4, duration: 0.3 })
+      .to(["#sensor", "#phone"], { opacity: 1, duration: 0.8, stagger: 0.3 }, "-=0.2")
+      
+      // Start both waves AT THE SAME TIME (use a label "waves")
+      .addLabel("waves")
+      
+      // Gelombang P (CEPAT)
+      .to("#p-wave-circle", {
+        attr: { r: 1100 },
+        opacity: 0.8,
+        duration: 3,
+        ease: "none",
+        onUpdate: function() {
+          const radius = parseFloat(this.targets()[0].getAttribute('r'));
+          const xPos = 150 + radius * Math.cos(-45 * Math.PI / 180);
+          const yPos = 450 + radius * Math.sin(-45 * Math.PI / 180);
+          gsap.set("#p-label", { x: xPos, y: yPos, opacity: (radius > 50 && radius < 750) ? 1 : 0 });
+
+          // Sensor Trigger Dist ~ 300
+          if (radius > 310 && gsap.getProperty("#notify-overlay", "opacity") === 0) {
+            gsap.to("#notify-overlay", { opacity: 1, y: 0, duration: 0.3, ease: "back.out" });
+            gsap.to("#sensor-dot", { scale: 2.2, fill: "#fff", repeat: 5, yoyo: true, duration: 0.08 });
+            // Phone Warning
+            gsap.to("#app-screen", { fill: "#ef4444", duration: 0.1, delay: 0.3 });
+            gsap.to("#app-alert", { attr: { r: 20 }, duration: 0.4, delay: 0.3 });
+            gsap.to("#app-alert-txt", { opacity: 1, duration: 0.2, delay: 0.4 });
+          }
+
+          // Subtle Vibration P-Wave Impact (Dist 680-150=530)
+          if (radius > 530 && radius < 560) {
+             gsap.to("#phone", { x: "+=1", y: "+=1", repeat: 3, yoyo: true, duration: 0.05 });
+          }
+        }
+      }, "waves")
+
+      // Gelombang S (LAMBAT)
+      .to("#s-wave-circle", {
+        attr: { r: 1100 },
+        opacity: 0.5,
+        duration: 7.5,
+        ease: "none",
+        onUpdate: function() {
+          const radius = parseFloat(this.targets()[0].getAttribute('r'));
+          const xPos = 150 + radius * Math.cos(-25 * Math.PI / 180);
+          const yPos = 450 + radius * Math.sin(-25 * Math.PI / 180);
+          gsap.set("#s-label", { x: xPos, y: yPos, opacity: (radius > 50 && radius < 750) ? 1 : 0 });
+
+          // Strong Shaking Impact Dist ~580 (Hypotenuse from 150,450 to 680,250)
+          // Dist = sqrt((680-150)^2 + (250-450)^2) = sqrt(530^2 + 200^2) = ~566
+          if (radius > 566) {
+             gsap.to("#phone", { x: "+=5", y: "+=5", repeat: 8, yoyo: true, duration: 0.03, overwrite: "auto" });
+          }
+        }
+      }, "waves");
+
+    mainBtn.onclick = () => waveTimeline.restart();
+
+    ScrollTrigger.create({
+      trigger: "#wave-controller",
+      start: "top 85%",
+      onEnter: () => { if (waveTimeline.progress() === 0) waveTimeline.play(); }
+    });
+
+    applyInitialStates();
+  }
+
+  // Lifecycle Initialization
+  if (document.readyState === 'complete') {
+    runWaveAnimation();
+  } else {
+    window.addEventListener('load', runWaveAnimation);
+  }
+</script>
+
+<style>
+  svg text {
+    font-family: inherit;
+    pointer-events: none;
+    user-select: none;
+  }
+</style>

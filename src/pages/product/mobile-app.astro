@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductDetailHero from '../../components/product/ProductDetailHero.astro';
+import ProductDetailSection from '../../components/product/ProductDetailSection.astro';
+import appImage from '../../assets/APP.png';
+import Footer from '../../components/Footer.astro';
+
+const simapmobileFeatures = [
+	{
+		title: 'Informasi Gempa Cepat',
+		description: 'Memberikan informasi cepat mengenai tingkat kekuatan guncangan gempa berdasarkan data real-time dari sensor BMKG.'
+	},
+	{
+		title: 'Interface Intuitif',
+		description: 'Desain aplikasi yang user-friendly memudahkan pengguna untuk memahami informasi peringatan dini dengan cepat.'
+	},
+	{
+		title: 'Data Akurat dari BMKG',
+		description: 'Menggunakan data resmi dari Badan Meteorologi Klimatologi dan Geofisika untuk memberikan informasi paling akurat.'
+	},
+	{
+		title: 'Tersedia di Mobile',
+		description: 'Aplikasi mobile yang dapat diunduh untuk memberikan akses peringatan dini gempa bumi di mana pun pengguna berada.'
+	}
+];
+---
+
+<Layout title="InaEEWS Mobile App - Indonesia Earthquake Early Warning System">
+	<div class="theme-app min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<ProductDetailHero title="InaEEWS Mobile App" />
+			<ProductDetailSection
+				title="InaEEWS Mobile App"
+				bannerImage={appImage}
+				features={simapmobileFeatures}
+				backgroundColor="bg-white dark:bg-slate-900"
+			/>
+		</main>
+		<Footer />
+	</div>
+</Layout>

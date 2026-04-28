@@ -1,0 +1,107 @@
+---
+const faqItems = [
+	{
+		question: "Apakah itu EEWS ?",
+		answer: "Earthquake Early Warning System (EEWS) bekerja dengan memanfaatkan sensor gempa untuk mendeteksi getaran awal (gelombang P) dan memprediksi guncangan yang lebih kuat (gelombang S). Karena gelombang S bergerak lebih lambat, sistem dapat memberikan peringatan beberapa detik sebelum guncangan terasa."
+	},
+	{
+		question: "Apakah InaEEWS menjangkau seluruh wilayah Indonesia?",
+		answer: "Tidak, InaEEWS saat ini masih dalam tahap uji coba di wilayah purwarupa yang meliputi Jawa Barat, Banten, DK Jakarta dan Lampung."
+	},
+	{
+		question: "Kenapa notifikasi saya terlambat?",
+		answer: "Bisa karena jarak Anda sangat dekat dengan lokasi gempa (Blind Zone), koneksi internet lambat, atau pengaturan baterai/Doze di perangkat yang menunda notifikasi. Pastikan izin notifikasi dan akses lokasi diaktifkan."
+	},
+	{
+		question: "Apa itu Blind Zone?",
+		answer: "<b>Blind Zone (Zona Buta)</b> adalah wilayah di sekitar episenter gempa bumi yang <b>tidak sempat</b> menerima peringatan dini karena gelombang gempa sudah sampai lebih dulu sebelum sistem selesai memproses data dan mengirimkan peringatan."
+	},
+	{
+		question: "Apa semua informasi gempa akan disebarkan?",
+		answer: "Tidak, InaEEWS hanya memberikan peringatan dini gempa bumi yang akan dirasakan apabila estimasi intensitasnya <b>>=3 MMI</b> pada lokasi user penerima."
+	},
+	{	
+		question: "Magnitudo vs Intensitas, apa bedanya?",
+		answer: `<ol>
+		<li>
+			<b> Magnitudo	:</b> adalah ukuran energi gempa yang dilepaskan dari sumber gempa.
+		</li>
+		<li>
+			<b> Intensitas	:</b> adalah ukuran kuatnya guncangan yang dirasakan di suatu tempat.
+		</li>
+		</ol>`
+	},
+	{
+		question: "Bagaimana cara mengakses peringatan InaEEWS?",
+		answer: "Untuk saat ini aplikasi InaEEWS telah menutup pendaftaran pengguna dan hanya tersedia untuk partisipan uji coba."
+	}
+];
+---
+
+<section id="faq" class="min-h-screen w-full snap-start flex flex-col items-center justify-center px-6 md:px-12 py-32 bg-white">
+	<div class="max-w-4xl w-full space-y-12 md:space-y-16">
+		<h3 class="text-2xl md:text-4xl font-black tracking-tight text-center text-blue-900 uppercase">Keterbatasan</h3>
+		<div class="bg-red-50 border border-red-200 p-6 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left transition-all shadow-sm">
+			<div class="size-14 md:size-20 rounded-3xl bg-red-600 flex items-center justify-center shrink-0 shadow-xl shadow-red-600/20">
+				<span class="material-symbols-outlined text-2xl md:text-4xl text-white">warning</span>
+			</div>
+			<div class="flex-1">
+				<h5 class="text-lg md:text-2xl font-black text-red-900 uppercase tracking-tight">Informasi Penting</h5>
+				<p class="text-slate-600 text-xs md:text-base mt-3 leading-relaxed">Sistem memiliki keterbatasan fisika seperti <b>Blind Zone</b>. Jika Anda merasakan getaran kuat, <b>langsung berlindung tanpa menunggu peringatan. </b>Sistem ini adalah alat bantu, bukan pengganti kewaspadaan diri.</p>
+			</div>
+		</div>
+
+		<div class="space-y-4 md:space-y-6">
+			<h3 class="text-2xl md:text-3xl font-black tracking-tight text-center mb-4 md:mb-8 text-slate-900">Frequently Asked <span class="text-blue-600">Questions.</span></h3>
+			<div class="space-y-4">
+				{faqItems.map((item, i) => (
+					<div class="faq-item rounded-2xl bg-white border border-slate-100 overflow-hidden transition-all hover:border-blue-600/40" data-faq>
+						<button type="button" class="w-full p-6 flex justify-between items-center cursor-pointer group text-left text-slate-900" aria-expanded="false" aria-controls={`faq-answer-${i}`} id={`faq-question-${i}`}>
+							<span class="font-bold text-slate-600 group-hover:text-slate-900">{item.question}</span>
+							<span class="faq-icon material-symbols-outlined text-slate-400 group-hover:text-blue-600 transition-transform duration-200 shrink-0">add_circle</span>
+						</button>
+						<div id={`faq-answer-${i}`} class="faq-answer hidden px-6 pb-6 pt-0" role="region" aria-labelledby={`faq-question-${i}`}>
+							<p class="text-slate-500 text-sm leading-relaxed pl-0" set:html={item.answer} />
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	const wrappers = document.querySelectorAll('[data-faq]');
+
+	function closeAllExcept(exceptWrapper) {
+		wrappers.forEach((w) => {
+			if (w === exceptWrapper) return;
+			const answer = w.querySelector('.faq-answer');
+			const btn = w.querySelector('button');
+			const icon = w.querySelector('.faq-icon');
+			answer?.classList.add('hidden');
+			btn?.setAttribute('aria-expanded', 'false');
+			if (icon) icon.textContent = 'add_circle';
+		});
+	}
+
+	wrappers.forEach((wrapper) => {
+		const btn = wrapper.querySelector('button');
+		const answer = wrapper.querySelector('.faq-answer');
+		const icon = wrapper.querySelector('.faq-icon');
+
+		btn?.addEventListener('click', () => {
+			const isCurrentlyOpen = !answer?.classList.contains('hidden');
+			closeAllExcept(isCurrentlyOpen ? wrapper : null);
+			if (isCurrentlyOpen) {
+				answer?.classList.add('hidden');
+				btn.setAttribute('aria-expanded', 'false');
+				if (icon) icon.textContent = 'add_circle';
+			} else {
+				answer?.classList.remove('hidden');
+				btn.setAttribute('aria-expanded', 'true');
+				if (icon) icon.textContent = 'remove_circle';
+			}
+		});
+	});
+</script>

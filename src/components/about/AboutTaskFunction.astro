@@ -1,0 +1,105 @@
+---
+---
+
+<section class="min-h-screen snap-start w-full flex items-center py-20 bg-white dark:bg-slate-900 transition-colors duration-500 overflow-hidden relative">
+  <!-- Subtle decoration -->
+  <div class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 rounded-full bg-blue-50 dark:bg-blue-900/10 blur-[150px] -z-0"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-4xl mx-auto space-y-16">
+      
+      <!-- Tugas Pokok -->
+      <div class="group p-8 md:p-12 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl shadow-slate-100/50 dark:shadow-none hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-900/05 transition-all duration-300 animate-fade-in-up">
+        <div class="inline-flex p-4 bg-blue-500 rounded-2xl mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg shadow-blue-500/20">
+          <span class="material-symbols-outlined text-white text-3xl">assignment</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 underline-offset-8 decoration-blue-500 decoration-2">
+          Tugas Pokok
+        </h2>
+        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
+          Tim kerja Sistem Peringatan Dini Gempa Bumi (Earthquake Early Warning System / EEWS) mempunyai tugas pokok melaksanakan penyiapan bahan perumusan dan pelaksanaan kebijakan teknis, pemberian bimbingan teknis, pembinaan teknis dan pengendalian terhadap kebijakan teknis, koordinasi kegiatan fungsional dan kerja sama, serta pengamatan, pengelolaan dan pelayanan data serta informasi di bidang peringatan dini gempa bumi.
+        </p>
+      </div>
+
+      <!-- Fungsi -->
+      <div>
+        <div class="flex flex-col md:flex-row items-center justify-between mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white pb-2 border-b-4 border-blue-500 inline-block">
+              Fungsi Tim EEWS
+            </h2>
+            <div class="mt-4 md:mt-0 px-6 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 font-bold rounded-full border border-blue-100 dark:border-blue-800/50">
+              5 Pilar Fungsi
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6">
+          {[
+            {
+              id: 1,
+              title: "Perumusan Kebijakan Teknis",
+              desc: "Penyiapan bahan perumusan dan pelaksanaan kebijakan teknis sistem peringatan dini gempa bumi.",
+              icon: "policy"
+            },
+            {
+              id: 2,
+              title: "Bimbingan Teknis",
+              desc: "Pemberian bimbingan teknis terkait instrumen, sistem, dan standar operasional EEWS.",
+              icon: "school"
+            },
+            {
+              id: 3,
+              title: "Pembinaan & Pengendalian",
+              desc: "Pembinaan teknis dan pengendalian terhadap kebijakan teknis untuk memastikan standar operasional.",
+              icon: "settings_suggest"
+            },
+            {
+              id: 4,
+              title: "Koordinasi & Kerja Sama",
+              desc: "Koordinasi kegiatan fungsional dan kerja sama antarkelembagaan di bidang EEWS.",
+              icon: "handshake"
+            },
+            {
+              id: 5,
+              title: "Pengelolaan Informasi",
+              desc: "Pengamatan, pengelolaan dan pelayanan data serta informasi di bidang Sistem Peringatan Dini Gempa Bumi (EEWS).",
+              icon: "database"
+            }
+          ].map((item, index) => (
+            <div 
+              class="flex items-start p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700/50 hover:bg-white dark:hover:bg-slate-800 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all duration-300 group"
+              style={`animation-delay: ${0.1 * index}s;`}
+            >
+              <div class="flex-shrink-0 w-12 h-12 bg-white dark:bg-slate-700 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                <span class="material-symbols-outlined">{item.icon}</span>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <p class="text-slate-600 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors duration-300">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

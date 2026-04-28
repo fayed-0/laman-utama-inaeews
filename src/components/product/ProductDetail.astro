@@ -1,0 +1,123 @@
+---
+import ProductDetailSection from './ProductDetailSection.astro';
+import { Image } from 'astro:assets';
+import RSEEW from '../../assets/RSEEW.jpeg';
+import warningDisplay from '../../assets/warningdisplay.png';
+import cellularBroadcast from '../../assets/Cellular Broadcast.png';
+import simap from '../../assets/simap.png';
+import appImage from '../../assets/APP.png';
+
+const rseewFeatures = [
+	{
+		title: 'Berbasis Web',
+		description: 'Sistem dapat diakses langsung melalui browser, sehingga tidak memerlukan proses instalasi dan memudahkan implementasi di berbagai lingkungan kerja.'
+	},
+	{
+		title: 'Pembaruan Data Cepat',
+		description: 'Data yang ditampilkan selalu diperbarui secara real-time mengikuti sistem utama, sehingga pengguna mendapatkan informasi yang relevan dan dapat segera mengambil tindakan.'
+	},
+	{
+		title: 'Monitoring Terpusat',
+		description: 'Menyediakan tampilan dashboard yang memudahkan pengguna dalam memantau informasi peringatan dini secara terpusat, lengkap dengan visualisasi data yang jelas.'
+	},
+	{
+		title: 'Akses Fleksibel',
+		description: 'Dapat digunakan di berbagai perangkat seperti komputer, laptop, maupun tablet selama terhubung dengan jaringan internet.'
+	}
+];
+
+const warningDisplayFeatures = [
+	{
+		title: 'Penerimaan Real-Time',
+		description: 'Perangkat menerima peringatan dini secara real-time dari sistem pusat dengan latensi minimal untuk respons darurat yang cepat.'
+	},
+	{
+		title: 'Aktivasi Alarm Otomatis',
+		description: 'Saat peringatan masuk, alat ini langsung menampilkan informasi dan mengaktifkan alarm sebagai tanda bahaya kepada masyarakat.'
+	},
+	{
+		title: 'Integrasi Otomasi',
+		description: 'Sistem dapat terhubung dengan kontrol otomatis dan pengumuman publik untuk mempercepat penyebaran informasi darurat.'
+	},
+	{
+		title: 'Perangkat Keras Terpercaya',
+		description: 'Dirancang dengan standar keandalan tinggi untuk memastikan operasi berkelanjutan dalam situasi darurat gempa bumi.'
+	}
+];
+
+const cellularBroadcastFeatures = [
+	{
+		title: 'Penyebaran Cepat',
+		description: 'Pesan dikirim langsung ke banyak perangkat sekaligus, memastikan peringatan dini diterima pengguna secara instan dalam situasi darurat.'
+	},
+	{
+		title: 'Tanpa Aplikasi Tambahan',
+		description: 'Sistem broadcast dapat diterima langsung di perangkat tanpa memerlukan instalasi aplikasi khusus, menjangkau audiens yang lebih luas.'
+	},
+	{
+		title: 'Multi-Device Support',
+		description: 'Peringatan dapat diterima di berbagai jenis perangkat mobile yang mendukung teknologi cellular broadcast.'
+	},
+	{
+		title: 'Pengembangan Berkelanjutan',
+		description: 'Penerapannya masih dalam tahap awal pengembangan dan terus disempurnakan untuk mencapai hasil yang lebih optimal.'
+	}
+];
+
+const simapmobileFeatures = [
+	{
+		title: 'Informasi Gempa Cepat',
+		description: 'Memberikan informasi cepat mengenai tingkat kekuatan guncangan gempa berdasarkan data real-time dari sensor BMKG.'
+	},
+	{
+		title: 'Interface Intuitif',
+		description: 'Desain aplikasi yang user-friendly memudahkan pengguna untuk memahami informasi peringatan dini dengan cepat.'
+	},
+	{
+		title: 'Data Akurat dari BMKG',
+		description: 'Menggunakan data resmi dari Badan Meteorologi Klimatologi dan Geofisika untuk memberikan informasi paling akurat.'
+	},
+	{
+		title: 'Tersedia di Mobile',
+		description: 'Aplikasi mobile yang dapat diunduh untuk memberikan akses peringatan dini gempa bumi di mana pun pengguna berada.'
+	}
+];
+---
+
+<div class="w-full bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+	<!-- RSEEW Product Detail -->
+	<ProductDetailSection
+		id="detail-rseew"
+		title="RSEEW"
+		bannerImage={RSEEW}
+		features={rseewFeatures}
+		backgroundColor="bg-white dark:bg-slate-900"
+	/>
+
+	<!-- Warning Display Product Detail -->
+	<ProductDetailSection
+		id="detail-warning-display"
+		title="Warning Display"
+		bannerImage={warningDisplay}
+		features={warningDisplayFeatures}
+		backgroundColor="bg-slate-50 dark:bg-slate-900"
+	/>
+
+	<!-- Cellular Broadcast Product Detail -->
+	<ProductDetailSection
+		id="detail-cellular-broadcast"
+		title="Cellular Broadcast"
+		bannerImage={cellularBroadcast}
+		features={cellularBroadcastFeatures}
+		backgroundColor="bg-white dark:bg-slate-900"
+	/>
+
+	<!-- InaEEWS Mobile App Detail -->
+	<ProductDetailSection
+		id="detail-mobile-app"
+		title="InaEEWS Mobile App"
+		bannerImage={appImage}
+		features={simapmobileFeatures}
+		backgroundColor="bg-slate-50 dark:bg-slate-900"
+	/>
+</div>

@@ -1,0 +1,140 @@
+---
+import eyeIcon from '../../assets/eye.svg';
+import downloadIcon from '../../assets/download.svg';
+import pageIcon from '../../assets/page.svg';
+
+// Materials & Infografis data
+const materials = [
+  {
+    title: "Gelombang P-Wave dan S-Wave",
+    description: "Penjelasan detail tentang perbedaan gelombang P dan S dalam gempa bumi. Memahami karakteristik kedua gelombang ini penting untuk sistem peringatan dini...",
+    tag: "Teknis",
+    color: "bg-blue-600",
+    pages: 8
+  },
+  {
+    title: "Mekanisme Tektonik Lempeng Indonesia",
+    description: "Panduan komprehensif tentang pergerakan lempeng tektonik yang menyebabkan gempa bumi di Indonesia. Analisis meliputi zona subduksi dan transform fault utama...",
+    tag: "Edukasi",
+    color: "bg-red-600",
+    pages: 12
+  },
+  {
+    title: "Panduan Keselamatan Saat Gempa Bumi",
+    description: "Protokol dan prosedur evakuasi yang aman untuk berbagai lokasi dan situasi. Informasi ini dapat menyelamatkan nyawa dalam situasi darurat gempa...",
+    tag: "Panduan",
+    color: "bg-green-700",
+    pages: 6
+  },
+  {
+    title: "Algoritma Deteksi Gempa Real-Time",
+    description: "Penjelasan tentang bagaimana sistem BMKG mendeteksi gempa dalam hitungan detik. Teknologi AI dan machine learning digunakan untuk akurasi maksimal...",
+    tag: "Teknis",
+    color: "bg-slate-700",
+    pages: 15
+  },
+  {
+    title: "Manajemen Bencana Gempa Bumi",
+    description: "Strategi menyeluruh untuk mitigasi risiko dan penanganan bencana gempa bumi. Melibatkan koordinasi multi-stakeholder dan pengurangan kerentanan infrastruktur...",
+    tag: "Edukasi",
+    color: "bg-purple-600",
+    pages: 20
+  },
+  {
+    title: "Respon Masyarakat dan Edukasi Gempa",
+    description: "Studi tentang bagaimana meningkatkan kesadaran dan kesiapsiagaan masyarakat terhadap gempa. Program edukasi berkelanjutan terbukti mengurangi jatuh korban...",
+    tag: "Sosial",
+    color: "bg-orange-600",
+    pages: 10
+  }
+];
+---
+
+<section class="snap-start w-full bg-white py-24 px-12 md:px-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto flex flex-col gap-12">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-3">
+      <h2 class="text-center text-4xl font-bold">
+        <span class="text-slate-800">Materi </span>
+        <span class="text-blue-600">&amp; Infografis</span>
+      </h2>
+      <p class="text-center text-slate-400 text-base max-w-2xl">
+        Kumpulan materi edukasi, panduan teknis, dan jurnal ilmiah seputar sistem peringatan dini gempa bumi Indonesia.
+      </p>
+      <button class="group/btn flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full border border-blue-200 dark:border-blue-800/50 text-xs font-bold uppercase tracking-wider hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+        Lihat semua
+        <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+		</svg>
+      </button>
+    </div>
+
+    <!-- Materials Grid - First Row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {materials.slice(0, 3).map((material) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+          <div class={`h-32 ${material.color}`}></div>
+          <div class="p-5 space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold uppercase tracking-wider">
+              {material.tag}
+            </span>
+            <h3 class="text-slate-800 font-bold text-lg">
+              {material.title}
+            </h3>
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">
+              {material.description}
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-200">
+              <span class="text-slate-600 text-xs flex items-center gap-2">
+                <img src={pageIcon.src} alt="Pages" class="w-4 h-4" />
+                {material.pages} halaman
+              </span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <img src={eyeIcon.src} alt="View" class="w-5 h-5" />
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <img src={downloadIcon.src} alt="Download" class="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Materials Grid - Second Row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {materials.slice(3, 6).map((material) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+          <div class={`h-32 ${material.color}`}></div>
+          <div class="p-5 space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold uppercase tracking-wider">
+              {material.tag}
+            </span>
+            <h3 class="text-slate-800 font-bold text-lg">
+              {material.title}
+            </h3>
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">
+              {material.description}
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-200">
+              <span class="text-slate-600 text-xs flex items-center gap-2">
+                <img src={pageIcon.src} alt="Pages" class="w-4 h-4" />
+                {material.pages} halaman
+              </span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <img src={eyeIcon.src} alt="View" class="w-5 h-5" />
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <img src={downloadIcon.src} alt="Download" class="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

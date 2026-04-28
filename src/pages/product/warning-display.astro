@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductDetailHero from '../../components/product/ProductDetailHero.astro';
+import ProductDetailSection from '../../components/product/ProductDetailSection.astro';
+import warningDisplay from '../../assets/warningdisplay.png';
+import Footer from '../../components/Footer.astro';
+
+const warningDisplayFeatures = [
+	{
+		title: 'Penerimaan Real-Time',
+		description: 'Perangkat menerima peringatan dini secara real-time dari sistem pusat dengan latensi minimal untuk respons darurat yang cepat.'
+	},
+	{
+		title: 'Aktivasi Alarm Otomatis',
+		description: 'Saat peringatan masuk, alat ini langsung menampilkan informasi dan mengaktifkan alarm sebagai tanda bahaya kepada masyarakat.'
+	},
+	{
+		title: 'Integrasi Otomasi',
+		description: 'Sistem dapat terhubung dengan kontrol otomatis dan pengumuman publik untuk mempercepat penyebaran informasi darurat.'
+	},
+	{
+		title: 'Perangkat Keras Terpercaya',
+		description: 'Dirancang dengan standar keandalan tinggi untuk memastikan operasi berkelanjutan dalam situasi darurat gempa bumi.'
+	}
+];
+---
+
+<Layout title="Warning Display - Indonesia Earthquake Early Warning System">
+	<div class="theme-app min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<ProductDetailHero title="Warning Display" />
+			<ProductDetailSection
+				title="Warning Display"
+				bannerImage={warningDisplay}
+				features={warningDisplayFeatures}
+				backgroundColor="bg-white dark:bg-slate-900"
+			/>
+		</main>
+		<Footer />
+	</div>
+</Layout>

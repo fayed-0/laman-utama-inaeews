@@ -1,0 +1,30 @@
+---
+const reasons = ["Keselamatan Jiwa", "Perlindungan infrastruktur", "Mitigasi Ekonomi", "Ketahanan Psikologis"];
+const icons = ["shield", "source_environment", "finance_mode", "favorite"];
+const caption = ["Memmberikan waktu berharga untuk berlindung sebelum guncangan kuat tiba.", "Sistem otomatis dapat mematikan peralatan krisit untuk mengurangi kerusakan.", "Mengurangi kerugian ekonomi melalui respons cepat dan terkoordinasi.", "Masyarakat yang siap secara mental lebih tangguh menghadapi bencana."];
+---
+
+<section id="reasons" class="min-h-screen w-full snap-start flex flex-col items-center justify-center px-6 md:px-12 py-24 bg-white">
+	<div class="text-center mb-12 md:mb-16 space-y-2">
+		<h2 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900">Kenapa Indonesia <span class="text-blue-600">Membutuhkannya?</span></h2>
+	</div>
+	
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+    {reasons.map((item, i) => (
+        <div class="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-600/30 transition-all flex flex-col items-center text-center gap-6">
+            <div class="size-12 rounded-full bg-white text-blue-600 shadow-sm flex items-center justify-center border border-blue-200 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:border-transparent">
+                <span class="material-symbols-outlined">{icons[i]}</span>
+            </div>
+            
+            <div class="flex flex-col gap-3 items-center">
+                <h4 class="font-black text-xs uppercase tracking-widest text-slate-900">
+                    {item}
+                </h4>
+                <p class="text-slate-500 text-xs leading-relaxed max-w-[250px]">
+                    {caption[i]}
+                </p>
+            </div>
+        </div>
+    ))}
+	</div>
+</section>

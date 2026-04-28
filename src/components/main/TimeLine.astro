@@ -1,0 +1,255 @@
+<style>
+	svg circle {
+		pointer-events: auto;
+	}
+
+	svg g:hover circle {
+		stroke: #3b82f6 !important;
+		stroke-width: 4 !important;
+	}
+
+	#tl-popup {
+		position: absolute;
+		background: white;
+		border: 1px solid #dbeafe;
+		border-radius: 8px;
+		padding: 12px;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		z-index: 50;
+		max-width: 280px;
+		display: none;
+		pointer-events: none;
+	}
+
+	#tl-popup strong {
+		display: block;
+		margin-bottom: 6px;
+		font-size: 14px;
+		color: #1e3a5f;
+		font-weight: 600;
+	}
+
+	#tl-popup p {
+		font-size: 13px;
+		color: #475569;
+		line-height: 1.5;
+		margin: 0;
+	}
+</style>
+
+<section class="min-h-screen w-full snap-start flex flex-col items-center justify-center px-6 md:px-12 py-24 bg-white">
+	<div class="max-w-7xl mx-auto w-full">
+		<!-- Timeline Header -->
+		<div class="text-center mb-12 md:mb-16 space-y-2">
+			<h2 class="text-3xl md:text-4xl font-black tracking-tight text-slate-900">
+				Timeline Informasi <span class="text-blue-600">Gempa Bumi</span>
+			</h2>
+		</div>
+
+		<!-- Timeline SVG with Popups -->
+		<div class="w-full flex justify-center relative">
+			<!-- Single Dynamic Popup -->
+			<div id="tl-popup"></div>
+
+			<svg id="tl-svg" class="w-full max-w-5xl" viewBox="0 0 860 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+				<!-- Single continuous snake connector path -->
+				<path d="
+					M 78,55
+					H 782
+					A 60,60 0 0,1 842,115
+					V 180
+					A 60,60 0 0,1 782,240
+					H 78
+					A 60,60 0 0,0 18,300
+					V 365
+					A 60,60 0 0,0 78,425
+					H 740
+				" fill="none" stroke="#bfdbfe" stroke-width="2.5" stroke-linecap="round"/>
+
+				<!-- 01 -->
+				<g class="circle-01 tl-node group cursor-pointer" data-node="01">
+					<circle cx="120" cy="55" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="120" y="64" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">01</text>
+					<text x="120" y="135" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">Gempa Terdeteksi</text>
+					<text x="120" y="155" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">0 menit</text>
+				</g>
+
+				<!-- 02 -->
+				<g class="circle-02 tl-node group cursor-pointer" data-node="02">
+					<circle cx="430" cy="55" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="430" y="64" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">02</text>
+					<text x="430" y="135" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">EEWS notifikasi</text>
+					<text x="430" y="155" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&lt;1 menit</text>
+				</g>
+
+				<!-- 03 -->
+				<g class="circle-03 tl-node group cursor-pointer" data-node="03">
+					<circle cx="740" cy="55" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="740" y="64" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">03</text>
+					<text x="740" y="135" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">SIMap</text>
+					<text x="740" y="155" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">1–2 menit</text>
+				</g>
+
+				<!-- 04 -->
+				<g class="circle-04 tl-node group cursor-pointer" data-node="04">
+					<circle cx="740" cy="240" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="740" y="249" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">04</text>
+					<text x="740" y="320" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">Info gempa / PDT 1</text>
+					<text x="740" y="340" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&lt;3 menit</text>
+				</g>
+
+				<!-- 05 -->
+				<g class="circle-05 tl-node group cursor-pointer" data-node="05">
+					<circle cx="430" cy="240" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="430" y="249" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">05</text>
+					<text x="430" y="320" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">Focal mech. &amp; PDT 2</text>
+					<text x="430" y="340" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&lt;10 menit</text>
+				</g>
+
+				<!-- 06 -->
+				<g class="circle-06 tl-node group cursor-pointer" data-node="06">
+					<circle cx="120" cy="240" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="120" y="249" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">06</text>
+					<text x="120" y="320" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">Press release</text>
+					<text x="120" y="340" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&lt;30 menit</text>
+				</g>
+
+				<!-- 07 -->
+				<g class="circle-07 tl-node group cursor-pointer" data-node="07">
+					<circle cx="120" cy="425" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="120" y="434" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">07</text>
+					<text x="120" y="505" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">PDT 3.1 – 3.X</text>
+					<text x="120" y="525" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&lt;120 menit</text>
+				</g>
+
+				<!-- 08 -->
+				<g class="circle-08 tl-node group cursor-pointer" data-node="08">
+					<circle cx="430" cy="425" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="430" y="434" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">08</text>
+					<text x="430" y="505" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">PDT 4 – all clear</text>
+					<text x="430" y="525" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&gt;120 menit</text>
+				</g>
+
+				<!-- 09 -->
+				<g class="circle-09 tl-node group cursor-pointer" data-node="09">
+					<circle cx="740" cy="425" r="42" fill="#dbeafe" stroke="#93c5fd" stroke-width="3" class="group-hover:stroke-blue-500 transition-colors"/>
+					<text x="740" y="434" text-anchor="middle" font-size="22" font-weight="bold" fill="#3b82f6" font-family="Work Sans">09</text>
+					<text x="740" y="505" text-anchor="middle" font-size="14" font-weight="600" fill="#475569" font-family="Work Sans">Press conference</text>
+					<text x="740" y="525" text-anchor="middle" font-size="12" font-weight="400" fill="#94a3b8" font-family="Work Sans">&gt;120 menit</text>
+				</g>
+			</svg>
+		</div>
+	</div>
+</section>
+
+<script>
+(function() {
+	const popupData = {
+		'01': { 
+			title: 'Gempa Terdeteksi', 
+			desc: 'Sinyal seismik pertama kali ditangkap oleh jaringan sensor BMKG. Sistem otomatis memulai proses analisis data dalam hitungan detik.' 
+		},
+		'02': { 
+			title: 'EEWS Notifikasi', 
+			desc: 'Earthquake Early Warning System mengirimkan notifikasi otomatis ke seluruh instansi terkait. Waktu respons kurang dari 1 menit sejak deteksi.' 
+		},
+		'03': { 
+			title: 'SIMap', 
+			desc: 'Sistem Informasi Peta menampilkan visualisasi episenter, kedalaman, dan estimasi dampak gempa secara real-time untuk publik dan pemangku kebijakan.' 
+		},
+		'04': { 
+			title: 'Info Gempa / PDT 1', 
+			desc: 'Produk Data Teknis pertama dirilis berisi parameter gempa awal: lokasi, magnitudo, kedalaman, dan potensi tsunami dalam waktu kurang dari 3 menit.' 
+		},
+		'05': { 
+			title: 'Focal Mech. & PDT 2', 
+			desc: 'Analisis mekanisme sumber gempa (focal mechanism) selesai. PDT 2 dirilis dengan parameter yang lebih akurat berdasarkan data lebih lengkap.' 
+		},
+		'06': { 
+			title: 'Press Release', 
+			desc: 'Siaran pers resmi BMKG diterbitkan dan disebarkan ke seluruh media. Berisi informasi gempa yang telah diverifikasi dan rekomendasi untuk masyarakat.' 
+		},
+		'07': { 
+			title: 'PDT 3.1 – 3.X', 
+			desc: 'Serangkaian Produk Data Teknis lanjutan yang memuat analisis aftershock, peta shakemap, dan estimasi kerusakan berdasarkan model intensitas.' 
+		},
+		'08': { 
+			title: 'PDT 4 – All Clear', 
+			desc: 'Produk Data Teknis final yang menyatakan situasi telah aman. Berisi ringkasan lengkap kejadian gempa dan rekomendasi pemulihan.' 
+		},
+		'09': { 
+			title: 'Press Conference', 
+			desc: 'Konferensi pers resmi BMKG bersama kementerian dan lembaga terkait. Menyampaikan informasi komprehensif dan langkah-langkah mitigasi kepada publik.' 
+		},
+	};
+
+	const svgEl = document.getElementById('tl-svg');
+	const popup = document.getElementById('tl-popup');
+	const wrap = popup.parentElement; // .timeline-svg-wrap
+
+	let currentNode = null;
+
+	document.querySelectorAll('#tl-svg .tl-node').forEach(node => {
+		const id = node.dataset.node;
+
+		node.addEventListener('mouseenter', () => {
+			currentNode = id;
+			const data = popupData[id];
+			if (!data) return;
+
+			popup.innerHTML = '<strong>' + data.title + '</strong><p>' + data.desc + '</p>';
+
+			// Position: get circle center in SVG coords, convert to wrapper-relative pixels
+			const circle = node.querySelector('circle');
+			const svgRect = svgEl.getBoundingClientRect();
+			const wrapRect = wrap.getBoundingClientRect();
+			const cx = parseFloat(circle.getAttribute('cx'));
+			const cy = parseFloat(circle.getAttribute('cy'));
+			const r = parseFloat(circle.getAttribute('r'));
+
+			// SVG viewBox is 860×560, rendered width/height from getBoundingClientRect
+			const scaleX = svgRect.width / 860;
+			const scaleY = svgRect.height / 560;
+
+			const circlePxX = svgRect.left - wrapRect.left + cx * scaleX;
+			const circlePxY = svgRect.top - wrapRect.top + cy * scaleY;
+			const circlePxR = r * scaleX;
+
+			// Show popup above circle center, horizontally centered
+			popup.style.display = 'block';
+			const popW = 280;
+			let left = circlePxX - popW / 2;
+			// Clamp inside wrapper
+			left = Math.max(4, Math.min(left, wrapRect.width - popW - 4));
+			
+			// Calculate space above and below
+			const spaceAbove = circlePxY - circlePxR - 12;
+			const spaceBelow = wrapRect.height - (circlePxY + circlePxR + 12);
+			let top;
+			
+			// If not enough space above, position below
+			if (spaceAbove < popup.offsetHeight) {
+				top = circlePxY + circlePxR + 12;
+			} else {
+				top = circlePxY - circlePxR - popup.offsetHeight - 12;
+			}
+
+			popup.style.left = left + 'px';
+			popup.style.top = Math.max(4, top) + 'px';
+
+			// Highlight circle
+			circle.style.stroke = '#3b82f6';
+			circle.style.strokeWidth = '3.5';
+		});
+
+		node.addEventListener('mouseleave', () => {
+			if (currentNode !== id) return;
+			currentNode = null;
+			popup.style.display = 'none';
+			const circle = node.querySelector('circle');
+			circle.style.stroke = '';
+			circle.style.strokeWidth = '';
+		});
+	});
+})();
+</script>

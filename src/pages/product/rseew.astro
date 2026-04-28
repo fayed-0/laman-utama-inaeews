@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductDetailHero from '../../components/product/ProductDetailHero.astro';
+import ProductDetailSection from '../../components/product/ProductDetailSection.astro';
+import RSEEW from '../../assets/RSEEW.jpeg';
+import Footer from '../../components/Footer.astro';
+
+const rseewFeatures = [
+	{
+		title: 'Berbasis Web',
+		description: 'Sistem dapat diakses langsung melalui browser, sehingga tidak memerlukan proses instalasi dan memudahkan implementasi di berbagai lingkungan kerja.'
+	},
+	{
+		title: 'Pembaruan Data Cepat',
+		description: 'Data yang ditampilkan selalu diperbarui secara real-time mengikuti sistem utama, sehingga pengguna mendapatkan informasi yang relevan dan dapat segera mengambil tindakan.'
+	},
+	{
+		title: 'Monitoring Terpusat',
+		description: 'Menyediakan tampilan dashboard yang memudahkan pengguna dalam memantau informasi peringatan dini secara terpusat, lengkap dengan visualisasi data yang jelas.'
+	},
+	{
+		title: 'Akses Fleksibel',
+		description: 'Dapat digunakan di berbagai perangkat seperti komputer, laptop, maupun tablet selama terhubung dengan jaringan internet.'
+	}
+];
+---
+
+<Layout title="RSEEW (Receiver System Early Earthquake Warning) - Indonesia Earthquake Early Warning System">
+	<div class="theme-app min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<ProductDetailHero title="RSEEW (Receiver System Early Earthquake Warning)" />
+			<ProductDetailSection
+				title="RSEEW (Receiver System Early Earthquake Warning)"
+				bannerImage={RSEEW}
+				features={rseewFeatures}
+				backgroundColor="bg-white dark:bg-slate-900"
+			/>
+		</main>
+		<Footer />
+	</div>
+</Layout>

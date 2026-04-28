@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import HeroSection from '../components/product/HeroSection.astro';
+import ProductInaEEWS from '../components/product/ProductInaEEWS.astro';
+import ProductKanal from '../components/product/ProductKanal.astro';
+import MobileApp from '../components/product/MobileApp.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Produk InaEEWS - Indonesia Earthquake Early Warning System">
+	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<HeroSection />
+			<ProductInaEEWS />
+			<ProductKanal />
+			<MobileApp />
+		</main>
+		<div class="snap-start flex flex-col justify-end">
+			<Footer />
+		</div>
+	</div>
+</Layout>

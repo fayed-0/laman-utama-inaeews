@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import EducationHero from '../components/Education/Hero.astro';
+import EducationMaterials from '../components/Education/Materials.astro';
+import EducationVideos from '../components/Education/Videos.astro';
+import EducationJournals from '../components/Education/Journals.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Materi Edukasi | InaEEWS">
+	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<EducationHero />
+			<EducationMaterials />
+			<EducationVideos />
+			<EducationJournals />
+		</main>
+		<div class="snap-start flex flex-col justify-end">
+			<Footer />
+		</div>
+	</div>
+</Layout>

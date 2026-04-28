@@ -1,0 +1,236 @@
+---
+import eyeIcon from '../../assets/eye.svg';
+import downloadIcon from '../../assets/download.svg';
+
+// Journal entries with varied content
+const journals = [
+  {
+    title: "Real-Time Seismic Processing for Earthquake Early Warning in Indonesia",
+    description: "Penelitian komprehensif tentang pemrosesan data seismik real-time untuk sistem peringatan dini gempa bumi. Fokus pada akselerasi deteksi dan akurasi prediksi dengan teknologi terkini di BMKG. Metodologi melibatkan analisis jaringan seismik nasional dan integrasi AI. Data pengujian menunjukkan peningkatan waktu respons hingga 40% lebih cepat. Implementasi sistem ini dapat menyelamatkan ribuan nyawa di Indonesia...",
+    tags: ["BMKG Technical Report", "2025", "EN"],
+    author: "Hidayat et al., 2025 — BMKG Research Division"
+  },
+  {
+    title: "Machine Learning Models for Earthquake Magnitude Prediction",
+    description: "Implementasi algoritma machine learning untuk prediksi magnitudo gempa dengan akurasi tinggi. Penelitian menggunakan neural network dan ensemble learning untuk validasi optimal. Data pelatihan mencakup 5000+ kejadian gempa dari 2010-2024. Hasil pengujian menunjukkan akurasi prediksi mencapai 92% dengan margin error minimal. Model ini dapat diintegrasikan ke sistem peringatan dini nasional BMKG...",
+    tags: ["Research Paper", "2025", "ID"],
+    author: "Sutrisno et al., 2025 — ITB Seismology Lab"
+  },
+  {
+    title: "Seismic Network Density and EEW System Effectiveness",
+    description: "Analisis pengaruh kepadatan jaringan seismik terhadap efektivitas sistem peringatan dini gempa. Studi kasus dilakukan di Jawa dan Sumatera dengan perbandingan konfigurasi jaringan berbeda. Penelitian menunjukkan korelasi positif antara densitas stasiun dan kualitas deteksi. Rekomendasi mencakup penambahan 150 stasiun baru di lokasi strategis. Investasi ini diproyeksikan dapat mengurangi waktu peringatan hingga 30 detik...",
+    tags: ["Conference Paper", "2024", "EN"],
+    author: "Wulandari et al., 2024 — Univ. of Indonesia"
+  },
+  {
+    title: "Urban Earthquake Risk Assessment and Mitigation Strategies",
+    description: "Evaluasi risiko gempa di area urban padat penduduk dengan strategi mitigasi bencana inovatif. Studi mencakup analisis kerentanan infrastruktur di Jakarta, Surabaya, dan Bandung. Implementasi early warning system dan building code enforcement menjadi fokus utama. Data menunjukkan potensi pengurangan kerusakan hingga 60% dengan mitigasi terstruktur. Rekomendasi pelatihan masyarakat dan peningkatan infrastruktur sangat diperlukan...",
+    tags: ["Disaster Management", "2024", "ID"],
+    author: "Rahman & Kusuma, 2024 — LIPI Jakarta"
+  },
+  {
+    title: "Ground Motion Characterization in Soft Soil Regions",
+    description: "Karakterisasi gerakan tanah di daerah tanah lembut Indonesia untuk analisis respons seismic akurat. Metodologi lapangan melibatkan boring dan pengujian laboratorium di berbagai kedalaman. Data pengamatan mencakup 25 lokasi di Jawa Timur, Jawa Tengah, dan Sumatera Utara. Hasil penelitian menunjukkan amplifikasi gelombang seismic hingga 3x lipat di tanah lunak. Temuan ini penting untuk perencanaan tahan gempa di area urban...",
+    tags: ["Technical Study", "2025", "EN"],
+    author: "Santoso et al., 2025 — Pusat Vulkanologi"
+  },
+  {
+    title: "Community Response to Earthquake Early Warning Alerts",
+    description: "Studi perilaku masyarakat terhadap penerimaan peringatan dini gempa dan rencana evakuasi. Penelitian melibatkan 5000+ responden dari berbagai kalangan di kota-kota besar. Analisis menunjukkan tingkat respons masyarakat mencapai 75% dengan rata-rata waktu evakuasi 8 menit. Hambatan komunikasi dan edukasi menjadi faktor utama dalam implementasi warning system. Rekomendasi fokus pada edukasi berkelanjutan dan penyempurnaan komunikasi peringatan...",
+    tags: ["Social Research", "2024", "ID"],
+    author: "Permata & Wijaya, 2024 — BNPB Research"
+  }
+];
+---
+
+<section class="snap-start w-full bg-white py-24 px-12 md:px-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto flex flex-col gap-12">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-3">
+      <h2 class="text-center text-4xl font-bold">
+        <span class="text-slate-800">Jurnal &amp; </span>
+        <span class="text-blue-600">Referensi Ilmiah</span>
+      </h2>
+      <p class="text-center text-slate-400 text-base max-w-2xl">
+        Kumpulan jurnal ilmiah, seputar sistem peringatan dini gempa bumi Indonesia.
+      </p>
+      <button class="group/btn flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full border border-blue-200 dark:border-blue-800/50 text-xs font-bold uppercase tracking-wider hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+        Lihat semua
+        <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+		</svg>
+      </button>
+    </div>
+
+    <!-- Journals Grid - First Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {journals.slice(0, 2).map((journal) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow p-6">
+          <div class="space-y-4">
+            <!-- Title -->
+            <h3 class="text-slate-800 font-bold text-xl leading-tight">
+              {journal.title}
+            </h3>
+            
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              {journal.tags.map((tag) => {
+                let bgColor = "bg-blue-50 border-blue-200 text-blue-600";
+                if (tag === "2024" || tag.includes("2024")) bgColor = "bg-orange-100 border-orange-200 text-orange-600";
+                if (tag === "EN" || tag === "ID") bgColor = "bg-green-100 border-green-200 text-green-700";
+                if (tag.includes("Social") || tag.includes("Community")) bgColor = "bg-purple-100 border-purple-200 text-purple-600";
+                if (tag.includes("Conference") || tag.includes("Research Paper")) bgColor = "bg-amber-100 border-amber-200 text-amber-700";
+                return (
+                  <span class={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider ${bgColor}`}>
+                    {tag}
+                  </span>
+                );
+              })}
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-4">
+              {journal.description}
+            </p>
+
+            <!-- Divider -->
+            <div class="border-t border-slate-200"></div>
+
+            <!-- Author & Actions -->
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-slate-600 text-xs flex items-center gap-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                {journal.author}
+              </span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <img src={eyeIcon.src} alt="View" class="w-5 h-5" />
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <img src={downloadIcon.src} alt="Download" class="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Journals Grid - Second Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {journals.slice(2, 4).map((journal) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow p-6">
+          <div class="space-y-4">
+            <!-- Title -->
+            <h3 class="text-slate-800 font-bold text-xl leading-tight">
+              {journal.title}
+            </h3>
+            
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              {journal.tags.map((tag) => {
+                let bgColor = "bg-blue-50 border-blue-200 text-blue-600";
+                if (tag === "2024" || tag.includes("2024")) bgColor = "bg-orange-100 border-orange-200 text-orange-600";
+                if (tag === "EN" || tag === "ID") bgColor = "bg-green-100 border-green-200 text-green-700";
+                if (tag.includes("Social") || tag.includes("Community")) bgColor = "bg-purple-100 border-purple-200 text-purple-600";
+                if (tag.includes("Conference") || tag.includes("Research Paper")) bgColor = "bg-amber-100 border-amber-200 text-amber-700";
+                return (
+                  <span class={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider ${bgColor}`}>
+                    {tag}
+                  </span>
+                );
+              })}
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-4">
+              {journal.description}
+            </p>
+
+            <!-- Divider -->
+            <div class="border-t border-slate-200"></div>
+
+            <!-- Author & Actions -->
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-slate-600 text-xs flex items-center gap-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                {journal.author}
+              </span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <img src={eyeIcon.src} alt="View" class="w-5 h-5" />
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <img src={downloadIcon.src} alt="Download" class="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Journals Grid - Third Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {journals.slice(4, 6).map((journal) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow p-6">
+          <div class="space-y-4">
+            <!-- Title -->
+            <h3 class="text-slate-800 font-bold text-xl leading-tight">
+              {journal.title}
+            </h3>
+            
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              {journal.tags.map((tag) => {
+                let bgColor = "bg-blue-50 border-blue-200 text-blue-600";
+                if (tag === "2024" || tag.includes("2024")) bgColor = "bg-orange-100 border-orange-200 text-orange-600";
+                if (tag === "EN" || tag === "ID") bgColor = "bg-green-100 border-green-200 text-green-700";
+                if (tag.includes("Social") || tag.includes("Community")) bgColor = "bg-purple-100 border-purple-200 text-purple-600";
+                if (tag.includes("Conference") || tag.includes("Research Paper")) bgColor = "bg-amber-100 border-amber-200 text-amber-700";
+                return (
+                  <span class={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider ${bgColor}`}>
+                    {tag}
+                  </span>
+                );
+              })}
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-4">
+              {journal.description}
+            </p>
+
+            <!-- Divider -->
+            <div class="border-t border-slate-200"></div>
+
+            <!-- Author & Actions -->
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-slate-600 text-xs flex items-center gap-2">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                {journal.author}
+              </span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <img src={eyeIcon.src} alt="View" class="w-5 h-5" />
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <img src={downloadIcon.src} alt="Download" class="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

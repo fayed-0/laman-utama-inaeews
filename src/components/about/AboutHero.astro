@@ -1,0 +1,46 @@
+---
+---
+
+<section class="min-h-screen snap-start relative overflow-hidden pt-32 pb-20 lg:pt-48 lg:pb-32 bg-gradient-to-br from-blue-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors duration-500 flex items-center">
+  <!-- Dynamic Background Elements -->
+  <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20 dark:opacity-40">
+    <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-blue-400 blur-[120px] animate-pulse"></div>
+    <div class="absolute top-[20%] -right-[5%] w-[30%] h-[30%] rounded-full bg-indigo-400 blur-[100px] animate-pulse" style="animation-delay: 2s;"></div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100/50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-300 text-sm font-semibold mb-6 animate-fade-in-up">
+        <span class="relative flex h-2 w-2 mr-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+        </span>
+        Tentang InaEEWS
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white mb-2 animate-fade-in-up" style="animation-delay: 0.1s;">
+        Sinergi Keselamatan <br/> <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Bangsa Indonesia</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 mt-6 leading-relaxed max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.2s;">
+        Pelajari cara kerja sistem peringatan dini gempa bumi serta tugas dan fungsi tim kami dalam mitigasi bencana nasional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

@@ -1,0 +1,52 @@
+<section id="hero" class="min-h-screen w-full snap-start flex items-center px-6 md:px-12 lg:px-24 bg-white py-24 lg:py-32">
+	<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full max-w-7xl mx-auto">
+		<div class="space-y-6 md:space-y-10">
+			<div class="space-y-4 md:space-y-6">
+				<p class="text-blue-600 text-[10px] md:text-sm font-black uppercase tracking-[0.3em] font-accent">Peringatan Dini Gempa Bumi</p>
+				<h1 class="text-[clamp(2.5rem,8vw,5rem)] font-black leading-[0.95] tracking-tighter text-slate-900 break-words">
+					Apa itu <br class="hidden xl:block"/><span class="text-blue-600">InaEEWS?</span>
+				</h1>
+			</div>
+			<p class="text-slate-500 text-[clamp(0.875rem,2vw,1.25rem)] font-medium leading-relaxed max-w-lg">
+				Indonesia Earthquake Early Warning System adalah infrastruktur teknologi yang dirancang untuk mendeteksi gelombang seismik awal dan memberikan peringatan detik - detik berharga sebelum getaran utama merusak mencapai lokasi Anda.
+			</p>
+			<div class="flex gap-4">
+				<div class="size-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer text-slate-600 hover:text-white">
+					<span class="material-symbols-outlined text-sm">public</span>
+				</div>
+				<div class="size-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer text-slate-600 hover:text-white">
+					<span class="material-symbols-outlined text-sm">verified_user</span>
+				</div>
+				<div class="size-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-400 transition-colors cursor-pointer text-slate-600 hover:text-white">
+					<span class="material-symbols-outlined text-sm">share</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="relative w-full aspect-video rounded-[2.5rem] overflow-hidden border-2 border-slate-100 shadow-xl group/video" id="video-wrapper">
+			<iframe id="youtube-iframe" class="w-full h-full"
+				src="https://www.youtube-nocookie.com/embed/Gwdp6_1oivI?autoplay=0&mute=1&loop=1&playlist=Gwdp6_1oivI&enablejsapi=1" 
+				frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+			</iframe>
+			<div id="video-overlay" class="absolute inset-0 bg-white/60 backdrop-blur-3xl flex flex-col items-center justify-center cursor-pointer transition-all duration-700 hover:backdrop-blur-xl">
+				<div class="size-24 rounded-full bg-blue-600/90 flex items-center justify-center shadow-2xl shadow-blue-600/40 group-hover/video:scale-110 transition-transform">
+					<span class="material-symbols-outlined text-5xl text-white">play_arrow</span>
+				</div>
+				<p class="mt-6 text-slate-900 text-xs font-black uppercase tracking-[0.4em] opacity-60">Tonton Video</p>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	const overlay = document.getElementById('video-overlay');
+	const iframe = document.getElementById('youtube-iframe') as HTMLIFrameElement;
+
+	overlay?.addEventListener('click', () => {
+		overlay.classList.add('opacity-0', 'pointer-events-none');
+		if (iframe) {
+			const currentSrc = iframe.src;
+			iframe.src = currentSrc.replace('autoplay=0', 'autoplay=1');
+		}
+	});
+</script>

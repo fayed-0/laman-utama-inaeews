@@ -1,0 +1,36 @@
+---
+import homeIcon from '../../assets/home.svg?url';
+import navigateIcon from '../../assets/navigate.svg?url';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="snap-start w-full bg-slate-600 pt-[180px] pb-[180px] px-12 md:px-24 overflow-hidden">
+	<div class="max-w-7xl mx-auto">
+		<!-- Title -->
+		<div class="mb-10">
+			<h1 class="text-white text-6xl font-bold leading-tight font-sans">
+				{title.toUpperCase()}
+			</h1>
+		</div>
+
+		<!-- Breadcrumb -->
+		<div class="flex items-center gap-2 mb-10 font-sans">
+			<a href="/about" class="hover:opacity-80 transition-opacity">
+				<img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
+			</a>
+			<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
+			<a href="/product" class="text-white text-xl font-semibold hover:opacity-80 transition-opacity cursor-pointer">
+				Product EEWS
+			</a>
+			<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
+			<div class="text-white text-xl font-semibold font-sans">
+				{title}
+			</div>
+		</div>
+	</div>
+</section>

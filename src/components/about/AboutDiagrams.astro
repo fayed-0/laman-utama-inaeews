@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import diagramInternal from '../../assets/about/diagram-internal.png';
+import diagramExternal from '../../assets/about/diagram-external.png';
+---
+
+<section class="min-h-screen snap-start w-full py-20 bg-slate-50 dark:bg-slate-900/50 transition-colors duration-500 overflow-y-auto">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+        Ekosistem Kerja Sama
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+        Sistem Peringatan Dini Gempa Bumi dibangun atas landasan kolaborasi yang kuat, baik secara internal di lingkungan BMKG maupun dengan berbagai mitra eksternal.
+      </p>
+    </div>
+
+    <div class="space-y-24">
+      <!-- Internal Diagram -->
+      <div class="group">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/2 order-2 lg:order-1">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-2 transform group-hover:scale-[1.02] transition-transform duration-500">
+              <Image src={diagramInternal} alt="Diagram Kerja Sama Internal BMKG" class="rounded-2xl w-full h-auto" />
+              <div class="absolute inset-0 bg-blue-600/5 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+          </div>
+          <div class="lg:w-1/2 order-1 lg:order-2">
+            <div class="space-y-6">
+              <span class="inline-block px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-bold text-sm uppercase tracking-wider">
+                Internal BMKG
+              </span>
+              <h3 class="text-3xl font-bold text-slate-900 dark:text-white">
+                Sinergi Lintas Sektor Internal
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                Diagram ini menggambarkan alur kerja sama di dalam lingkungan BMKG yang melibatkan unit kerja akuisisi data (Jaringan Seismik), pusat pengolahan (Algoritma EEWS), serta bidang diseminasi informasi untuk memastikan peringatan dini sampai ke masyarakat dengan cepat dan akurat.
+              </p>
+              <ul class="space-y-3">
+                {[
+                  "Integrasi Jaringan Sensor Nasional",
+                  "Automasi Algoritma Deteksi & Analisis",
+                  "Protokol Diseminasi Multikanal"
+                ].map(item => (
+                  <li class="flex items-center text-slate-700 dark:text-slate-300">
+                    <span class="material-symbols-outlined text-blue-500 mr-3">check_circle</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- External Diagram -->
+      <div class="group">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/2">
+            <div class="space-y-6">
+              <span class="inline-block px-4 py-1.5 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 font-bold text-sm uppercase tracking-wider">
+                Eksternal & Nasional
+              </span>
+              <h3 class="text-3xl font-bold text-slate-900 dark:text-white">
+                Ekosistem Kolaboratif EEWS Indonesia
+              </h3>
+              <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                Di luar lingkungan BMKG, sistem ini terhubung dengan berbagai pemangku kepentingan strategis. Mulai dari lembaga riset nasional (BRIN), sektor transportasi publik (MRT, KCIC), hingga pemerintah daerah, semuanya bersinergi untuk membangun budaya kesiapsiagaan nasional yang tangguh.
+              </p>
+              <ul class="space-y-3">
+                {[
+                  "Kerja Sama Riset dengan Akademisi",
+                  "Mitigasi Responsif di Sektor Transportasi",
+                  "Edukasi & Kesiapsiagaan Masyarakat"
+                ].map(item => (
+                  <li class="flex items-center text-slate-700 dark:text-slate-300">
+                    <span class="material-symbols-outlined text-orange-500 mr-3">check_circle</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div class="lg:w-1/2">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-orange-500/10 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-2 transform group-hover:scale-[1.02] transition-transform duration-500">
+              <Image src={diagramExternal} alt="Ekosistem EEWS Indonesia - Kerja Sama Eksternal" class="rounded-2xl w-full h-auto" />
+              <div class="absolute inset-0 bg-orange-600/5 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

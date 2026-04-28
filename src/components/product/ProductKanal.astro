@@ -1,0 +1,117 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import warningDisplay from '../../assets/warningdisplay.png';
+import cellularBroadcast from '../../assets/Cellular Broadcast.png';
+import RSEEW from '../../assets/RSEEW.jpeg';
+
+interface ProductCard {
+	title: string;
+	description: string;
+	image: ImageMetadata | string;
+	tags: string[];
+	link: string;
+}
+
+const products: ProductCard[] = [
+	{
+		title: 'Warning Display',
+		description: 'Warning Display adalah perangkat yang menerima peringatan dini secara real-time dari sistem pusat. Saat peringatan masuk, alat ini langsung menampilkan informasi dan mengaktifkan alarm sebagai tanda bahaya. Sistem ini juga dapat terhubung dengan kontrol otomatis dan pengumuman publik untuk mempercepat penyebaran informasi darurat.',
+		image: warningDisplay,
+		tags: ['Perangkat Keras', 'Real-Time', 'Alarm Otomatis', 'Pengumuman Publik'],
+		link: '/product/warning-display'
+	},
+	{
+		title: 'RSEEW (Receiver System Early Earthquake Warning)',
+		description: 'RSEEW merupakan sistem berbasis web yang dikembangkan dalam lingkungan EEWS BMKG, sehingga dapat diakses dari komputer mana pun selama terhubung ke internet. Sistem ini memungkinkan pengguna memantau dan mengelola informasi peringatan dini gempa secara cepat dan terpusat. Dengan akses yang fleksibel, penyebaran informasi dapat dilakukan lebih efisien dan menjangkau lebih banyak pengguna.',
+		image: RSEEW,
+		tags: ['Web-Based', 'Monitoring', 'Terpusat', 'Akses Fleksibel'],
+		link: '/product/rseew'
+	},
+	{
+		title: 'Cellular Broadcast',
+		description: 'Cellular Broadcast adalah metode penyebaran informasi yang sangat cepat karena pesan dikirim langsung ke banyak perangkat sekaligus tanpa perlu aplikasi tambahan. Sistem ini memungkinkan peringatan dini diterima pengguna secara instan dalam situasi darurat. Saat ini, penerapannya masih dalam tahap awal pengembangan dan terus disempurnakan agar lebih optimal.',
+		image: cellularBroadcast,
+		tags: ['Broadcast Cepat', 'Tanpa Aplikasi', 'Multi-Device', 'Darurat'],
+		link: '/product/cellular-broadcast'
+	},
+];
+---
+
+<section class="min-h-screen snap-start w-full py-20 md:py-24 bg-slate-50 dark:bg-slate-900 px-12 md:px-24 transition-colors duration-500 overflow-hidden">
+	<div class="mx-auto flex max-w-7xl flex-col items-center gap-8">
+		<!-- Section Header -->
+		<div class="flex flex-col items-center gap-3 w-full">
+			<h2 class="text-3xl md:text-4xl font-bold text-center">
+				<span class="text-slate-900 dark:text-white">Produk &</span>
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500"> Kanal</span>
+			</h2>
+		</div>
+
+		<!-- Description -->
+		<div class="w-full max-w-2xl">
+			<p class="text-center text-base md:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+				Berbagai solusi penyampaian peringatan dini yang dirancang untuk menjangkau masyarakat secara cepat, luas, dan efektif.
+			</p>
+		</div>
+
+		<!-- Product Cards Grid -->
+		<div class="w-full space-y-6 md:space-y-8 flex flex-col">
+			{products.map((product) => (
+				<div class="flex flex-col lg:flex-row gap-6 items-stretch group">
+					{/* Product Image */}
+					<div class="w-full lg:w-96 h-80 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+						{typeof product.image === 'string' ? (
+							<img
+								src={product.image}
+								alt={product.title}
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+							/>
+						) : (
+							<Image
+								src={product.image}
+								alt={product.title}
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+							/>
+						)}
+					</div>
+
+					{/* Product Content */}
+					<div class="flex-1 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-7 md:p-10 flex flex-col justify-center transition-colors duration-500">
+						<div class="space-y-7">
+							{/* Header with Title and Button */}
+							<div class="flex items-start justify-between gap-5">
+								<h3 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+									{product.title}
+								</h3>
+								<a
+									href={product.link}
+									class="group/btn flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full border border-blue-200 dark:border-blue-800/50 text-xs font-bold uppercase tracking-wider hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+								>
+									Lihat Detail
+									<svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+
+							{/* Description */}
+							<p class="text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-400">
+								{product.description}
+							</p>
+						</div>
+
+						{/* Tags */}
+						<div class="flex flex-wrap gap-3 md:gap-2.5 mt-8">
+							{product.tags.map((tag) => (
+								<span class="px-4 py-2 text-xs text-slate-600 dark:text-slate-400 border border-slate-300 dark:border-slate-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition cursor-default font-medium">
+									{tag}
+								</span>
+							))}
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

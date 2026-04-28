@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import ProductDetailHero from '../../components/product/ProductDetailHero.astro';
+import ProductDetailSection from '../../components/product/ProductDetailSection.astro';
+import cellularBroadcast from '../../assets/Cellular Broadcast.png';
+import Footer from '../../components/Footer.astro';
+
+const cellularBroadcastFeatures = [
+	{
+		title: 'Penyebaran Cepat',
+		description: 'Pesan dikirim langsung ke banyak perangkat sekaligus, memastikan peringatan dini diterima pengguna secara instan dalam situasi darurat.'
+	},
+	{
+		title: 'Tanpa Aplikasi Tambahan',
+		description: 'Sistem broadcast dapat diterima langsung di perangkat tanpa memerlukan instalasi aplikasi khusus, menjangkau audiens yang lebih luas.'
+	},
+	{
+		title: 'Multi-Device Support',
+		description: 'Peringatan dapat diterima di berbagai jenis perangkat mobile yang mendukung teknologi cellular broadcast.'
+	},
+	{
+		title: 'Pengembangan Berkelanjutan',
+		description: 'Penerapannya masih dalam tahap awal pengembangan dan terus disempurnakan untuk mencapai hasil yang lebih optimal.'
+	}
+];
+---
+
+<Layout title="Cellular Broadcast - Indonesia Earthquake Early Warning System">
+	<div class="theme-app min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<ProductDetailHero title="Cellular Broadcast" />
+			<ProductDetailSection
+				title="Cellular Broadcast"
+				bannerImage={cellularBroadcast}
+				features={cellularBroadcastFeatures}
+				backgroundColor="bg-white dark:bg-slate-900"
+			/>
+		</main>
+		<Footer />
+	</div>
+</Layout>

@@ -1,0 +1,282 @@
+---
+import logo from '../assets/Logo InaEEWS_new-02.png';
+import logoDark from '../assets/Logo InaEEWS_New-23.png';
+import logoBmkg from '../assets/logo-bmkg.png';
+import logoBmkgWhite from '../assets/logo-bmkg-putih.png';
+
+// Get current URL path
+const currentPath = new URL(Astro.request.url).pathname;
+
+// BRICS + Japan — tampilan singkatan. "Sistem" = ikuti bahasa browser/OS
+const languages = [
+	{ value: 'id', label: 'ID' },
+	{ value: 'en', label: 'EN' },
+	{ value: 'zh', label: 'ZH' },
+	{ value: 'ja', label: 'JA' },
+	{ value: 'pt', label: 'PT' },
+	{ value: 'ru', label: 'RU' },
+	{ value: 'hi', label: 'HI' },
+	{ value: 'af', label: 'AF' },
+];
+
+const themes = [
+	{ value: 'light', icon: 'light_mode', label: 'Terang' },
+	{ value: 'dark', icon: 'dark_mode', label: 'Gelap' },
+	{ value: 'system', icon: 'settings_brightness', label: 'Sistem' },
+];
+
+// Navigation links dengan data
+const navLinks = [
+	{ href: '/', label: 'Beranda' },
+	{ href: '/about', label: 'Tentang' },
+	{ href: '/product', label: 'Produk InaEEWS' },
+	{ href: '/education', label: 'Materi Edukasi' },
+];
+
+// Function to check if link is active
+const isActive = (href: string) => {
+	return currentPath === href || (href !== '/' && currentPath.startsWith(href));
+};
+---
+
+<header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50 header-theme">
+	<div class="w-full flex items-center justify-between px-4 md:px-6 py-4 md:py-6">
+		<!-- Logo -->
+		<a href="/" class="flex items-center gap-2">
+			<img src={logoBmkg.src} alt="BMKG" class="h-8 w-auto logo-bmkg-light" />
+			<img src={logoBmkgWhite.src} alt="BMKG" class="h-8 w-auto logo-bmkg-dark hidden" />
+			<img src={logo.src} alt="InaEEWS" class="h-8 w-auto logo-light" />
+			<img src={logoDark.src} alt="InaEEWS" class="h-8 w-auto logo-dark hidden" />
+			<span class="text-xl font-black tracking-tighter text-slate-900 header-logo-text italic hidden sm:inline-block">InaEEWS</span>
+		</a>
+
+		<!-- Right Side: Navigation + Controls -->
+		<div class="flex items-center gap-6 lg:gap-8">
+			<!-- Navigation -->
+			<nav class="hidden md:flex items-center gap-6 lg:gap-8">
+				{navLinks.map((link) => (
+					<a 
+						href={link.href} 
+						class={`text-[10px] font-bold uppercase tracking-[0.2em] transition-colors nav-link ${
+							isActive(link.href)
+								? 'text-blue-600 font-extrabold'
+								: 'text-slate-500 hover:text-blue-600'
+						}`}
+					>
+						{link.label}
+					</a>
+				))}
+			</nav>
+
+			<!-- Language & Theme Controls -->
+			<div class="flex items-stretch rounded-full shadow-lg border border-slate-200/50 bg-slate-100 header-controls">
+			<!-- Selector Bahasa: satu pill dengan tema -->
+			<div class="flex items-center rounded-l-full pl-4">
+				<label for="lang-select" class="sr-only">Pilih bahasa</label>
+				<select
+					id="lang-select"
+					name="lang"
+					class="lang-select pr-7 py-2 text-[10px] md:text-[11px] font-black uppercase tracking-widest bg-transparent text-slate-700 appearance-none cursor-pointer focus:outline-none focus:ring-0 rounded-l-full"
+					aria-label="Pilih bahasa"
+				>
+					{languages.map((lang) => (
+						<option value={lang.value}>{lang.label}</option>
+					))}
+				</select>
+			</div>
+
+			<!-- Selector Tema: icon saja, dropdown -->
+			<div class="theme-dropdown-wrap relative flex items-center overflow-visible rounded-r-full">
+				<button
+					type="button"
+					id="theme-btn"
+					class="theme-btn-current p-2 md:p-2.5 text-slate-600 hover:bg-slate-200/80 transition-colors rounded-r-full"
+					aria-label="Pilih tema"
+					aria-haspopup="listbox"
+					aria-expanded="false"
+					aria-controls="theme-list"
+				>
+					<span class="material-symbols-outlined text-[18px] md:text-[20px] theme-current-icon" data-current-icon>light_mode</span>
+				</button>
+				<ul
+					id="theme-list"
+					class="theme-dropdown-list absolute right-0 top-full mt-1 py-1 rounded-xl bg-white border border-slate-200 shadow-lg z-50 min-w-[44px] hidden"
+					role="listbox"
+					aria-label="Pilih tema"
+				>
+					{themes.map((t) => (
+						<li
+							role="option"
+							tabindex="-1"
+							class="theme-option flex items-center justify-center p-2 cursor-pointer hover:bg-slate-100 rounded-lg transition-colors"
+							data-theme={t.value}
+							data-icon={t.icon}
+							aria-label={t.label}
+						>
+							<span class="material-symbols-outlined text-[20px] theme-option-icon">{t.icon}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+</header>
+
+<style>
+	.lang-select {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 0.75rem center;
+	}
+
+	/* Dark mode logo toggle */
+	:global(.theme-dark) .logo-light,
+	:global(.theme-dark) .logo-bmkg-light {
+		display: none !important;
+	}
+	:global(.theme-dark) .logo-dark,
+	:global(.theme-dark) .logo-bmkg-dark {
+		display: block !important;
+	}
+
+	/* Active nav link styling */
+	.nav-link.text-blue-600 {
+		color: #2563eb !important;
+		font-weight: 800;
+	}
+
+	.nav-link.text-blue-600:hover {
+		color: #1d4ed8 !important;
+	}
+
+	/* Hover state for inactive links */
+	.nav-link.text-slate-500:hover {
+		color: #2563eb !important;
+	}
+</style>
+
+<script>
+	function initHeaderControls() {
+		const THEME_KEY = 'inaeews-theme';
+		const LANG_KEY = 'inaeews-lang';
+
+		function applySystemTheme() {
+			const html = document.documentElement;
+			const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			html.classList.remove('theme-light', 'theme-dark');
+			html.classList.add(dark ? 'theme-dark' : 'theme-light');
+		}
+
+		function applyTheme(theme) {
+			if (theme === 'warm') theme = 'light';
+			const html = document.documentElement;
+			html.classList.remove('theme-light', 'theme-dark');
+			if (theme === 'system') {
+				html.setAttribute('data-theme', 'system');
+				const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				html.classList.add(dark ? 'theme-dark' : 'theme-light');
+			} else {
+				html.classList.add('theme-' + theme);
+				html.setAttribute('data-theme', theme);
+			}
+			try {
+				localStorage.setItem(THEME_KEY, theme);
+			} catch (_) {}
+		}
+
+		function setThemeIcon(theme) {
+			const opt = document.querySelector('.theme-option[data-theme="' + theme + '"]');
+			const icon = document.querySelector('.theme-current-icon');
+			if (opt && icon) {
+				icon.textContent = opt.getAttribute('data-icon') || 'light_mode';
+			}
+		}
+
+		const themeBtn = document.getElementById('theme-btn');
+		const themeList = document.getElementById('theme-list');
+		if (themeBtn && themeList) {
+			try {
+				let saved = localStorage.getItem(THEME_KEY) || 'light';
+				if (saved === 'warm') saved = 'light';
+				applyTheme(saved);
+				setThemeIcon(saved);
+			} catch (_) {}
+
+			// Saat tema = Sistem, ikuti perubahan preferensi OS
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (document.documentElement.getAttribute('data-theme') === 'system') {
+					applySystemTheme();
+				}
+			});
+
+			themeBtn.addEventListener('click', (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				themeList.classList.toggle('hidden');
+				themeBtn.setAttribute('aria-expanded', themeList.classList.contains('hidden') ? 'false' : 'true');
+			});
+
+			themeList.querySelectorAll('.theme-option').forEach((el) => {
+				el.addEventListener('click', (e) => {
+					e.preventDefault();
+					const theme = el.getAttribute('data-theme');
+					if (theme) {
+						applyTheme(theme);
+						setThemeIcon(theme);
+					}
+					themeList.classList.add('hidden');
+					themeBtn.setAttribute('aria-expanded', 'false');
+				});
+			});
+
+			document.addEventListener('click', (e) => {
+				if (!themeBtn.contains(e.target) && !themeList.contains(e.target)) {
+					themeList.classList.add('hidden');
+					themeBtn.setAttribute('aria-expanded', 'false');
+				}
+			});
+		}
+
+		// Deteksi bahasa dari browser/OS (untuk opsi Sistem)
+		function getSystemLang() {
+			const supported = ['id', 'en', 'zh', 'ja', 'pt', 'ru', 'hi', 'af'];
+			const nav = typeof navigator !== 'undefined' ? navigator : { language: 'id', languages: ['id'] };
+			const list = nav.languages ? [nav.language, ...nav.languages] : [nav.language];
+			for (const locale of list) {
+				const code = (locale || '').toLowerCase().substring(0, 2);
+				const mapped = code === 'in' ? 'id' : code; // Indonesian "in" → "id"
+				if (supported.includes(mapped)) return mapped;
+			}
+			return 'id';
+		}
+
+		function applyLang(lang) {
+			const effective = lang === 'system' ? getSystemLang() : lang;
+			document.documentElement.setAttribute('lang', effective);
+		}
+
+		const langSelect = document.getElementById('lang-select');
+		if (langSelect) {
+			try {
+				let saved = localStorage.getItem(LANG_KEY);
+				if (!saved) saved = 'system'; // default ikuti sistem
+				langSelect.value = saved;
+				applyLang(saved);
+			} catch (_) {}
+			langSelect.addEventListener('change', () => {
+				const val = langSelect.value;
+				try {
+					localStorage.setItem(LANG_KEY, val);
+				} catch (_) {}
+				applyLang(val);
+			});
+		}
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initHeaderControls);
+	} else {
+		initHeaderControls();
+	}
+</script>

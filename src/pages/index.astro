@@ -1,11 +1,26 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Header from '../components/Header.astro';
+import HeroSection from '../components/main/HeroSection.astro';
+import HowItWorksSection from '../components/main/HowItWorksSection.astro';
+import ReasonsSection from '../components/main/ReasonsSection.astro';
+import TimeLine from '../components/main/TimeLine.astro';
+import GoldenTimeSection from '../components/main/GoldenTimeSection.astro';
+import FaqSection from '../components/main/FaqSection.astro';
+import RoadmapSection from '../components/main/RoadmapSection.astro';
+import CollaborateSection from '../components/main/CollaborateSection.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="InaEEWS - Indonesia Earthquake Early Warning System">
+	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-[#f8fafc] text-slate-900">
+		<Header />
+		<HeroSection />
+		<HowItWorksSection youtubeVideoId="PDB2FM7JAYY" />
+		<ReasonsSection />
+		<TimeLine />
+		<GoldenTimeSection />
+		<FaqSection />
+		<RoadmapSection />
+		<CollaborateSection />
+	</div>
 </Layout>

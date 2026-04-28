@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import AboutWaveAnimation from '../components/about/AboutWaveAnimation.astro';
+import AboutCoverage from '../components/about/AboutCoverage.astro';
+import AboutTaskFunction from '../components/about/AboutTaskFunction.astro';
+import AboutDiagrams from '../components/about/AboutDiagrams.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Tentang Kami - Tim Kerja EEWS BMKG">
+	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<AboutWaveAnimation />
+			<AboutCoverage />
+			<AboutTaskFunction />
+			<AboutDiagrams />
+		</main>
+		<div class="snap-start flex flex-col justify-end min-h-screen">
+			<div class="flex-grow"></div>
+			<Footer />
+		</div>
+	</div>
+</Layout>
+
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

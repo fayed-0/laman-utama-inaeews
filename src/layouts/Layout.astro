@@ -1,23 +1,132 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html class="theme-light" lang="id" data-theme="light">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=3" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico?v=3" />
+		<link rel="apple-touch-icon" href="/favicon.ico?v=3" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+		
+		<script is:inline>
+			(function() { try { var t = localStorage.getItem('inaeews-theme') || 'light'; if (t === 'warm') t = 'light'; var el = document.documentElement; el.classList.remove('theme-light','theme-dark'); if (t === 'system') { el.setAttribute('data-theme', 'system'); var dark = window.matchMedia('(prefers-color-scheme: dark)').matches; el.classList.add(dark ? 'theme-dark' : 'theme-light'); } else { el.classList.add('theme-' + t); el.setAttribute('data-theme', t); } } catch (e) {} })();
+			(function() { try { var L='inaeews-lang', s=localStorage.getItem(L)||'system', el=document.documentElement, sup=['id','en','zh','ja','pt','ru','hi','af']; if(s==='system'&&navigator.languages){ for(var i=0;i<navigator.languages.length;i++){ var c=navigator.languages[i].toLowerCase().substring(0,2); var m=c==='in'?'id':c; if(sup.indexOf(m)!==-1){ el.setAttribute('lang',m); break; } } } else if(s!=='system'&&sup.indexOf(s)!==-1) el.setAttribute('lang',s); } catch(e) {} })();
+		</script>
+		
+		<style is:global>
+			@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&family=Varela+Round&family=Work+Sans:wght@400;500;600;700;800&display=swap');
+			
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				font-family: 'Manrope', sans-serif;
+				background-color: #f8fafc;
+				color: #0f172a;
+			}
+			.varela {
+				font-family: 'Varela Round', sans-serif;
+			}
+
+			/* ========== Variabel tema (default: light) ========== */
+			:root, html.theme-light {
+				--theme-bg-page: #f8fafc;
+				--theme-bg-card: #ffffff;
+				--theme-bg-section: #f0f9ff;
+				--theme-bg-muted: #f1f5f9;
+				--theme-text: #0f172a;
+				--theme-text-muted: #64748b;
+				--theme-border: #e2e8f0;
+				--theme-border-subtle: #f1f5f9;
+			}
+
+			/* Theme: Dark — sama dengan yang sudah diatur di Layout */
+			html.theme-dark {
+				--theme-bg-page: #0f172a;
+				--theme-bg-card: #1e293b;
+				--theme-bg-section: #1e293b;
+				--theme-bg-muted: #334155;
+				--theme-text: #f1f5f9;
+				--theme-text-muted: #94a3b8;
+				--theme-border: #334155;
+				--theme-border-subtle: rgba(148,163,184,0.2);
+			}
+
+			/* Tema ngefek ke seluruh .theme-app (pages & components) */
+			.theme-app { background-color: var(--theme-bg-page) !important; color: var(--theme-text) !important; }
+			.theme-app .bg-white,
+			.theme-app [class*="bg-white"] { background-color: var(--theme-bg-card) !important; }
+			.theme-app .bg-\[\#f8fafc\],
+			.theme-app .bg-slate-100 { background-color: var(--theme-bg-page) !important; }
+			.theme-app .bg-blue-50,
+			.theme-app [class*="bg-blue-50"] { background-color: var(--theme-bg-section) !important; }
+			.theme-app .bg-slate-50,
+			.theme-app [class*="bg-slate-50"] { background-color: var(--theme-bg-muted) !important; }
+			.theme-app .text-slate-900,
+			.theme-app .text-slate-800 { color: var(--theme-text) !important; }
+			.theme-app .text-slate-600,
+			.theme-app .text-slate-500,
+			.theme-app .text-slate-400,
+			.theme-app .text-slate-700 { color: var(--theme-text-muted) !important; }
+			.theme-app .border-slate-100,
+			.theme-app .border-slate-200,
+			.theme-app [class*="border-slate-1"],
+			.theme-app [class*="border-slate-2"] { border-color: var(--theme-border-subtle) !important; }
+			.theme-app .bg-slate-100 { background-color: var(--theme-bg-muted) !important; }
+			.theme-app .bg-blue-50\/40,
+			.theme-app [class*="bg-blue-50/40"] { background-color: var(--theme-bg-section) !important; }
+			.theme-app .border-blue-100,
+			.theme-app [class*="border-blue-1"] { border-color: var(--theme-border) !important; }
+			.theme-app .bg-red-50 { background-color: var(--theme-bg-muted) !important; }
+			.theme-app code { background-color: var(--theme-bg-muted) !important; color: var(--theme-text-muted) !important; }
+			/* Garis pemisah (hr, divider) */
+			.theme-app .bg-slate-200,
+			.theme-app .bg-slate-100.h-px { background-color: var(--theme-border) !important; }
+
+			/* Theme: Dark (header & body sudah di bawah) */
+			html.theme-dark body { background-color: #0f172a; color: #f1f5f9; }
+			html.theme-dark .header-theme { background: rgba(15,23,42,.9); border-color: rgba(148,163,184,.2); }
+			html.theme-dark .header-logo-text, html.theme-dark .nav-link { color: #e2e8f0; }
+			html.theme-dark .nav-link:hover { color: #60a5fa; }
+			html.theme-dark .header-controls { background: #1e293b; border-color: rgba(148,163,184,.3); }
+			html.theme-dark .lang-select { color: #cbd5e1; background-color: transparent; }
+			html.theme-dark .theme-btn-current { color: #cbd5e1; }
+			html.theme-dark .theme-btn-current:hover { background: #475569; }
+			html.theme-dark .theme-dropdown-list { background: #1e293b; border-color: #334155; }
+			html.theme-dark .theme-dropdown-list .theme-option { color: #e2e8f0; }
+			html.theme-dark .theme-dropdown-list .theme-option-icon { color: #e2e8f0 !important; }
+			html.theme-dark .theme-option:hover { background: #334155; }
+			/* Opsi dropdown bahasa: teks gelap agar terbaca (browser sering render dropdown putih) */
+			html.theme-dark .lang-select option { color: #0f172a; background: #fff; }
+
+			/* Custom scrollbar for premium look */
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+			::-webkit-scrollbar-track {
+				background: #0c0f13;
+			}
+			::-webkit-scrollbar-thumb {
+				background: #ef4444;
+				border-radius: 10px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: #dc2626;
+			}
+		</style>
 	</head>
-	<body>
+	<body class="antialiased overflow-x-hidden">
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

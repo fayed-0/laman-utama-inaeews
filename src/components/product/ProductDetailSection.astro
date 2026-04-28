@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Feature {
+	title: string;
+	description: string;
+}
+
+interface Props {
+	title: string;
+	bannerImage: ImageMetadata;
+	features: Feature[];
+	backgroundColor?: string;
+	id?: string;
+}
+
+const { title, bannerImage, features, backgroundColor = 'bg-white', id } = Astro.props;
+
+// Split title to style last word in blue
+const titleParts = title.trim().split(' ');
+const lastWord = titleParts.pop();
+const firstPart = titleParts.join(' ');
+---
+
+<section class={`w-full py-24 md:py-32 px-6 md:px-12 transition-colors duration-500 ${backgroundColor}`} id={id}>
+	<div class="mx-auto max-w-6xl flex flex-col items-center gap-12">
+		<!-- Title -->
+		<div class="flex flex-col items-center gap-4 w-full">
+			<h2 class="text-4xl md:text-5xl font-bold text-center">
+				{firstPart && <span class="text-slate-900 dark:text-white">{firstPart} </span>}
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500">{lastWord}</span>
+			</h2>
+		</div>
+
+		<div class="w-full rounded-3xl overflow-hidden shadow-lg">
+			<Image
+				src={bannerImage}
+				alt={title}
+				class="w-full h-80 md:h-96 object-cover hover:scale-110 transition-transform duration-500"
+			/>
+		</div>
+
+		<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+			{features.map((feature) => (
+				<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 p-8 md:p-10 transition-shadow duration-300 hover:shadow-lg">
+					<h3 class="text-2xl md:text-xl font-bold text-slate-900 dark:text-white mb-4">
+						{feature.title}
+					</h3>
+					<p class="text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-300">
+						{feature.description}
+					</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>

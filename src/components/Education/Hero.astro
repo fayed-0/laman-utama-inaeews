@@ -1,0 +1,80 @@
+---
+// Education Hero Component
+import homeIcon from '../../assets/home.svg?url';
+import navigateIcon from '../../assets/navigate.svg?url';
+---
+
+<div class="snap-start w-full bg-slate-600 pt-[180px] pb-[180px] px-12 md:px-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <!-- Title -->
+    <div class="mb-10">
+      <h1 class="text-white text-6xl font-bold leading-tight font-sans">
+        MATERI EDUKASI
+      </h1>
+    </div>
+
+    <!-- Breadcrumb Section -->
+    <div class="flex items-center gap-2 mb-10">
+      <a href="/about" class="hover:opacity-80 transition-opacity">
+        <img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
+      </a>
+      <img src={navigateIcon} alt="navigate" class="w-6 h-6" />
+      <div class="text-white text-xl font-semibold font-sans">
+        Materi Edukasi
+      </div>
+    </div>
+
+    <!-- Steps Section -->
+    <div class="flex flex-col md:flex-row items-start md:items-center gap-5 flex-wrap">
+      <!-- Step 1 -->
+      <div class="flex items-start gap-3.5">
+        <div class="flex-shrink-0 w-8 h-8 px-2 py-1.5 bg-white rounded-full flex items-center justify-center">
+          <span class="text-slate-600 text-sm font-sans font-medium">1</span>
+        </div>
+        <div class="w-80 text-white text-base font-sans font-normal leading-6">
+          Materi disusun berdasarkan data dan sumber resmi.
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="hidden md:flex items-center justify-center w-4 h-14 flex-shrink-0">
+        <div class="w-px h-full bg-white"></div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex items-start gap-3.5">
+        <div class="flex-shrink-0 w-8 h-8 px-2 py-1.5 bg-white rounded-full flex items-center justify-center">
+          <span class="text-slate-600 text-sm font-sans font-medium">2</span>
+        </div>
+        <div class="w-80 text-white text-base font-sans font-normal leading-6">
+          Disajikan dengan bahasa yang sederhana dan visual yang jelas.
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="hidden md:flex items-center justify-center w-4 h-14 flex-shrink-0">
+        <div class="w-px h-full bg-white"></div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex items-start gap-3.5">
+        <div class="flex-shrink-0 w-8 h-8 px-2 py-1.5 bg-white rounded-full flex items-center justify-center">
+          <span class="text-slate-600 text-sm font-sans font-medium">3</span>
+        </div>
+        <div class="w-80 text-white text-base font-sans font-normal leading-6">
+          Mengedukasi publik agar lebih siap dalam memitigasi risiko bencana.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  :global {
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+  }
+
+  .font-sans {
+    font-family: 'Work Sans', sans-serif;
+  }
+</style>
