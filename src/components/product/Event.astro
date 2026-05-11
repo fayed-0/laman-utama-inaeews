@@ -1,0 +1,103 @@
+---
+import calendarIcon from '../../assets/icon/calendar.svg?url';
+import locationIcon from '../../assets/icon/location.svg?url';
+import usersIcon from '../../assets/icon/users.svg?url';
+import speakerIcon from '../../assets/icon/speaker.svg?url';
+import certificateIcon from '../../assets/icon/certificate.svg?url';
+import networkIcon from '../../assets/icon/network.svg?url';
+import arrowIcon from '../../assets/icon/arrow-right.svg?url';
+---
+
+<section class="min-h-screen snap-start w-full py-20 md:py-24 bg-white dark:bg-slate-900 px-12 md:px-24 transition-colors duration-500 overflow-hidden">
+	<div class="mx-auto flex max-w-7xl flex-col items-center gap-8">
+		<!-- Section Header -->
+		<div class="flex flex-col items-center gap-3 w-full">
+			<h2 class="text-3xl md:text-4xl font-bold text-center">
+				<span class="text-slate-900 dark:text-white">Event &</span>
+				<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500"> Pelatihan</span>
+			</h2>
+		</div>
+
+		<!-- Description -->
+		<div class="w-full max-w-2xl">
+			<p class="text-center text-base md:text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+				Ikuti berbagai event dan pelatihan menarik untuk memperdalam pemahaman tentang sistem peringatan dini gempa bumi dan teknologi InaEEWS.
+			</p>
+		</div>
+
+		<!-- Event Content -->
+		<div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-center">
+			<!-- Left Content Card -->
+			<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-7 md:p-10 space-y-7 transition-colors duration-500">
+				<!-- Badge -->
+				<div class="inline-flex px-4 py-2 bg-blue-50 dark:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800/50 transition-colors duration-500">
+					<span class="text-xs md:text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+						Tersedia Sekarang
+					</span>
+				</div>
+
+				<!-- Title -->
+				<h3 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight">
+					Program Edukasi InaEEWS
+				</h3>
+
+				<!-- Description -->
+				<p class="text-sm md:text-base leading-relaxed text-slate-600 dark:text-slate-400">
+					Kami menyediakan berbagai program pelatihan dan workshop untuk meningkatkan kapasitas dan pemahaman tentang sistem peringatan dini gempa bumi. Program kami dirancang untuk berbagai kalangan mulai dari institusi pemerintah, sektor swasta, hingga masyarakat umum.
+				</p>
+
+				<!-- Features Grid -->
+				<div class="grid grid-cols-2 gap-3 md:gap-4 pt-3">
+					{[
+						{ icon: calendarIcon, text: 'Event Reguler' },
+						{ icon: locationIcon, text: 'Online & Offline' },
+						{ icon: usersIcon, text: 'Multi Peserta' },
+						{ icon: speakerIcon, text: 'Narasumber Ahli' },
+						{ icon: certificateIcon, text: 'Sertifikat' },
+						{ icon: networkIcon, text: 'Networking' }
+					].map(feature => (
+						<div class="flex items-center gap-3 px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-xs md:text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+							<img src={feature.icon} alt={feature.text} class="w-5 h-5" />
+							<span className="font-medium">{feature.text}</span>
+						</div>
+					))}
+				</div>
+
+				<!-- Action Buttons -->
+				<div class="flex flex-col gap-3 pt-6 w-full">
+					<button class="flex items-center justify-center gap-3 w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-sm md:text-base transition-colors">
+						<img src={arrowIcon} alt="Lihat Event" class="w-5 h-5" style="filter: brightness(0) invert(1)" />
+						Lihat Semua Event
+					</button>
+					<button class="flex items-center justify-center gap-3 w-full px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 rounded-lg font-bold text-sm md:text-base hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors bg-white dark:bg-slate-800">
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+						</svg>
+						Daftar Newsletter
+					</button>
+				</div>
+			</div>
+
+			<!-- Right Image Placeholder -->
+			<div class="w-full h-96 md:h-full min-h-96 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-2xl shadow-lg flex items-center justify-center transition-colors duration-500 border border-blue-200 dark:border-blue-800/30">
+				<div class="text-center px-4">
+					<svg class="w-24 h-24 text-blue-600 dark:text-blue-400 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.243m-2.121 2.121L21 21m-7-7l-4.243-4.243m2.121-2.121a3 3 0 10-4.243 4.243M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
+					</svg>
+					<div class="text-sm md:text-base font-medium text-slate-600 dark:text-slate-300">
+						Galeri Event & Pelatihan
+					</div>
+					<div class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+						Dokumentasi kegiatan akan ditampilkan di sini
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.work-sans {
+		font-family: 'Work Sans', sans-serif;
+	}
+</style>

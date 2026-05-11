@@ -1,0 +1,212 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import homeIcon from '../../assets/home.svg?url';
+import navigateIcon from '../../assets/navigate.svg?url';
+import eyeIcon from '../../assets/eye.svg';
+import downloadIcon from '../../assets/download.svg';
+
+const eventData = [
+	{
+		id: 1,
+		judul: 'Dataset Gempa Bumi Sulawesi Tengah 2018',
+		deskripsi: 'M7.4 · Palu-Donggala · 28 September 2018',
+		kategori: 'Gempa Bumi',
+		tahun: '2018',
+	},
+	{
+		id: 2,
+		judul: 'Dataset Tsunami Sulawesi Tengah 2018',
+		deskripsi: 'Run-up height, sensor data, observational records',
+		kategori: 'Tsunami',
+		tahun: '2018',
+	},
+	{
+		id: 3,
+		judul: 'Rekaman Seismik Gempa Lombok Series 2018',
+		deskripsi: 'M6.9 mainshock + aftershock sequence, NTB',
+		kategori: 'Gempa Bumi',
+		tahun: '2018',
+	},
+	{
+		id: 4,
+		judul: 'Monitoring Aktivitas Seismik Jawa Barat 2022',
+		deskripsi: 'Jaringan sensor BMKG Zona Cianjur-Sukabumi',
+		kategori: 'Monitoring',
+		tahun: '2022',
+	},
+	{
+		id: 5,
+		judul: 'Dataset Gempa Cianjur November 2022',
+		deskripsi: 'M5.6 · Kedalaman 10 km · Cianjur, Jawa Barat',
+		kategori: 'Gempa Bumi',
+		tahun: '2022',
+	},
+	{
+		id: 6,
+		judul: 'Workshop Sistem Peringatan Dini Gempa Nasional',
+		deskripsi: 'Pelatihan operator dan diseminasi informasi INAeews',
+		kategori: 'Workshop',
+		tahun: '2023',
+	},
+	{
+		id: 7,
+		judul: 'Dataset Gempa Turki-Suriah 2023 (Studi Banding)',
+		deskripsi: 'M7.8 · Kahramanmaraş · Referensi pengembangan EEW',
+		kategori: 'Gempa Bumi',
+		tahun: '2023',
+	},
+	{
+		id: 8,
+		judul: 'Rekaman Waveform Gempa Maroko 2023',
+		deskripsi: 'M6.8 · Al Haouz · Data perbandingan respon EEW',
+		kategori: 'Gempa Bumi',
+		tahun: '2023',
+	},
+];
+
+const getCategoryBg = (kategori: string) => {
+	const colors: Record<string, string> = {
+		'Gempa Bumi': 'bg-amber-600',
+		'Tsunami': 'bg-blue-600',
+		'Monitoring': 'bg-green-600',
+		'Workshop': 'bg-purple-600',
+	};
+	return colors[kategori] || 'bg-slate-600';
+};
+---
+
+<Layout title="Event - Indonesia Earthquake Early Warning System">
+	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<div class="snap-start w-full bg-slate-600 pt-32 pb-32 px-12 md:px-24 overflow-hidden">
+				<div class="max-w-7xl mx-auto">
+					<!-- Title -->
+					<div class="mb-10">
+						<h1 class="text-white text-6xl font-bold leading-tight font-sans">
+							Daftar Event
+						</h1>
+					</div>
+
+					<!-- Breadcrumb Section -->
+					<div class="flex items-center gap-2">
+						<a href="/" class="hover:opacity-80 transition-opacity">
+							<img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
+						</a>
+						<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
+						<div class="text-white text-xl font-semibold font-sans">
+							Event
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Content Section -->
+			<section class="snap-start w-full bg-white dark:bg-slate-900 py-24 px-12 md:px-24 overflow-hidden">
+				<div class="max-w-7xl mx-auto flex flex-col gap-12">
+					<!-- Header -->
+					<div class="flex flex-col items-center gap-3">
+						<h2 class="text-center text-4xl font-bold">
+							<span class="text-slate-800 dark:text-white">Event dan rekaman kejadian seismik serta </span>
+							<span class="text-blue-600">kegiatan terkait</span>
+						</h2>
+						<p class="text-center text-slate-500 dark:text-slate-400 text-base max-w-3xl">
+							Kumpulan data, dokumentasi, dan rekaman dari berbagai kejadian seismik serta kegiatan workshop dan monitoring terkait Indonesian Earthquake Early Warning System.
+						</p>
+					</div>
+
+					<!-- Table Wrapper -->
+					<div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-700">
+						<table class="w-full">
+							<thead class="bg-slate-900 dark:bg-slate-950 text-white">
+								<tr>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest w-12">#</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Judul Event</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Kategori</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Tahun</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Aksi</th>
+								</tr>
+							</thead>
+							<tbody>
+								{eventData.map((event, index) => (
+									<tr class={`border-t border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors ${index % 2 === 1 ? 'bg-slate-50/50 dark:bg-slate-800/30' : ''}`}>
+										<td class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-400">
+											{event.id}
+										</td>
+										<td class="px-6 py-4">
+											<div class="mb-2">
+												<h3 class="font-bold text-slate-900 dark:text-white text-sm leading-tight">
+													{event.judul}
+												</h3>
+											</div>
+											<p class="text-xs text-slate-600 dark:text-slate-400">
+												{event.deskripsi}
+											</p>
+										</td>
+										<td class="px-6 py-4 text-xs whitespace-nowrap">
+											<div class={`inline-flex items-center px-3 py-1.5 rounded-lg text-white font-bold ${getCategoryBg(event.kategori)}`}>
+												{event.kategori}
+											</div>
+										</td>
+										<td class="px-6 py-4 text-sm">
+											<a href="#" class="font-bold text-blue-600 dark:text-blue-400 hover:underline">
+												{event.tahun}
+											</a>
+										</td>
+										<td class="px-6 py-4 text-center whitespace-nowrap">
+											<div class="flex items-center justify-center gap-2">
+												<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Lihat">
+													<img src={eyeIcon} alt="Lihat" class="w-5 h-5" />
+												</button>
+												<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Unduh">
+													<img src={downloadIcon} alt="Unduh" class="w-5 h-5" />
+												</button>
+											</div>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+
+					<!-- Pagination -->
+					<div class="flex items-center justify-between">
+						<p class="text-sm text-slate-600 dark:text-slate-400">
+							Menampilkan 1-8 dari 15 event
+						</p>
+						<div class="flex items-center gap-2">
+							<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+								</svg>
+							</button>
+							<button class="min-w-10 h-10 rounded-lg bg-slate-900 dark:bg-blue-600 text-white font-bold text-sm transition-colors">1</button>
+							<button class="min-w-10 h-10 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">2</button>
+							<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+								</svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div class="snap-start flex flex-col justify-end">
+			<Footer />
+		</div>
+	</div>
+</Layout>
+
+<style>
+	:global {
+		@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
+	}
+
+	.font-sans {
+		font-family: 'Work Sans', sans-serif;
+	}
+</style>
