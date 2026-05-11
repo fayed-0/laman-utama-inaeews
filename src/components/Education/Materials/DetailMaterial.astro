@@ -1,0 +1,392 @@
+---
+import eyeIcon from '../../../assets/eye.svg';
+import downloadIcon from '../../../assets/download.svg';
+import pageIcon from '../../../assets/page.svg';
+
+// Materials & Infografis data
+const allMaterials = [
+  {
+    id: 1,
+    title: "Gelombang P-Wave dan S-Wave",
+    description: "Penjelasan detail tentang perbedaan gelombang P dan S dalam gempa bumi. Memahami karakteristik kedua gelombang ini penting untuk sistem peringatan dini...",
+    tag: "Teknis",
+    color: "bg-blue-600",
+    pages: 8,
+    category: "SEMUA"
+  },
+  {
+    id: 2,
+    title: "Mekanisme Tektonik Lempeng Indonesia",
+    description: "Panduan komprehensif tentang pergerakan lempeng tektonik yang menyebabkan gempa bumi di Indonesia. Analisis meliputi zona subduksi dan transform fault utama...",
+    tag: "Edukasi",
+    color: "bg-red-600",
+    pages: 12,
+    category: "SEMUA"
+  },
+  {
+    id: 3,
+    title: "Panduan Keselamatan Saat Gempa Bumi",
+    description: "Protokol dan prosedur evakuasi yang aman untuk berbagai lokasi dan situasi. Informasi ini dapat menyelamatkan nyawa dalam situasi darurat gempa...",
+    tag: "Panduan",
+    color: "bg-green-700",
+    pages: 6,
+    category: "PANDUAN"
+  },
+  {
+    id: 4,
+    title: "Algoritma Deteksi Gempa Real-Time",
+    description: "Penjelasan tentang bagaimana sistem BMKG mendeteksi gempa dalam hitungan detik. Teknologi AI dan machine learning digunakan untuk akurasi maksimal...",
+    tag: "Teknis",
+    color: "bg-slate-700",
+    pages: 15,
+    category: "SEMUA"
+  },
+  {
+    id: 5,
+    title: "Manajemen Bencana Gempa Bumi",
+    description: "Strategi menyeluruh untuk mitigasi risiko dan penanganan bencana gempa bumi. Melibatkan koordinasi multi-stakeholder dan pengurangan kerentanan infrastruktur...",
+    tag: "Edukasi",
+    color: "bg-purple-600",
+    pages: 20,
+    category: "MODUL"
+  },
+  {
+    id: 6,
+    title: "Respon Masyarakat dan Edukasi Gempa",
+    description: "Studi tentang bagaimana meningkatkan kesadaran dan kesiapsiagaan masyarakat terhadap gempa. Program edukasi berkelanjutan terbukti mengurangi jatuh korban...",
+    tag: "Sosial",
+    color: "bg-orange-600",
+    pages: 10,
+    category: "SEMUA"
+  },
+  {
+    id: 7,
+    title: "Infografis Zona Gempa Indonesia",
+    description: "Visualisasi komprehensif tentang zona-zona rawan gempa di seluruh Indonesia dengan data historis dan proyeksi risiko masa depan...",
+    tag: "Infografis",
+    color: "bg-indigo-600",
+    pages: 4,
+    category: "INFOGRAFIS"
+  },
+  {
+    id: 8,
+    title: "Leaflet Kesiapsiagaan Gempa",
+    description: "Panduan praktis singkat yang bisa digunakan untuk edukasi masyarakat lokal tentang persiapan dan mitigasi bencana gempa bumi...",
+    tag: "Leaflet",
+    color: "bg-cyan-600",
+    pages: 2,
+    category: "LEAFLET"
+  },
+  {
+    id: 9,
+    title: "Modul Pelatihan BMKG",
+    description: "Materi pelatihan komprehensif untuk staff BMKG dan institusi terkait dalam sistem peringatan dini gempa dan tsunami...",
+    tag: "Modul",
+    color: "bg-lime-600",
+    pages: 25,
+    category: "MODUL"
+  },
+  {
+    id: 10,
+    title: "Gelombang Seismik Lanjutan",
+    description: "Analisis mendalam tentang berbagai jenis gelombang seismik dan dampaknya terhadap struktur bangunan dan infrastruktur...",
+    tag: "Teknis",
+    color: "bg-blue-600",
+    pages: 18,
+    category: "SEMUA"
+  },
+  {
+    id: 11,
+    title: "Panduan Evakuasi Cepat",
+    description: "Protokol evakuasi darurat yang terstruktur untuk berbagai skenario bencana gempa dan tsunami di wilayah pantai...",
+    tag: "Panduan",
+    color: "bg-green-700",
+    pages: 8,
+    category: "PANDUAN"
+  },
+  {
+    id: 12,
+    title: "Data Historis Gempa Indonesia",
+    description: "Kumpulan data lengkap gempa yang terjadi di Indonesia dalam 50 tahun terakhir dengan analisis pola dan tren...",
+    tag: "Teknis",
+    color: "bg-slate-700",
+    pages: 30,
+    category: "SEMUA"
+  }
+];
+
+const itemsPerPage = 9;
+const categories = ["SEMUA", "INFOGRAFIS", "MODUL", "LEAFLET", "PANDUAN"];
+const sortOptions = ["TERBARU"];
+---
+
+<section class="snap-start w-full bg-white py-24 px-12 md:px-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto flex flex-col gap-12">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-3">
+      <h2 class="text-center text-4xl font-bold">
+        <span class="text-slate-800">Materi </span>
+        <span class="text-blue-600">&amp; Infografis</span>
+      </h2>
+      <p class="text-center text-slate-400 text-base max-w-2xl">
+        Kumpulan materi edukasi, panduan teknis, dan jurnal ilmiah seputar sistem peringatan dini gempa bumi Indonesia.
+      </p>
+    </div>
+
+    <!-- Filter and Sort Section -->
+    <div class="relative flex items-center w-full">
+    <!-- Sort Button -->
+    <button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-400 text-slate-700 text-sm font-bold uppercase tracking-wider hover:bg-slate-50 transition-colors whitespace-nowrap flex-shrink-0">
+        TERBARU
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+    </button>
+
+    <!-- Category Tabs — absolute center -->
+    <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-6">
+        {categories.map((category) => (
+        <button 
+            class={`text-sm font-semibold uppercase tracking-wide transition-colors pb-2 border-b-2 whitespace-nowrap ${
+            category === "SEMUA"
+                ? "text-blue-600 border-b-blue-600"
+                : "text-slate-400 border-b-transparent hover:text-slate-600"
+            }`}
+            data-category={category}
+        >
+            {category}
+        </button>
+        ))}
+    </div>
+
+    <!-- Search -->
+    <div class="ml-auto w-48 h-8 px-4 py-1 rounded-full border border-slate-400 inline-flex items-center gap-2 overflow-hidden hover:border-slate-500 transition-colors flex-shrink-0">
+        <input 
+        type="text"
+        placeholder="SEARCH"
+        class="flex-1 bg-transparent outline-none text-slate-700 text-xs font-bold uppercase leading-4 tracking-wider placeholder-slate-400"
+        />
+        <button class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 hover:bg-slate-100 transition-colors">
+        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        </button>
+    </div>
+    </div>
+
+    <!-- Materials Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="materialsGrid">
+      {allMaterials.slice(0, itemsPerPage).map((material) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+          <div class={`h-32 ${material.color}`}></div>
+          <div class="p-5 space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold uppercase tracking-wider">
+              {material.tag}
+            </span>
+            <h3 class="text-slate-800 font-bold text-lg">
+              {material.title}
+            </h3>
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">
+              {material.description}
+            </p>
+            <div class="flex items-center justify-between pt-3 border-t border-slate-200">
+              <span class="text-slate-600 text-xs flex items-center gap-2">
+                <img src={pageIcon.src} alt="Pages" class="w-4 h-4" />
+                {material.pages} halaman
+              </span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <img src={eyeIcon.src} alt="View" class="w-5 h-5" />
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <img src={downloadIcon.src} alt="Download" class="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-end gap-2">
+      <button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="prevBtn">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <div class="flex items-center gap-1" id="paginationContainer">
+        {Array.from({ length: Math.ceil(allMaterials.length / itemsPerPage) }).map((_, index) => (
+          <button
+            class={`w-8 h-8 rounded text-sm font-bold transition-colors ${
+              index === 0
+                ? "bg-blue-600 text-white"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+            }`}
+            data-page={index + 1}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+
+      <button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="nextBtn">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ allMaterials, itemsPerPage }}>
+  let currentPage = 1;
+  let filteredMaterials = allMaterials;
+
+  const materialsGrid = document.getElementById('materialsGrid');
+  const paginationContainer = document.getElementById('paginationContainer');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Category filter
+  document.querySelectorAll('[data-category]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-category]').forEach(b => {
+        b.classList.remove('text-blue-600', 'border-b-blue-600');
+        b.classList.add('text-slate-400', 'border-b-transparent');
+      });
+      btn.classList.add('text-blue-600', 'border-b-blue-600');
+      btn.classList.remove('text-slate-400', 'border-b-transparent');
+
+      const category = btn.getAttribute('data-category');
+      if (category === 'SEMUA') {
+        filteredMaterials = allMaterials;
+      } else {
+        filteredMaterials = allMaterials.filter(m => m.category === category);
+      }
+      currentPage = 1;
+      renderMaterials();
+      renderPagination();
+    });
+  });
+
+  function renderMaterials() {
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const paginatedMaterials = filteredMaterials.slice(start, end);
+
+    materialsGrid.innerHTML = paginatedMaterials.map(material => `
+      <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+        <div class="${material.color} h-32"></div>
+        <div class="p-5 space-y-3">
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold uppercase tracking-wider">
+            ${material.tag}
+          </span>
+          <h3 class="text-slate-800 font-bold text-lg">
+            ${material.title}
+          </h3>
+          <p class="text-slate-600 text-xs leading-relaxed line-clamp-2">
+            ${material.description}
+          </p>
+          <div class="flex items-center justify-between pt-3 border-t border-slate-200">
+            <span class="text-slate-600 text-xs flex items-center gap-2">
+              <svg class="w-4 h-4" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.16695 14.2298H10.8339C12.1336 14.2298 12.7802 13.5706 12.7802 12.2648V6.56457C12.7802 5.75457 12.6923 5.40314 12.1901 4.88832L8.72454 1.36654C8.24776 0.876627 7.85829 0.77002 7.14901 0.77002H4.16695C2.87374 0.77002 2.2207 1.43538 2.2207 2.74145V12.2648C2.2207 13.5768 2.87374 14.2298 4.16695 14.2298ZM4.21704 13.2192C3.57044 13.2192 3.23133 12.8737 3.23133 12.2461V2.7602C3.23133 2.13877 3.57044 1.78064 4.22347 1.78064H7.01079V5.42832C7.01079 6.21931 7.41258 6.6085 8.19097 6.6085H11.7695V12.2461C11.7695 12.8737 11.4366 13.2192 10.7838 13.2192H4.21704ZM8.30401 5.66029C8.05919 5.66029 7.95847 5.56011 7.95847 5.30886V1.97538L11.5745 5.66055L8.30401 5.66029Z" fill="#64748B"/>
+              </svg>
+              ${material.pages} halaman
+            </span>
+            <div class="flex gap-2">
+              <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.375 7.5C9.375 7.99728 9.17746 8.47419 8.82583 8.82583C8.47419 9.17746 7.99728 9.375 7.5 9.375C7.00272 9.375 6.52581 9.17746 6.17417 8.82583C5.82254 8.47419 5.625 7.99728 5.625 7.5C5.625 7.00272 5.82254 6.52581 6.17417 6.17417C6.52581 5.82254 7.00272 5.625 7.5 5.625C7.99728 5.625 8.47419 5.82254 8.82583 6.17417C9.17746 6.52581 9.375 7.00272 9.375 7.5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M1.25 7.5C2.25 4.93937 4.585 3.125 7.5 3.125C10.415 3.125 12.75 4.93937 13.75 7.5C12.75 10.0606 10.415 11.875 7.5 11.875C4.585 11.875 2.25 10.0606 1.25 7.5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.5 10.0025V10.625C2.5 11.1223 2.69754 11.5992 3.04917 11.9508C3.40081 12.3025 3.87772 12.5 4.375 12.5H10.625C11.1223 12.5 11.5992 12.3025 11.9508 11.9508C12.3025 11.5992 12.5 11.1223 12.5 10.625V10M7.5 2.8125V9.6875M7.5 9.6875L9.6875 7.5M7.5 9.6875L5.3125 7.5" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderPagination() {
+    const totalPages = Math.ceil(filteredMaterials.length / itemsPerPage);
+    paginationContainer.innerHTML = '';
+
+    // Show page numbers with ellipsis
+    let startPage = Math.max(1, currentPage - 1);
+    let endPage = Math.min(totalPages, currentPage + 1);
+
+    if (currentPage <= 2) {
+      endPage = Math.min(totalPages, 3);
+    }
+    if (currentPage > totalPages - 2) {
+      startPage = Math.max(1, totalPages - 2);
+    }
+
+    // Previous button
+    const prevEllipsis = document.createElement('span');
+    if (startPage > 1) {
+      paginationContainer.appendChild(prevEllipsis);
+      prevEllipsis.textContent = '...';
+      prevEllipsis.className = 'text-slate-400';
+    }
+
+    // Page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      const btn = document.createElement('button');
+      btn.className = `w-8 h-8 rounded text-sm font-bold transition-colors ${
+        i === currentPage
+          ? 'bg-blue-600 text-white'
+          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+      }`;
+      btn.textContent = i;
+      btn.setAttribute('data-page', i);
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        renderMaterials();
+        renderPagination();
+      });
+      paginationContainer.appendChild(btn);
+    }
+
+    // Next ellipsis
+    if (endPage < totalPages) {
+      const nextEllipsis = document.createElement('span');
+      nextEllipsis.textContent = '...';
+      nextEllipsis.className = 'text-slate-400';
+      paginationContainer.appendChild(nextEllipsis);
+    }
+
+    // Update prev/next buttons
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages;
+    prevBtn.style.opacity = currentPage === 1 ? '0.5' : '1';
+    nextBtn.style.opacity = currentPage === totalPages ? '0.5' : '1';
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      renderMaterials();
+      renderPagination();
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const totalPages = Math.ceil(filteredMaterials.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      currentPage++;
+      renderMaterials();
+      renderPagination();
+    }
+  });
+
+  renderPagination();
+</script>

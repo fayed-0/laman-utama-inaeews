@@ -1,0 +1,162 @@
+---
+// Journal entries with varied content
+const journals = [
+  {
+    title: "Real-Time Seismic Processing for Earthquake Early Warning in Indonesia",
+    description: "Penelitian komprehensif tentang pemrosesan data seismik real-time untuk sistem peringatan dini gempa bumi. Fokus pada akselerasi deteksi dan akurasi prediksi dengan teknologi terkini di BMKG...",
+    tags: ["BMKG Technical Report", "2025", "EN"],
+    author: "Hidayat et al., 2025 — BMKG Research Division"
+  },
+  {
+    title: "Machine Learning Models for Earthquake Magnitude Prediction",
+    description: "Implementasi algoritma machine learning untuk prediksi magnitudo gempa dengan akurasi tinggi. Penelitian menggunakan neural network dan ensemble learning untuk validasi optimal...",
+    tags: ["Research Paper", "2025", "ID"],
+    author: "Sutrisno et al., 2025 — ITB Seismology Lab"
+  },
+  {
+    title: "Seismic Network Density and EEW System Effectiveness",
+    description: "Analisis pengaruh kepadatan jaringan seismik terhadap efektivitas sistem peringatan dini gempa. Studi kasus dilakukan di Jawa dan Sumatera dengan perbandingan konfigurasi jaringan berbeda...",
+    tags: ["Conference Paper", "2024", "EN"],
+    author: "Wulandari et al., 2024 — Univ. of Indonesia"
+  },
+  {
+    title: "Urban Earthquake Risk Assessment and Mitigation Strategies",
+    description: "Evaluasi risiko gempa di area urban padat penduduk dengan strategi mitigasi bencana inovatif. Studi mencakup analisis kerentanan infrastruktur di Jakarta, Surabaya, dan Bandung...",
+    tags: ["Disaster Management", "2024", "ID"],
+    author: "Rahman & Kusuma, 2024 — LIPI Jakarta"
+  }
+];
+---
+
+<section class="snap-start w-full bg-white py-24 px-12 md:px-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto flex flex-col gap-12">
+    <!-- Header -->
+    <div class="flex flex-col items-center gap-3">
+      <h2 class="text-center text-4xl font-bold">
+        <span class="text-slate-800">Jurnal &amp; </span>
+        <span class="text-blue-600">Referensi Ilmiah</span>
+      </h2>
+      <p class="text-center text-slate-400 text-base max-w-2xl">
+        Kumpulan jurnal ilmiah seputar sistem peringatan dini gempa bumi Indonesia dan mitigasi bencana.
+      </p>
+      <a href="/education/journals" class="group/btn flex-shrink-0 inline-flex items-center gap-1.5 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full border border-blue-200 dark:border-blue-800/50 text-xs font-bold uppercase tracking-wider hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+        Lihat semua
+        <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+		</svg>
+      </a>
+    </div>
+
+    <!-- Journals Grid - Row 1 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {journals.slice(0, 2).map((journal) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow p-6">
+          <div class="space-y-4">
+            <!-- Title -->
+            <h3 class="text-slate-800 font-bold text-lg leading-tight">
+              {journal.title}
+            </h3>
+            
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              {journal.tags.map((tag) => {
+                let bgColor = "bg-blue-50 border-blue-200 text-blue-600";
+                if (tag === "2024" || tag.includes("2024")) bgColor = "bg-orange-100 border-orange-200 text-orange-600";
+                if (tag === "EN" || tag === "ID") bgColor = "bg-green-100 border-green-200 text-green-700";
+                if (tag.includes("Social") || tag.includes("Social Research")) bgColor = "bg-purple-100 border-purple-200 text-purple-600";
+                if (tag.includes("Conference") || tag.includes("Research Paper")) bgColor = "bg-amber-100 border-amber-200 text-amber-700";
+                return (
+                  <span class={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider ${bgColor}`}>
+                    {tag}
+                  </span>
+                );
+              })}
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+              {journal.description}
+            </p>
+
+            <!-- Divider -->
+            <div class="border-t border-slate-200"></div>
+
+            <!-- Author & Actions -->
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-slate-500 text-xs">{journal.author}</span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.375 7.5C9.375 7.99728 9.17746 8.47419 8.82583 8.82583C8.47419 9.17746 7.99728 9.375 7.5 9.375C7.00272 9.375 6.52581 9.17746 6.17417 8.82583C5.82254 8.47419 5.625 7.99728 5.625 7.5C5.625 7.00272 5.82254 6.52581 6.17417 6.17417C6.52581 5.82254 7.00272 5.625 7.5 5.625C7.99728 5.625 8.47419 5.82254 8.82583 6.17417C9.17746 6.52581 9.375 7.00272 9.375 7.5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.25 7.5C2.25 4.93937 4.585 3.125 7.5 3.125C10.415 3.125 12.75 4.93937 13.75 7.5C12.75 10.0606 10.415 11.875 7.5 11.875C4.585 11.875 2.25 10.0606 1.25 7.5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 10.0025V10.625C2.5 11.1223 2.69754 11.5992 3.04917 11.9508C3.40081 12.3025 3.87772 12.5 4.375 12.5H10.625C11.1223 12.5 11.5992 12.3025 11.9508 11.9508C12.3025 11.5992 12.5 11.1223 12.5 10.625V10M7.5 2.8125V9.6875M7.5 9.6875L9.6875 7.5M7.5 9.6875L5.3125 7.5" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Journals Grid - Row 2 -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {journals.slice(2, 4).map((journal) => (
+        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow p-6">
+          <div class="space-y-4">
+            <!-- Title -->
+            <h3 class="text-slate-800 font-bold text-lg leading-tight">
+              {journal.title}
+            </h3>
+            
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2">
+              {journal.tags.map((tag) => {
+                let bgColor = "bg-blue-50 border-blue-200 text-blue-600";
+                if (tag === "2024" || tag.includes("2024")) bgColor = "bg-orange-100 border-orange-200 text-orange-600";
+                if (tag === "EN" || tag === "ID") bgColor = "bg-green-100 border-green-200 text-green-700";
+                if (tag.includes("Social") || tag.includes("Social Research")) bgColor = "bg-purple-100 border-purple-200 text-purple-600";
+                if (tag.includes("Conference") || tag.includes("Research Paper")) bgColor = "bg-amber-100 border-amber-200 text-amber-700";
+                return (
+                  <span class={`inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wider ${bgColor}`}>
+                    {tag}
+                  </span>
+                );
+              })}
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-600 text-xs leading-relaxed line-clamp-3">
+              {journal.description}
+            </p>
+
+            <!-- Divider -->
+            <div class="border-t border-slate-200"></div>
+
+            <!-- Author & Actions -->
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-slate-500 text-xs">{journal.author}</span>
+              <div class="flex gap-2">
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.375 7.5C9.375 7.99728 9.17746 8.47419 8.82583 8.82583C8.47419 9.17746 7.99728 9.375 7.5 9.375C7.00272 9.375 6.52581 9.17746 6.17417 8.82583C5.82254 8.47419 5.625 7.99728 5.625 7.5C5.625 7.00272 5.82254 6.52581 6.17417 6.17417C6.52581 5.82254 7.00272 5.625 7.5 5.625C7.99728 5.625 8.47419 5.82254 8.82583 6.17417C9.17746 6.52581 9.375 7.00272 9.375 7.5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.25 7.5C2.25 4.93937 4.585 3.125 7.5 3.125C10.415 3.125 12.75 4.93937 13.75 7.5C12.75 10.0606 10.415 11.875 7.5 11.875C4.585 11.875 2.25 10.0606 1.25 7.5Z" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="p-1 rounded hover:bg-slate-100 transition-colors bg-blue-50" title="Download">
+                  <svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 10.0025V10.625C2.5 11.1223 2.69754 11.5992 3.04917 11.9508C3.40081 12.3025 3.87772 12.5 4.375 12.5H10.625C11.1223 12.5 11.5992 12.3025 11.9508 11.9508C12.3025 11.5992 12.5 11.1223 12.5 10.625V10M7.5 2.8125V9.6875M7.5 9.6875L9.6875 7.5M7.5 9.6875L5.3125 7.5" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
