@@ -10,68 +10,68 @@ import downloadIcon from '../../assets/download.svg';
 const eventData = [
 	{
 		id: 1,
-		judul: 'Dataset Gempa Bumi Sulawesi Tengah 2018',
-		deskripsi: 'M7.4 · Palu-Donggala · 28 September 2018',
-		kategori: 'Gempa Bumi',
+		judul: 'Dataset Rekaman Gempa Bumi Sulawesi Tengah 2018',
+		deskripsi: 'Koleksi lengkap data seismik M7.4 · Palu-Donggala · 28 September 2018',
+		kategori: 'Magnitude Tinggi',
 		tahun: '2018',
 	},
 	{
 		id: 2,
-		judul: 'Dataset Tsunami Sulawesi Tengah 2018',
-		deskripsi: 'Run-up height, sensor data, observational records',
-		kategori: 'Tsunami',
+		judul: 'Dataset Rekaman Gempa Lombok Series 2018',
+		deskripsi: 'M6.9 mainshock dengan aftershock sequence · Nusa Tenggara Barat',
+		kategori: 'Rangkaian Gempa',
 		tahun: '2018',
 	},
 	{
 		id: 3,
-		judul: 'Rekaman Seismik Gempa Lombok Series 2018',
-		deskripsi: 'M6.9 mainshock + aftershock sequence, NTB',
-		kategori: 'Gempa Bumi',
-		tahun: '2018',
+		judul: 'Dataset Rekaman Gempa Cianjur 2022',
+		deskripsi: 'Data seismik M5.6 · Kedalaman 10 km · Jawa Barat · November 2022',
+		kategori: 'Magnitude Sedang',
+		tahun: '2022',
 	},
 	{
 		id: 4,
-		judul: 'Monitoring Aktivitas Seismik Jawa Barat 2022',
-		deskripsi: 'Jaringan sensor BMKG Zona Cianjur-Sukabumi',
-		kategori: 'Monitoring',
-		tahun: '2022',
+		judul: 'Dataset Rekaman Gempa Banda Aceh 2004',
+		deskripsi: 'Arsip data seismik M9.1 · Sumatera Utara · Gempa megathrust',
+		kategori: 'Arsip Historis',
+		tahun: '2004',
 	},
 	{
 		id: 5,
-		judul: 'Dataset Gempa Cianjur November 2022',
-		deskripsi: 'M5.6 · Kedalaman 10 km · Cianjur, Jawa Barat',
-		kategori: 'Gempa Bumi',
-		tahun: '2022',
+		judul: 'Dataset Rekaman Gempa Yogyakarta 2006',
+		deskripsi: 'Data seismik M6.3 · Kedalaman 10 km · Keperluan mitigasi bencana',
+		kategori: 'Magnitude Sedang',
+		tahun: '2006',
 	},
 	{
 		id: 6,
-		judul: 'Workshop Sistem Peringatan Dini Gempa Nasional',
-		deskripsi: 'Pelatihan operator dan diseminasi informasi INAeews',
-		kategori: 'Workshop',
-		tahun: '2023',
+		judul: 'Dataset Rekaman Gempa Flores Utama 1992',
+		deskripsi: 'Arsip lengkap M7.8 · Laut Flores · Dokumentasi dengan analisis mendalam',
+		kategori: 'Arsip Historis',
+		tahun: '1992',
 	},
 	{
 		id: 7,
-		judul: 'Dataset Gempa Turki-Suriah 2023 (Studi Banding)',
-		deskripsi: 'M7.8 · Kahramanmaraş · Referensi pengembangan EEW',
-		kategori: 'Gempa Bumi',
-		tahun: '2023',
+		judul: 'Dataset Rekaman Gempa Mentawai 2010',
+		deskripsi: 'Data seismik M7.7 · Kepulauan Mentawai · Termasuk analisis tsunami',
+		kategori: 'Magnitude Tinggi',
+		tahun: '2010',
 	},
 	{
 		id: 8,
-		judul: 'Rekaman Waveform Gempa Maroko 2023',
-		deskripsi: 'M6.8 · Al Haouz · Data perbandingan respon EEW',
-		kategori: 'Gempa Bumi',
-		tahun: '2023',
+		judul: 'Dataset Rekaman Gempa Pangandaran 2006',
+		deskripsi: 'Data observasi lapangan M7.7 · Teluk Pangandaran · Pelengkap analisis',
+		kategori: 'Magnitude Tinggi',
+		tahun: '2006',
 	},
 ];
 
 const getCategoryBg = (kategori: string) => {
 	const colors: Record<string, string> = {
-		'Gempa Bumi': 'bg-amber-600',
-		'Tsunami': 'bg-blue-600',
-		'Monitoring': 'bg-green-600',
-		'Workshop': 'bg-purple-600',
+		'Magnitude Tinggi': 'bg-blue-100 text-blue-700',
+		'Magnitude Sedang': 'bg-green-100 text-green-800',
+		'Rangkaian Gempa': 'bg-red-100 text-red-700',
+		'Arsip Historis': 'bg-blue-100 text-blue-700',
 	};
 	return colors[kategori] || 'bg-slate-600';
 };
@@ -87,18 +87,18 @@ const getCategoryBg = (kategori: string) => {
 					<!-- Title -->
 					<div class="mb-10">
 						<h1 class="text-white text-6xl font-bold leading-tight font-sans">
-							Daftar Event
-						</h1>
-					</div>
+						Data & Dokumentasi
+					</h1>
+				</div>
 
-					<!-- Breadcrumb Section -->
-					<div class="flex items-center gap-2">
-						<a href="/" class="hover:opacity-80 transition-opacity">
-							<img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
-						</a>
-						<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
-						<div class="text-white text-xl font-semibold font-sans">
-							Event
+				<!-- Breadcrumb Section -->
+				<div class="flex items-center gap-2">
+					<a href="/" class="hover:opacity-80 transition-opacity">
+						<img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
+					</a>
+					<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
+					<div class="text-white text-xl font-semibold font-sans">
+						Data & Dokumentasi
 						</div>
 					</div>
 				</div>
@@ -110,21 +110,21 @@ const getCategoryBg = (kategori: string) => {
 					<!-- Header -->
 					<div class="flex flex-col items-center gap-3">
 						<h2 class="text-center text-4xl font-bold">
-							<span class="text-slate-800 dark:text-white">Event dan rekaman kejadian seismik serta </span>
-							<span class="text-blue-600">kegiatan terkait</span>
-						</h2>
-						<p class="text-center text-slate-500 dark:text-slate-400 text-base max-w-3xl">
-							Kumpulan data, dokumentasi, dan rekaman dari berbagai kejadian seismik serta kegiatan workshop dan monitoring terkait Indonesian Earthquake Early Warning System.
+						<span class="text-slate-800 dark:text-white">Data, Dokumentasi &amp;</span>
+						<span class="text-blue-600"> Rekaman</span>
+					</h2>
+					<p class="text-center text-slate-400 dark:text-slate-400 text-base max-w-2xl">
+						Kumpulan lengkap data, dokumentasi, dan rekaman dari berbagai kejadian seismik di Indonesia beserta analisis mendalam untuk penelitian dan pembelajaran.
 						</p>
 					</div>
 
 					<!-- Table Wrapper -->
-					<div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-700">
+					<div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-600">
 						<table class="w-full">
-							<thead class="bg-slate-900 dark:bg-slate-950 text-white">
+						<thead class="bg-blue-600 dark:bg-blue-200 text-white">
 								<tr>
 									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest w-12">#</th>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Judul Event</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Judul Dokumentasi</th>
 									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Kategori</th>
 									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Tahun</th>
 									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Aksi</th>
@@ -132,7 +132,7 @@ const getCategoryBg = (kategori: string) => {
 							</thead>
 							<tbody>
 								{eventData.map((event, index) => (
-									<tr class={`border-t border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors ${index % 2 === 1 ? 'bg-slate-50/50 dark:bg-slate-800/30' : ''}`}>
+									<tr class="border-t border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-blue-600/50 transition-colors duration-200 cursor-pointer group">
 										<td class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-400">
 											{event.id}
 										</td>
@@ -157,12 +157,17 @@ const getCategoryBg = (kategori: string) => {
 											</a>
 										</td>
 										<td class="px-6 py-4 text-center whitespace-nowrap">
-											<div class="flex items-center justify-center gap-2">
-												<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Lihat">
-													<img src={eyeIcon} alt="Lihat" class="w-5 h-5" />
+											<div class="flex gap-2 justify-center">
+												<button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
+													<svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M9.375 7.5C9.375 7.99728 9.17746 8.47419 8.82583 8.82583C8.47419 9.17746 7.99728 9.375 7.5 9.375C7.00272 9.375 6.52581 9.17746 6.17417 8.82583C5.82254 8.47419 5.625 7.99728 5.625 7.5C5.625 7.00272 5.82254 6.52581 6.17417 6.17417C6.52581 5.82254 7.00272 5.625 7.5 5.625C7.99728 5.625 8.47419 5.82254 8.82583 6.17417C9.17746 6.52581 9.375 7.00272 9.375 7.5Z" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+														<path d="M1.25 7.5C2.25 4.93937 4.585 3.125 7.5 3.125C10.415 3.125 12.75 4.93937 13.75 7.5C12.75 10.0606 10.415 11.875 7.5 11.875C4.585 11.875 2.25 10.0606 1.25 7.5Z" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+													</svg>
 												</button>
-												<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Unduh">
-													<img src={downloadIcon} alt="Unduh" class="w-5 h-5" />
+												<button class="p-1 rounded hover:bg-slate-100 transition-colors " title="Download">
+													<svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M2.5 10.0025V10.625C2.5 11.1223 2.69754 11.5992 3.04917 11.9508C3.40081 12.3025 3.87772 12.5 4.375 12.5H10.625C11.1223 12.5 11.5992 12.3025 11.9508 11.9508C12.3025 11.5992 12.5 11.1223 12.5 10.625V10M7.5 2.8125V9.6875M7.5 9.6875L9.6875 7.5M7.5 9.6875L5.3125 7.5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+													</svg>
 												</button>
 											</div>
 										</td>
@@ -173,24 +178,23 @@ const getCategoryBg = (kategori: string) => {
 					</div>
 
 					<!-- Pagination -->
-					<div class="flex items-center justify-between">
-						<p class="text-sm text-slate-600 dark:text-slate-400">
-							Menampilkan 1-8 dari 15 event
-						</p>
-						<div class="flex items-center gap-2">
-							<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-								</svg>
-							</button>
-							<button class="min-w-10 h-10 rounded-lg bg-slate-900 dark:bg-blue-600 text-white font-bold text-sm transition-colors">1</button>
-							<button class="min-w-10 h-10 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">2</button>
-							<button class="p-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-								</svg>
-							</button>
+					<div class="flex items-center justify-end gap-2">
+						<button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="prevBtn">
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+							</svg>
+						</button>
+
+						<div class="flex items-center gap-1" id="paginationContainer">
+							<button class="w-8 h-8 rounded text-sm font-bold transition-colors bg-blue-600 text-white" data-page="1">1</button>
+							<button class="w-8 h-8 rounded text-sm font-bold transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200" data-page="2">2</button>
 						</div>
+
+						<button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="nextBtn">
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+						</button>
 					</div>
 				</div>
 			</section>
