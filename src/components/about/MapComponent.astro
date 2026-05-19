@@ -1,0 +1,127 @@
+<script type="module">
+  async function initMap() {
+    // Wait for Leaflet to load
+    while (typeof window.L === "undefined") {
+      await new Promise(r => setTimeout(r, 50));
+    }
+    
+    const mapEl = document.getElementById("map");
+    if (!mapEl) return;
+
+    const L = window.L;
+    const centers = {
+      "Banten": [106.15, -6.3],
+      "Jawa Barat": [107.61, -7.0],
+      "DKI Jakarta": [106.84, -6.17],
+      "Full": [106.5, -6.4]
+    };
+
+    const map = L.map("map").setView([-6.4, 106.5], 7);
+
+    const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap",
+      maxZoom: 19
+    }).addTo(map);
+
+    const isDark = () => document.documentElement.classList.contains("theme-dark");
+
+    function applyFilter() {
+      const imgs = document.querySelectorAll("#map .leaflet-tile");
+      imgs.forEach(img => {
+        img.style.filter = isDark() ? "brightness(0.4) saturate(0)" : "brightness(1.2) saturate(0)";
+      });
+    }
+
+    map.on("moveend", applyFilter);
+    setTimeout(applyFilter, 1000);
+
+    new MutationObserver(applyFilter).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+
+    let geoLayer = null;
+    let hovered = null;
+
+    function hideLoader() {
+      const loader = document.getElementById("map-loader");
+      if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          if (loader) loader.style.display = "none";
+        }, 500);
+      }
+    }
+
+    fetch("https://cdn.jsdelivr.net/gh/superpikar/indonesia-geojson@master/indonesia-province-simple.json")
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then(data => {
+        const targets = ["BANTEN", "JAWA BARAT", "JAKARTA", "DKI JAKARTA"];
+        const features = data.features.filter(f => {
+          const name = (f.properties.Propinsi || f.properties.name || f.properties.NAME_1 || "").toUpperCase();
+          return targets.some(t => name.includes(t));
+        });
+
+        geoLayer = L.geoJSON({type: "FeatureCollection", features}, {
+          style: {color: "#60a5fa", weight: 2.5, opacity: 1, fillColor: "#3b82f6", fillOpacity: 0.3},
+          onEachFeature: (feat, layer) => {
+            layer.on("mouseover", () => {
+              layer.setStyle({fillOpacity: 0.6, weight: 3, color: "#3b82f6"});
+              layer.bringToFront();
+              hovered = feat;
+            });
+            layer.on("mouseout", () => {
+              layer.setStyle({fillOpacity: 0.3, weight: 2.5, color: "#60a5fa"});
+              hovered = null;
+            });
+          }
+        }).addTo(map);
+
+        hideLoader();
+      })
+      .catch(err => {
+        console.error("Failed to load GeoJSON:", err);
+        hideLoader();
+      });
+
+    document.querySelectorAll(".area-card").forEach(card => {
+      card.addEventListener("mouseenter", () => {
+        const name = card.getAttribute("data-center");
+        const id = card.getAttribute("data-id");
+        if (centers[name]) {
+          const z = name === "DKI Jakarta" ? 10 : 8.5;
+          map.flyTo([centers[name][1], centers[name][0]], z);
+        }
+        if (geoLayer) {
+          geoLayer.eachLayer(layer => {
+            const prop = (layer.feature.properties.Propinsi || "").toUpperCase();
+            if (prop.includes(id)) layer.setStyle({fillOpacity: 0.6});
+          });
+        }
+      });
+      card.addEventListener("mouseleave", () => {
+        if (geoLayer) {
+          geoLayer.eachLayer(layer => {
+            if (!hovered || layer.feature !== hovered) layer.setStyle({fillOpacity: 0.3});
+          });
+        }
+      });
+    });
+
+    document.getElementById("zoom-in").onclick = () => map.zoomIn();
+    document.getElementById("zoom-out").onclick = () => map.zoomOut();
+    document.getElementById("reset-map").onclick = () => map.flyTo([-6.4, 106.5], 7);
+  }
+
+  // Run on page load
+  document.addEventListener("DOMContentLoaded", initMap, { once: true });
+  if (document.readyState !== "loading") {
+    initMap();
+  }
+</script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
