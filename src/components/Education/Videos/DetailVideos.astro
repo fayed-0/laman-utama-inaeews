@@ -1,5 +1,7 @@
 ---
 // Video Edukasi data
+import timeIcon from '../../../assets/time.svg';
+
 const allVideos = [
   {
     id: 1,
@@ -172,9 +174,7 @@ const sortOptions = ["TERBARU"];
             </p>
             <div class="border-t border-slate-200 pt-3 flex items-center justify-between">
               <span class="text-slate-600 text-xs flex items-center gap-2">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
-                </svg>
+                <img src={timeIcon.src} alt="duration" class="w-4 h-4" />
                 {video.duration}
               </span>
               <span class="text-slate-600 text-xs">
@@ -218,7 +218,7 @@ const sortOptions = ["TERBARU"];
   </div>
 </section>
 
-<script define:vars={{ allVideos, itemsPerPage }}>
+<script define:vars={{ allVideos, itemsPerPage, timeIconSrc: timeIcon.src }}>
   let currentPage = 1;
   let filteredVideos = allVideos;
 
@@ -281,9 +281,7 @@ const sortOptions = ["TERBARU"];
           </p>
           <div class="border-t border-slate-200 pt-3 flex items-center justify-between">
             <span class="text-slate-600 text-xs flex items-center gap-2">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd"></path>
-              </svg>
+              <img src="${timeIconSrc}" alt="duration" class="w-4 h-4" />
               ${video.duration}
             </span>
             <span class="text-slate-600 text-xs">
