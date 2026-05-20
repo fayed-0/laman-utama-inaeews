@@ -28,7 +28,7 @@ const themes = [
 // Navigation links dengan data
 const navLinks = [
 	{ href: '/', label: 'Beranda' },
-	{ href: '/about', label: 'Tentang' },
+	{ href: '/about', label: 'Tentang', hidden: true },
 	{ 
 		href: '/product',
 		label: 'Produk InaEEWS',
@@ -68,7 +68,7 @@ const isActive = (href: string) => {
 		<div class="flex items-center gap-6 lg:gap-8">
 			<!-- Navigation -->
 			<nav class="hidden md:flex items-center gap-6 lg:gap-8">
-				{navLinks.map((link) => (
+				{navLinks.filter(link => !link.hidden).map((link) => (
 					link.submenu ? (
 						<div class="relative group">
 						<a 
