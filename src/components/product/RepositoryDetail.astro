@@ -47,13 +47,44 @@ import navigateIcon from '../../assets/navigate.svg?url';
             <p class="text-center text-slate-400 text-base max-w-2xl">
               Informasi lengkap mengenai lokasi episentrum, skala richter, kedalaman, dan dampak intensitas gempa di wilayah terdampak.
             </p>
+            <p class="text-center text-sm text-slate-500 dark:text-slate-400 max-w-3xl">
+              Referensi tampilan:
+              <a
+                href="https://www.data.jma.go.jp/eew/data/nc/pub_hist/2026/04/20260420165303/fc/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold text-blue-600 hover:text-blue-700 underline decoration-blue-300 underline-offset-4"
+              >
+                data.jma.go.jp/eew/.../20260420165303/fc/index.html
+              </a>
+            </p>
           </div>
 
-          <!-- Map Placeholder -->
+          <!-- Mockup Reference Image -->
           <div class="rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
-            <div id="mapPlaceholder" class="relative w-full bg-blue-50 dark:bg-slate-800" style="height: 420px;">
-                <div id="leafletMap" class="w-full h-full"></div>
+            <div class="relative w-full bg-gradient-to-br from-slate-100 to-blue-100 dark:from-slate-800 dark:to-slate-900 p-6 md:p-8" style="height: 420px;">
+              <div class="h-full w-full rounded-lg border border-slate-300/80 dark:border-slate-600/80 bg-white/80 dark:bg-slate-900/70 backdrop-blur-sm p-5 md:p-6 flex flex-col gap-4">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                  <div class="h-5 w-40 rounded bg-slate-200 dark:bg-slate-700"></div>
+                  <div class="h-5 w-20 rounded bg-blue-200 dark:bg-blue-700/60"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="h-16 rounded bg-slate-100 dark:bg-slate-800"></div>
+                  <div class="h-16 rounded bg-slate-100 dark:bg-slate-800"></div>
+                </div>
+                <div class="flex-1 rounded-lg border-2 border-dashed border-blue-300/80 dark:border-blue-600/80 bg-blue-50/80 dark:bg-blue-900/20 flex items-center justify-center text-center">
+                  <div class="px-4">
+                    <div class="text-sm font-semibold text-slate-700 dark:text-slate-200">Mockup gambar detail gempa</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mengacu pada struktur tampilan referensi JMA</div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                  <div class="h-10 rounded bg-slate-100 dark:bg-slate-800"></div>
+                  <div class="h-10 rounded bg-slate-100 dark:bg-slate-800"></div>
+                  <div class="h-10 rounded bg-slate-100 dark:bg-slate-800"></div>
+                </div>
               </div>
+            </div>
 
             <!-- Legend -->
             <div class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 px-6 py-4">
@@ -320,103 +351,4 @@ import navigateIcon from '../../assets/navigate.svg?url';
   }
 
   render();
-
-  // Leaflet + MarkerCluster + MiniMap initialization: load CSS/JS dynamically and render clustered map + minimap
-  (function loadLeafletAndPlugins() {
-    if (typeof window === 'undefined') return;
-
-    function addCssHref(href, attrName) {
-      if (document.querySelector(`link[data-${attrName}]`)) return;
-      const l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = href;
-      l.setAttribute(`data-${attrName}`, '');
-      document.head.appendChild(l);
-    }
-
-    function loadScript(src, cb) {
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = cb;
-      s.onerror = cb;
-      document.body.appendChild(s);
-    }
-
-    addCssHref('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'leaflet');
-    addCssHref('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', 'mc');
-    addCssHref('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', 'mc-default');
-
-    function parseCoord(s) {
-      if (!s) return 0;
-      s = String(s).trim();
-      const dir = s.slice(-1).toUpperCase();
-      const num = parseFloat(s.slice(0, -1));
-      if (isNaN(num)) return 0;
-      if (dir === 'S' || dir === 'W') return -Math.abs(num);
-      return Math.abs(num);
-    }
-
-    // Load Leaflet, then plugins, then init
-    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', function () {
-      loadScript('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', function () {
-        loadScript('https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js', function () {
-          try {
-            const id = parseInt(new URLSearchParams(window.location.search).get('id') || '1', 10) || 1;
-            const ev = eventData.find(e => e.id === id) || eventData[0];
-            const lat = parseCoord(ev.lat);
-            const lon = parseCoord(ev.lon);
-
-            const mapEl = document.getElementById('leafletMap');
-            if (!mapEl) return;
-            mapEl.innerHTML = '';
-
-            const map = L.map(mapEl, { scrollWheelZoom: true }).setView([lat || 0, lon || 0], lat && lon ? 6 : 2);
-
-            const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-
-            // Create marker cluster group and add markers for all events
-            const markers = L.markerClusterGroup();
-            const markerList = [];
-            eventData.forEach(e => {
-              const rlat = parseCoord(e.lat);
-              const rlon = parseCoord(e.lon);
-              if (rlat === 0 && rlon === 0) return;
-              const cm = L.circleMarker([rlat, rlon], { radius: 8, color: '#ef4444', fillColor: '#ef4444', fillOpacity: 0.9 });
-              cm.bindPopup(`<div class="font-bold">${e.epicenter}</div><div class="text-sm">${e.date}</div><div class="text-sm">Richter: ${e.richter}</div>`);
-              markers.addLayer(cm);
-              markerList.push({ id: e.id, marker: cm, lat: rlat, lon: rlon });
-            });
-            map.addLayer(markers);
-
-            // Fit bounds to all markers if available
-            try {
-              const bounds = markers.getBounds();
-              if (bounds.isValid()) map.fitBounds(bounds.pad(0.2));
-            } catch (e) { /* ignore */ }
-
-            // If a specific event is selected, open its popup and center on it
-            const selected = markerList.find(m => m.id === id);
-            if (selected) {
-              map.setView([selected.lat, selected.lon], 8);
-              selected.marker.openPopup();
-            }
-
-            // Add minimap control (small overview map)
-            try {
-              const miniLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-              // eslint-disable-next-line no-undef
-              const miniMap = new L.Control.MiniMap(miniLayer, { toggleDisplay: true, minimized: false, position: 'bottomright' }).addTo(map);
-            } catch (e) {
-              // plugin not available or failed
-              console.warn('MiniMap plugin not available', e);
-            }
-          } catch (err) {
-            console.error(err);
-          }
-        });
-      });
-    });
-  })();
 </script>
