@@ -4,101 +4,27 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import homeIcon from '../../assets/home.svg?url';
 import navigateIcon from '../../assets/navigate.svg?url';
-import eyeIcon from '../../assets/eye.svg';
-import downloadIcon from '../../assets/download.svg';
-
-const eventData = [
-	{
-		id: 1,
-		judul: 'Dataset Rekaman Gempa Bumi Sulawesi Tengah 2018',
-		deskripsi: 'Koleksi lengkap data seismik M7.4 · Palu-Donggala · 28 September 2018',
-		kategori: 'Magnitude Tinggi',
-		tahun: '2018',
-	},
-	{
-		id: 2,
-		judul: 'Dataset Rekaman Gempa Lombok Series 2018',
-		deskripsi: 'M6.9 mainshock dengan aftershock sequence · Nusa Tenggara Barat',
-		kategori: 'Rangkaian Gempa',
-		tahun: '2018',
-	},
-	{
-		id: 3,
-		judul: 'Dataset Rekaman Gempa Cianjur 2022',
-		deskripsi: 'Data seismik M5.6 · Kedalaman 10 km · Jawa Barat · November 2022',
-		kategori: 'Magnitude Sedang',
-		tahun: '2022',
-	},
-	{
-		id: 4,
-		judul: 'Dataset Rekaman Gempa Banda Aceh 2004',
-		deskripsi: 'Arsip data seismik M9.1 · Sumatera Utara · Gempa megathrust',
-		kategori: 'Arsip Historis',
-		tahun: '2004',
-	},
-	{
-		id: 5,
-		judul: 'Dataset Rekaman Gempa Yogyakarta 2006',
-		deskripsi: 'Data seismik M6.3 · Kedalaman 10 km · Keperluan mitigasi bencana',
-		kategori: 'Magnitude Sedang',
-		tahun: '2006',
-	},
-	{
-		id: 6,
-		judul: 'Dataset Rekaman Gempa Flores Utama 1992',
-		deskripsi: 'Arsip lengkap M7.8 · Laut Flores · Dokumentasi dengan analisis mendalam',
-		kategori: 'Arsip Historis',
-		tahun: '1992',
-	},
-	{
-		id: 7,
-		judul: 'Dataset Rekaman Gempa Mentawai 2010',
-		deskripsi: 'Data seismik M7.7 · Kepulauan Mentawai · Termasuk analisis tsunami',
-		kategori: 'Magnitude Tinggi',
-		tahun: '2010',
-	},
-	{
-		id: 8,
-		judul: 'Dataset Rekaman Gempa Pangandaran 2006',
-		deskripsi: 'Data observasi lapangan M7.7 · Teluk Pangandaran · Pelengkap analisis',
-		kategori: 'Magnitude Tinggi',
-		tahun: '2006',
-	},
-];
-
-const getCategoryBg = (kategori: string) => {
-	const colors: Record<string, string> = {
-		'Magnitude Tinggi': 'bg-blue-400 text-blue-700',
-		'Magnitude Sedang': 'bg-green-400 text-green-800',
-		'Rangkaian Gempa': 'bg-red-400 text-red-700',
-		'Arsip Historis': 'bg-yellow-400 text-blue-700',
-	};
-	return colors[kategori] || 'bg-slate-600';
-};
 ---
 
-<Layout title="Event - Indonesia Earthquake Early Warning System">
+<Layout title="Repository - Indonesia Earthquake Early Warning System">
 	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
 		<Header />
 		<main>
 			<!-- Hero Section -->
 			<div class="snap-start w-full bg-slate-600 pt-32 pb-32 px-12 md:px-24 overflow-hidden">
 				<div class="max-w-7xl mx-auto">
-					<!-- Title -->
 					<div class="mb-10">
 						<h1 class="text-white text-6xl font-bold leading-tight font-sans">
-						Data & Dokumentasi
-					</h1>
-				</div>
-
-				<!-- Breadcrumb Section -->
-				<div class="flex items-center gap-2">
-					<a href="/" class="hover:opacity-80 transition-opacity">
-						<img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
-					</a>
-					<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
-					<div class="text-white text-xl font-semibold font-sans">
-						Data & Dokumentasi
+							Repository
+						</h1>
+					</div>
+					<div class="flex items-center gap-2">
+						<a href="/" class="hover:opacity-80 transition-opacity">
+							<img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
+						</a>
+						<img src={navigateIcon} alt="navigate" class="w-6 h-6" />
+						<div class="text-white text-xl font-semibold font-sans">
+							Repository
 						</div>
 					</div>
 				</div>
@@ -110,91 +36,36 @@ const getCategoryBg = (kategori: string) => {
 					<!-- Header -->
 					<div class="flex flex-col items-center gap-3">
 						<h2 class="text-center text-4xl font-bold">
-						<span class="text-slate-800 dark:text-white">Data, Dokumentasi &amp;</span>
-						<span class="text-blue-600"> Rekaman</span>
-					</h2>
-					<p class="text-center text-slate-400 dark:text-slate-400 text-base max-w-2xl">
-						Kumpulan lengkap data, dokumentasi, dan rekaman dari berbagai kejadian seismik di Indonesia beserta analisis mendalam untuk penelitian dan pembelajaran.
+							<span class="text-slate-800 dark:text-white">Data, Dokumentasi &amp;</span>
+							<span class="text-blue-600"> Rekaman</span>
+						</h2>
+						<p class="text-center text-slate-400 dark:text-slate-400 text-base max-w-2xl">
+							Kumpulan lengkap data, dokumentasi, dan rekaman dari berbagai kejadian seismik di Indonesia beserta analisis mendalam untuk penelitian dan pembelajaran.
 						</p>
 					</div>
 
 					<!-- Table Wrapper -->
 					<div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-600">
 						<table class="w-full">
-						<thead class="bg-blue-600 dark:bg-blue-200 text-white">
+							<thead class="bg-blue-600 dark:bg-blue-200 text-white">
 								<tr>
 									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest w-12">#</th>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Judul Dokumentasi</th>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Kategori</th>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Tahun</th>
-									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Aksi</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Tanggal Deteksi Gempa</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Nama Episentrum</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Skala Richter</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Intensitas</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Waktu Pengumuman</th>
 								</tr>
 							</thead>
-							<tbody>
-								{eventData.map((event, index) => (
-									<tr class="border-t border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-blue-600/50 transition-colors duration-200 cursor-pointer group">
-										<td class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-400">
-											{event.id}
-										</td>
-										<td class="px-6 py-4">
-											<div class="mb-2">
-												<h3 class="font-bold text-slate-900 dark:text-white text-sm leading-tight">
-													{event.judul}
-												</h3>
-											</div>
-											<p class="text-xs text-slate-600 dark:text-slate-400">
-												{event.deskripsi}
-											</p>
-										</td>
-										<td class="px-6 py-4 text-xs whitespace-nowrap">
-											<div class={`inline-flex items-center px-3 py-1.5 rounded-lg text-white font-bold ${getCategoryBg(event.kategori)}`}>
-												{event.kategori}
-											</div>
-										</td>
-										<td class="px-6 py-4 text-sm">
-											<a href="#" class="font-bold text-blue-600 dark:text-blue-400 hover:underline">
-												{event.tahun}
-											</a>
-										</td>
-										<td class="px-6 py-4 text-center whitespace-nowrap">
-											<div class="flex gap-2 justify-center">
-												<button class="p-1 rounded hover:bg-slate-100 transition-colors" title="View">
-													<svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M9.375 7.5C9.375 7.99728 9.17746 8.47419 8.82583 8.82583C8.47419 9.17746 7.99728 9.375 7.5 9.375C7.00272 9.375 6.52581 9.17746 6.17417 8.82583C5.82254 8.47419 5.625 7.99728 5.625 7.5C5.625 7.00272 5.82254 6.52581 6.17417 6.17417C6.52581 5.82254 7.00272 5.625 7.5 5.625C7.99728 5.625 8.47419 5.82254 8.82583 6.17417C9.17746 6.52581 9.375 7.00272 9.375 7.5Z" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-														<path d="M1.25 7.5C2.25 4.93937 4.585 3.125 7.5 3.125C10.415 3.125 12.75 4.93937 13.75 7.5C12.75 10.0606 10.415 11.875 7.5 11.875C4.585 11.875 2.25 10.0606 1.25 7.5Z" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</button>
-												<button class="p-1 rounded hover:bg-slate-100 transition-colors " title="Download">
-													<svg class="w-5 h-5" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M2.5 10.0025V10.625C2.5 11.1223 2.69754 11.5992 3.04917 11.9508C3.40081 12.3025 3.87772 12.5 4.375 12.5H10.625C11.1223 12.5 11.5992 12.3025 11.9508 11.9508C12.3025 11.5992 12.5 11.1223 12.5 10.625V10M7.5 2.8125V9.6875M7.5 9.6875L9.6875 7.5M7.5 9.6875L5.3125 7.5" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-													</svg>
-												</button>
-											</div>
-										</td>
-									</tr>
-								))}
+							<tbody id="tableBody">
+								<!-- Diisi oleh JavaScript -->
 							</tbody>
 						</table>
 					</div>
 
 					<!-- Pagination -->
-					<div class="flex items-center justify-end gap-2">
-						<button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="prevBtn">
-							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-							</svg>
-						</button>
-
-						<div class="flex items-center gap-1" id="paginationContainer">
-							<button class="w-8 h-8 rounded text-sm font-bold transition-colors bg-blue-600 text-white" data-page="1">1</button>
-							<button class="w-8 h-8 rounded text-sm font-bold transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200" data-page="2">2</button>
-						</div>
-
-						<button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="nextBtn">
-							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-							</svg>
-						</button>
+					<div class="flex items-center justify-end gap-2" id="paginationContainer">
+						<!-- Diisi oleh JavaScript -->
 					</div>
 				</div>
 			</section>
@@ -209,8 +80,133 @@ const getCategoryBg = (kategori: string) => {
 	:global {
 		@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
 	}
-
 	.font-sans {
 		font-family: 'Work Sans', sans-serif;
 	}
+
+	.richter-low   { background-color: #d1fae5; color: #065f46; }
+	.richter-mid   { background-color: #fef3c7; color: #92400e; }
+	.richter-high  { background-color: #fee2e2; color: #991b1b; }
+	.richter-vhigh { background-color: #991b1b; color: #fee2e2; }
 </style>
+
+<script>
+	const eventData = [
+		{ id: 1,  date: "2026/05/21 08:11", epicenter: "Lepas Pantai Selatan Banten", richter: 3.7, intensity: "3", announce: "2026/05/21 08:15" },
+		{ id: 2,  date: "2026/05/21 04:27", epicenter: "Kabupaten Lebak, Banten", richter: 3.7, intensity: "1", announce: "2026/05/21 04:30" },
+		{ id: 3,  date: "2026/05/20 23:08", epicenter: "Lepas Pantai Barat Jawa Barat", richter: 2.4, intensity: "1", announce: "2026/05/20 23:11" },
+		{ id: 4,  date: "2026/05/20 22:23", epicenter: "Kabupaten Sukabumi, Jawa Barat", richter: 3.5, intensity: "1", announce: "2026/05/20 22:26" },
+		{ id: 5,  date: "2026/05/20 13:12", epicenter: "Teluk Jakarta, DKI Jakarta", richter: 3.8, intensity: "1", announce: "2026/05/20 13:15" },
+		{ id: 6,  date: "2026/05/20 09:46", epicenter: "Laut Jawa Utara Jakarta", richter: 5.9, intensity: "5+", announce: "2026/05/20 09:51" },
+		{ id: 7,  date: "2026/05/20 05:08", epicenter: "Kabupaten Pandeglang, Banten", richter: 3.2, intensity: "1", announce: "2026/05/20 05:11" },
+		{ id: 8,  date: "2026/05/20 00:29", epicenter: "Selat Sunda, Banten", richter: 3.8, intensity: "1", announce: "2026/05/20 00:32" },
+		{ id: 9,  date: "2026/05/19 17:35", epicenter: "Kabupaten Bogor, Jawa Barat", richter: 2.8, intensity: "2", announce: "2026/05/19 17:38" },
+		{ id: 10, date: "2026/05/19 17:23", epicenter: "Kabupaten Cianjur, Jawa Barat", richter: 4.1, intensity: "1", announce: "2026/05/19 17:26" },
+		{ id: 11, date: "2026/05/19 12:44", epicenter: "Lepas Pantai Selatan Jawa Barat", richter: 2.6, intensity: "1", announce: "2026/05/19 12:47" },
+		{ id: 12, date: "2026/05/19 09:15", epicenter: "Kabupaten Serang, Banten", richter: 4.3, intensity: "2", announce: "2026/05/19 09:18" },
+		{ id: 13, date: "2026/05/19 06:02", epicenter: "Perairan Kepulauan Seribu, DKI Jakarta", richter: 3.1, intensity: "1", announce: "2026/05/19 06:05" },
+		{ id: 14, date: "2026/05/18 22:57", epicenter: "Kota Depok, Jawa Barat", richter: 2.9, intensity: "1", announce: "2026/05/18 23:00" },
+		{ id: 15, date: "2026/05/18 18:33", epicenter: "Kabupaten Bekasi, Jawa Barat", richter: 4.7, intensity: "3", announce: "2026/05/18 18:37" },
+		{ id: 16, date: "2026/05/18 14:21", epicenter: "Kabupaten Tangerang, Banten", richter: 3.3, intensity: "2", announce: "2026/05/18 14:24" },
+		{ id: 17, date: "2026/05/18 11:09", epicenter: "Lepas Pantai Selatan Banten", richter: 3.6, intensity: "1", announce: "2026/05/18 11:12" },
+		{ id: 18, date: "2026/05/18 07:48", epicenter: "Kabupaten Garut, Jawa Barat", richter: 5.1, intensity: "4", announce: "2026/05/18 07:52" },
+		{ id: 19, date: "2026/05/18 03:16", epicenter: "Kota Bandung, Jawa Barat", richter: 2.2, intensity: "1", announce: "2026/05/18 03:19" },
+		{ id: 20, date: "2026/05/17 21:44", epicenter: "Selat Sunda, Banten", richter: 4.4, intensity: "2", announce: "2026/05/17 21:47" },
+		{ id: 21, date: "2026/05/17 16:30", epicenter: "Kabupaten Sukabumi, Jawa Barat", richter: 3.0, intensity: "1", announce: "2026/05/17 16:33" },
+		{ id: 22, date: "2026/05/17 10:55", epicenter: "Jakarta Selatan, DKI Jakarta", richter: 2.7, intensity: "1", announce: "2026/05/17 10:58" },
+		{ id: 23, date: "2026/05/17 05:20", epicenter: "Laut Jawa Utara Jakarta", richter: 6.2, intensity: "5-", announce: "2026/05/17 05:24" },
+		{ id: 24, date: "2026/05/16 23:11", epicenter: "Kabupaten Lebak, Banten", richter: 4.0, intensity: "2", announce: "2026/05/16 23:14" },
+		{ id: 25, date: "2026/05/16 18:07", epicenter: "Kabupaten Bogor, Jawa Barat", richter: 2.5, intensity: "1", announce: "2026/05/16 18:10" },
+	];
+
+	const PER_PAGE = 10;
+	let currentPage = 1;
+	const totalPages = Math.ceil(eventData.length / PER_PAGE);
+
+	function getRichterClass(r) {
+		if (r < 3.0) return 'richter-low';
+		if (r < 4.5) return 'richter-mid';
+		if (r < 5.5) return 'richter-high';
+		return 'richter-vhigh';
+	}
+
+	function renderTable(page) {
+		const tbody = document.getElementById('tableBody');
+		tbody.innerHTML = '';
+		const start = (page - 1) * PER_PAGE;
+		const slice = eventData.slice(start, start + PER_PAGE);
+
+		slice.forEach((row, index) => {
+			const rowNumber = start + index + 1;
+			const tr = document.createElement('tr');
+			tr.className = 'border-t border-slate-200 dark:border-slate-700 hover:bg-blue-100 dark:hover:bg-blue-600/50 transition-colors duration-200 cursor-pointer group';
+			tr.addEventListener('click', () => {
+				window.location.href = `/product/repository-detail?id=${row.id}`;
+			});
+			tr.innerHTML = `
+				<td class="px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-400">${rowNumber}</td>
+				<td class="px-6 py-4">
+					<span class="font-bold text-slate-900 dark:text-white text-sm">${row.date}</span>
+				</td>
+				<td class="px-6 py-4 text-sm text-slate-700 dark:text-slate-300">${row.epicenter}</td>
+				<td class="px-6 py-4 text-center">
+					<span class="inline-flex items-center justify-center px-3 py-1.5 rounded-lg font-bold text-xs ${getRichterClass(row.richter)}">${row.richter}</span>
+				</td>
+				<td class="px-6 py-4 text-center text-sm font-semibold text-slate-700 dark:text-slate-300">${row.intensity}</td>
+				<td class="px-6 py-4 text-center text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">${row.announce}</td>
+			`;
+			tbody.appendChild(tr);
+		});
+	}
+
+	function renderPagination(page) {
+		const container = document.getElementById('paginationContainer');
+		container.innerHTML = '';
+
+		const info = document.createElement('span');
+		info.className = 'text-xs text-slate-500 dark:text-slate-400 mr-2';
+		const start = (page - 1) * PER_PAGE + 1;
+		const end = Math.min(page * PER_PAGE, eventData.length);
+		info.textContent = `${start}–${end} dari ${eventData.length}`;
+		container.appendChild(info);
+
+		const prev = document.createElement('button');
+		prev.className = 'p-2 text-slate-600 hover:text-slate-900 dark:hover:text-white transition-colors';
+		prev.disabled = page === 1;
+		prev.style.opacity = page === 1 ? '0.3' : '1';
+		prev.style.cursor = page === 1 ? 'not-allowed' : 'pointer';
+		prev.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>`;
+		prev.addEventListener('click', () => goTo(currentPage - 1));
+		container.appendChild(prev);
+
+		for (let i = 1; i <= totalPages; i++) {
+			const btn = document.createElement('button');
+			btn.className = `w-8 h-8 rounded text-sm font-bold transition-colors ${
+				i === page
+					? 'bg-blue-600 text-white'
+					: 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600'
+			}`;
+			btn.textContent = String(i);
+			btn.addEventListener('click', () => goTo(i));
+			container.appendChild(btn);
+		}
+
+		const next = document.createElement('button');
+		next.className = 'p-2 text-slate-600 hover:text-slate-900 dark:hover:text-white transition-colors';
+		next.disabled = page === totalPages;
+		next.style.opacity = page === totalPages ? '0.3' : '1';
+		next.style.cursor = page === totalPages ? 'not-allowed' : 'pointer';
+		next.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>`;
+		next.addEventListener('click', () => goTo(currentPage + 1));
+		container.appendChild(next);
+	}
+
+	function goTo(page) {
+		if (page < 1 || page > totalPages) return;
+		currentPage = page;
+		renderTable(currentPage);
+		renderPagination(currentPage);
+	}
+
+	goTo(1);
+</script>

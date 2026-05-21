@@ -1,0 +1,8 @@
+---
+import RepositoryDetail from '../../components/product/RepositoryDetail.astro';
+
+// Read `id` from the request query string and pass it to the component
+const id = Astro.request && Astro.request.url ? new URL(Astro.request.url).searchParams.get('id') : null;
+---
+
+<RepositoryDetail id={id} />
