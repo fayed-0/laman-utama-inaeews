@@ -9,26 +9,28 @@ import navigateIcon from '../../assets/navigate.svg?url';
   <div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
     <Header />
     <main>
-
       <!-- Hero Section -->
-      <div class="snap-start w-full bg-slate-600 pt-32 pb-32 px-12 md:px-24 overflow-hidden">
+      <div class="snap-start w-full bg-slate-600 pt-[180px] pb-[180px] px-12 md:px-24 overflow-hidden">
         <div class="max-w-7xl mx-auto">
+          <!-- Title -->
           <div class="mb-10">
             <h1 class="text-white text-6xl font-bold leading-tight font-sans">
-              Detail Gempa
+              DETAIL GEMPA
             </h1>
           </div>
-          <div class="flex items-center gap-2">
-            <a href="/" class="hover:opacity-80 transition-opacity">
+
+          <!-- Breadcrumb Section -->
+          <div class="flex items-center gap-2 mb-10">
+            <a href="/about" class="hover:opacity-80 transition-opacity">
               <img src={homeIcon} alt="home" class="w-6 h-6 cursor-pointer" />
             </a>
             <img src={navigateIcon} alt="navigate" class="w-6 h-6" />
-            <a href="/product/event" class="text-slate-300 hover:text-white text-xl font-semibold font-sans transition-colors">
+            <a href="/product/event" class="text-white text-xl font-semibold hover:opacity-80 transition-opacity cursor-pointer">
               Repository
             </a>
             <img src={navigateIcon} alt="navigate" class="w-6 h-6" />
             <div class="text-white text-xl font-semibold font-sans">
-              Detail
+              Detail Gempa
             </div>
           </div>
         </div>
@@ -36,117 +38,138 @@ import navigateIcon from '../../assets/navigate.svg?url';
 
       <!-- Content Section -->
       <section class="snap-start w-full bg-white dark:bg-slate-900 py-24 px-12 md:px-24 overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col gap-10">
+        <div class="max-w-7xl mx-auto flex flex-col gap-12">
 
-          <!-- Page Header -->
-          <div class="flex flex-col items-center gap-3">
-            <h2 class="text-center text-4xl font-bold">
-              <span class="text-slate-800 dark:text-white">Detail</span>
-              <span class="text-blue-600"> Gempa</span>
-            </h2>
-            <p class="text-center text-slate-400 text-base max-w-2xl">
-              Informasi lengkap mengenai lokasi episentrum, skala richter, kedalaman, dan dampak intensitas gempa di wilayah terdampak.
-            </p>
-          </div>
+      <!-- Header -->
+      <div class="flex flex-col items-center gap-3">
+        <h2 class="text-center text-4xl font-bold">
+          <span class="text-slate-800 dark:text-white">Detail</span>
+          <span class="text-blue-600"> Gempa Bumi</span>
+        </h2>
+        <p class="text-center text-slate-400 dark:text-slate-400 text-base max-w-2xl">
+          Informasi lengkap tentang kejadian gempa bumi, termasuk ringkasan data seismik, peta distribusi intensitas, riwayat EEW, dan wilayah terdampak.
+        </p>
+      </div>
 
-          <!-- Map Placeholder -->
-          <div class="rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
-            <div id="mapPlaceholder" class="relative w-full bg-blue-50 dark:bg-slate-800" style="height: 420px;">
-                <div id="leafletMap" class="w-full h-full"></div>
-              </div>
 
-            <!-- Legend -->
-            <div class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 px-6 py-4">
-              <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 mr-2">Skala intensitas gempa bumi</span>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-pink-600 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">7</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-red-800 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">6+</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-red-500 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">6-</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-orange-500 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">5+</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-yellow-400 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">5-</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-amber-200 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">4</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-blue-600 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">3</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-cyan-400 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">2</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div class="w-6 h-6 rounded-full bg-slate-100 border border-slate-300 shadow"></div>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">1</span>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <svg viewBox="0 0 24 24" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="4" y1="4" x2="20" y2="20" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-                    <line x1="20" y1="4" x2="4" y2="20" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-                  </svg>
-                  <span class="text-xs text-slate-600 dark:text-slate-300 font-bold">episentrum</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Earthquake Info Table -->
-          <div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-600">
-            <table class="w-full">
-              <thead class="bg-blue-600 dark:bg-blue-200 text-white">
-                <tr>
-                  <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Tanggal Deteksi Gempa</th>
-                  <th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Lintang</th>
-                  <th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Bujur</th>
-                  <th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Skala Richter</th>
-                  <th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Kedalaman Pusat Gempa</th>
-                  <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Nama Episentrum</th>
-                </tr>
-              </thead>
-              <tbody id="detailInfoBody">
-                <!-- Filled by JS -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Intensity Section -->
-          <div>
-            <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4">
-              Kota/desa dengan intensitas gempa 1 atau lebih
-            </h3>
-            <div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-600">
-                <table class="w-full">
-                  <thead class="bg-blue-600 dark:bg-blue-200 text-white">
-                    <tr>
-                      <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Prefektur / Provinsi</th>
-                      <th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Skala Intensitas Gempa Bumi</th>
-                      <th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Nama Kota dan Desa</th>
-                    </tr>
-                  </thead>
-                  <tbody id="detailIntensityBody">
-                    <!-- Filled by JS -->
-                  </tbody>
-                </table>
-              </div>
-          </div>
-
+      <!-- RINGKASAN GEMPA -->
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+        <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3">
+          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Ringkasan Gempa yang Terjadi (Nilai Sementara)</h2>
         </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead class="bg-blue-600 dark:bg-blue-200 text-white">
+              <tr class="text-xs uppercase tracking-wide">
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest">Tanggal &amp; Waktu</th>
+                <th class="px-4 py-3 text-left text-xs font-black uppercase tracking-widest">Episentrum</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Lintang</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Bujur</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Kedalaman</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Magnitudo</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Intensitas Maks.</th>
+              </tr>
+            </thead>
+            <tbody id="ringkasanBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PETA PLACEHOLDER -->
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
+        <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3">
+          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Peta Distribusi Estimasi Intensitas &amp; Posisi Episentrum</h2>
+        </div>
+        <!-- MAP PLACEHOLDER -->
+        <div class="w-full h-[420px] bg-slate-100 dark:bg-slate-800 flex items-center  justify-center border-b border-slate-200 dark:border-slate-700">
+          <div class="text-center text-slate-400 dark:text-slate-500 select-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto mb-3 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+            <p class="text-sm font-medium">Placeholder Peta</p>
+            <p class="text-xs mt-1">Gambar peta distribusi intensitas akan ditampilkan di sini</p>
+          </div>
+        </div>
+        <!-- Legenda -->
+        <div class="bg-white dark:bg-slate-900 px-5 py-3 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-semibold text-slate-500 uppercase tracking-wide mr-1">Skala Intensitas:</span>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-[#be123c]"></div><span class="text-xs font-bold">7</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-red-700"></div><span class="text-xs font-bold">6+</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-red-400"></div><span class="text-xs font-bold">6−</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-orange-400"></div><span class="text-xs font-bold">5+</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-yellow-300"></div><span class="text-xs font-bold">5−</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-green-300"></div><span class="text-xs font-bold">4</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-cyan-400"></div><span class="text-xs font-bold">3</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-sky-200"></div><span class="text-xs font-bold">2</span></div>
+          <div class="flex items-center gap-1"><div class="w-5 h-5 rounded-sm bg-slate-100 border border-slate-300"></div><span class="text-xs font-bold">1</span></div>
+          <span class="ml-auto text-xs text-slate-400">★ : Episentrum (nilai sementara)</span>
+        </div>
+      </div>
+
+      <!-- PETA PLACEHOLDER -->
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+        <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3">
+          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Peta Distribusi Estimasi Intensitas &amp; Posisi Episentrum</h2>
+        </div>
+        <!-- MAP PLACEHOLDER -->
+        <div class="w-full h-[420px] bg-slate-100 dark:bg-slate-800 flex items-center justify-center border-b border-slate-200 dark:border-slate-700">
+          <div class="text-center text-slate-400 dark:text-slate-500 select-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto mb-3 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+            <p class="text-sm font-medium">Placeholder Peta</p>
+            <p class="text-xs mt-1">Gambar peta distribusi intensitas akan ditampilkan di sini</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIWAYAT EEW -->
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+        <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3 flex flex-wrap items-center justify-between gap-2">
+          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Riwayat Laporan Peringatan Dini Gempa (EEW)</h2>
+          <span class="text-blue-200 dark:text-slate-700 text-xs">(Laporan ke-13 = tingkat PERINGATAN, ditandai latar abu-abu)</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs border-collapse">
+            <thead>
+              <tr class="bg-blue-600 dark:bg-blue-200 text-white dark:text-slate-900 uppercase tracking-wide">
+                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Lap.</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Waktu Penyediaan</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Waktu sejak<br/>Deteksi (dtk)</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-600" colspan="4">Elemen Episentrum</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Prediksi Intensitas Maks.</th>
+              </tr>
+              <tr class="bg-blue-600 dark:bg-blue-200 text-white dark:text-slate-900 uppercase tracking-wide">
+                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Lintang</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Bujur</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Kedalaman</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Magnitudo</th>
+              </tr>
+            </thead>
+            <tbody id="eewBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- WILAYAH TERDAMPAK -->
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+        <div class="bg-[#2563eb] px-5 py-3">
+          <h2 class="text-white font-bold text-sm">Wilayah Terdampak</h2>
+          <p class="text-blue-200 text-xs mt-0.5">Kota / kecamatan dengan intensitas guncangan 1 atau lebih</p>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-[#2563eb] text-slate-300 text-xs uppercase tracking-wide">
+                <th class="px-5 py-3 text-left font-semibold border border-slate-600">Provinsi / Wilayah</th>
+                <th class="px-5 py-3 text-center font-semibold border border-slate-600">Intensitas</th>
+                <th class="px-5 py-3 text-left font-semibold border border-slate-600">Kota / Kecamatan</th>
+              </tr>
+            </thead>
+            <tbody id="detailIntensityBody"></tbody>
+          </table>
+        </div>
+      </div>
       </section>
     </main>
     <div class="snap-start flex flex-col justify-end">
@@ -156,267 +179,157 @@ import navigateIcon from '../../assets/navigate.svg?url';
 </Layout>
 
 <style>
-  :global {
-    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap');
-  }
-  .font-sans { font-family: 'Work Sans', sans-serif; }
+  /* TABLE BORDERS */
+  table { border-collapse: collapse; }
+
+  /* LIGHT rows */
+  .row-even { background: #ffffff; color: #0f172a; }
+  .row-odd  { background: #f8fafc; color: #0f172a; }
+  .dark .row-even { background: #0d1526; color: #e2e8f0; }
+  .dark .row-odd  { background: #0a1120; color: #e2e8f0; }
+
+  tbody td { border: 1px solid #e2e8f0; }
+  .dark tbody td { border-color: rgba(51,65,85,0.5); }
+
+  /* WARN ROW */
+  .eew-warn td { background: #e5e7eb !important; color: #374151; }
+  .dark .eew-warn td { background: #1f2937 !important; color: #d1d5db; }
+
+  /* RICHTER badges (align with event.astro) */
   .richter-low   { background-color: #d1fae5; color: #065f46; }
   .richter-mid   { background-color: #fef3c7; color: #92400e; }
   .richter-high  { background-color: #fee2e2; color: #991b1b; }
   .richter-vhigh { background-color: #991b1b; color: #fee2e2; }
 
-  .intensity-badge-1  { background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
-  .intensity-badge-2  { background-color: #e0f2fe; color: #0369a1; }
-  .intensity-badge-3  { background-color: #dbeafe; color: #1d4ed8; }
-  .intensity-badge-4  { background-color: #fef9c3; color: #92400e; }
-  .intensity-badge-5- { background-color: #fde68a; color: #92400e; }
-  .intensity-badge-5+ { background-color: #fdba74; color: #7c2d12; }
-  .intensity-badge-6- { background-color: #fca5a5; color: #7f1d1d; }
-  .intensity-badge-6+ { background-color: #ef4444; color: #fff; }
-  .intensity-badge-7  { background-color: #be123c; color: #fff; }
+  /* INTENSITY badges */
+  .i-1  { background:#f1f5f9; color:#475569; border:1px solid #cbd5e1; }
+  .i-2  { background:#e0f2fe; color:#075985; }
+  .i-3  { background:#bfdbfe; color:#1e3a5f; }
+  .i-4  { background:#bbf7d0; color:#14532d; }
+  .i-5m { background:#fef08a; color:#713f12; }
+  .i-5p { background:#fdba74; color:#7c2d12; }
+  .i-6m { background:#fca5a5; color:#7f1d1d; }
+  .i-6p { background:#ef4444; color:#fff; }
+  .i-7  { background:#be123c; color:#fff; }
 </style>
 
 <script>
-  // All event data (same as Repository page)
   const eventData = [
-    { id: 1,  date: "2026/05/21 08:11", lat: "6.2S",  lon: "105.8E", epicenter: "Lepas Pantai Selatan Banten",             richter: 3.7, depth: "15km",  intensity: "3",  announce: "2026/05/21 08:15",
-      affected: [{ region: "Kabupaten Pandeglang, Banten", intensity: "3", cities: "Kecamatan Carita, Kecamatan Labuan" },
-                 { region: "Kabupaten Lebak, Banten",      intensity: "2", cities: "Kecamatan Malingping" },
-                 { region: "Kota Serang, Banten",          intensity: "1", cities: "Kecamatan Serang" }] },
-    { id: 2,  date: "2026/05/21 04:27", lat: "6.5S",  lon: "106.0E", epicenter: "Kabupaten Lebak, Banten",                 richter: 3.7, depth: "10km",  intensity: "1",  announce: "2026/05/21 04:30",
-      affected: [{ region: "Kabupaten Lebak, Banten", intensity: "1", cities: "Kecamatan Cibeber" }] },
-    { id: 3,  date: "2026/05/20 23:08", lat: "6.9S",  lon: "106.5E", epicenter: "Lepas Pantai Barat Jawa Barat",           richter: 2.4, depth: "12km",  intensity: "1",  announce: "2026/05/20 23:11",
-      affected: [{ region: "Kabupaten Sukabumi, Jawa Barat", intensity: "1", cities: "Kecamatan Palabuhanratu" }] },
-    { id: 4,  date: "2026/05/20 22:23", lat: "6.8S",  lon: "106.7E", epicenter: "Kabupaten Sukabumi, Jawa Barat",          richter: 3.5, depth: "8km",   intensity: "1",  announce: "2026/05/20 22:26",
-      affected: [{ region: "Kabupaten Sukabumi, Jawa Barat", intensity: "1", cities: "Kecamatan Sukabumi" }] },
-    { id: 5,  date: "2026/05/20 13:12", lat: "5.9S",  lon: "106.8E", epicenter: "Teluk Jakarta, DKI Jakarta",              richter: 3.8, depth: "20km",  intensity: "1",  announce: "2026/05/20 13:15",
-      affected: [{ region: "Jakarta Utara, DKI Jakarta", intensity: "1", cities: "Penjaringan, Koja" }] },
-    { id: 6,  date: "2026/05/20 09:46", lat: "5.7S",  lon: "106.9E", epicenter: "Laut Jawa Utara Jakarta",                 richter: 5.9, depth: "30km",  intensity: "5+", announce: "2026/05/20 09:51",
-      affected: [{ region: "Jakarta Utara, DKI Jakarta",      intensity: "5+", cities: "Penjaringan, Pademangan, Tanjung Priok" },
-                 { region: "Jakarta Barat, DKI Jakarta",      intensity: "4",  cities: "Tambora, Grogol Petamburan" },
-                 { region: "Jakarta Pusat, DKI Jakarta",      intensity: "4",  cities: "Gambir, Sawah Besar" },
-                 { region: "Kota Tangerang, Banten",          intensity: "3",  cities: "Neglasari, Batuceper" },
-                 { region: "Kabupaten Bekasi, Jawa Barat",    intensity: "3",  cities: "Babelan, Tarumajaya" },
-                 { region: "Jakarta Selatan, DKI Jakarta",    intensity: "2",  cities: "Tebet, Setiabudi" },
-                 { region: "Kota Depok, Jawa Barat",          intensity: "2",  cities: "Cimanggis, Sukmajaya" },
-                 { region: "Kabupaten Bogor, Jawa Barat",     intensity: "1",  cities: "Cibinong, Gunung Putri" }] },
-    { id: 7,  date: "2026/05/20 05:08", lat: "6.3S",  lon: "105.9E", epicenter: "Kabupaten Pandeglang, Banten",            richter: 3.2, depth: "7km",   intensity: "1",  announce: "2026/05/20 05:11",
-      affected: [{ region: "Kabupaten Pandeglang, Banten", intensity: "1", cities: "Kecamatan Pandeglang" }] },
-    { id: 8,  date: "2026/05/20 00:29", lat: "6.0S",  lon: "105.7E", epicenter: "Selat Sunda, Banten",                     richter: 3.8, depth: "18km",  intensity: "1",  announce: "2026/05/20 00:32",
-      affected: [{ region: "Kabupaten Pandeglang, Banten", intensity: "1", cities: "Kecamatan Sumur" },
-                 { region: "Kota Cilegon, Banten",         intensity: "1", cities: "Kecamatan Ciwandan" }] },
-    { id: 9,  date: "2026/05/19 17:35", lat: "6.6S",  lon: "106.8E", epicenter: "Kabupaten Bogor, Jawa Barat",             richter: 2.8, depth: "5km",   intensity: "2",  announce: "2026/05/19 17:38",
-      affected: [{ region: "Kabupaten Bogor, Jawa Barat", intensity: "2", cities: "Cibinong, Bojonggede" },
-                 { region: "Kota Depok, Jawa Barat",      intensity: "1", cities: "Sawangan, Cinere" }] },
-    { id: 10, date: "2026/05/19 17:23", lat: "6.9S",  lon: "107.2E", epicenter: "Kabupaten Cianjur, Jawa Barat",           richter: 4.1, depth: "22km",  intensity: "1",  announce: "2026/05/19 17:26",
-      affected: [{ region: "Kabupaten Cianjur, Jawa Barat", intensity: "1", cities: "Kecamatan Cianjur" }] },
-    { id: 11, date: "2026/05/19 12:44", lat: "7.1S",  lon: "107.0E", epicenter: "Lepas Pantai Selatan Jawa Barat",         richter: 2.6, depth: "11km",  intensity: "1",  announce: "2026/05/19 12:47",
-      affected: [{ region: "Kabupaten Sukabumi, Jawa Barat", intensity: "1", cities: "Kecamatan Tegalbuleud" }] },
-    { id: 12, date: "2026/05/19 09:15", lat: "6.1S",  lon: "106.2E", epicenter: "Kabupaten Serang, Banten",                richter: 4.3, depth: "14km",  intensity: "2",  announce: "2026/05/19 09:18",
-      affected: [{ region: "Kabupaten Serang, Banten", intensity: "2", cities: "Kecamatan Kramatwatu, Kecamatan Ciruas" },
-                 { region: "Kota Serang, Banten",      intensity: "1", cities: "Serang, Cipocok Jaya" }] },
-    { id: 13, date: "2026/05/19 06:02", lat: "5.8S",  lon: "106.6E", epicenter: "Perairan Kepulauan Seribu, DKI Jakarta",  richter: 3.1, depth: "9km",   intensity: "1",  announce: "2026/05/19 06:05",
-      affected: [{ region: "Kepulauan Seribu, DKI Jakarta", intensity: "1", cities: "Pulau Tidung, Pulau Pari" }] },
-    { id: 14, date: "2026/05/18 22:57", lat: "6.4S",  lon: "106.8E", epicenter: "Kota Depok, Jawa Barat",                 richter: 2.9, depth: "6km",   intensity: "1",  announce: "2026/05/18 23:00",
-      affected: [{ region: "Kota Depok, Jawa Barat", intensity: "1", cities: "Beji, Pancoran Mas" }] },
-    { id: 15, date: "2026/05/18 18:33", lat: "6.3S",  lon: "107.0E", epicenter: "Kabupaten Bekasi, Jawa Barat",            richter: 4.7, depth: "17km",  intensity: "3",  announce: "2026/05/18 18:37",
-      affected: [{ region: "Kabupaten Bekasi, Jawa Barat", intensity: "3", cities: "Tambun Selatan, Cikarang Barat" },
-                 { region: "Kota Bekasi, Jawa Barat",      intensity: "2", cities: "Bekasi Timur, Rawalumbu" },
-                 { region: "Jakarta Timur, DKI Jakarta",   intensity: "2", cities: "Duren Sawit, Kramat Jati" },
-                 { region: "Kota Depok, Jawa Barat",       intensity: "1", cities: "Cimanggis, Tapos" }] },
-    { id: 16, date: "2026/05/18 14:21", lat: "6.2S",  lon: "106.5E", epicenter: "Kabupaten Tangerang, Banten",             richter: 3.3, depth: "13km",  intensity: "2",  announce: "2026/05/18 14:24",
-      affected: [{ region: "Kabupaten Tangerang, Banten", intensity: "2", cities: "Teluknaga, Kosambi" },
-                 { region: "Kota Tangerang, Banten",      intensity: "1", cities: "Benda, Kalideres" }] },
-    { id: 17, date: "2026/05/18 11:09", lat: "6.5S",  lon: "105.5E", epicenter: "Lepas Pantai Selatan Banten",             richter: 3.6, depth: "16km",  intensity: "1",  announce: "2026/05/18 11:12",
-      affected: [{ region: "Kabupaten Pandeglang, Banten", intensity: "1", cities: "Kecamatan Sukaresmi" }] },
-    { id: 18, date: "2026/05/18 07:48", lat: "7.2S",  lon: "107.9E", epicenter: "Kabupaten Garut, Jawa Barat",             richter: 5.1, depth: "25km",  intensity: "4",  announce: "2026/05/18 07:52",
-      affected: [{ region: "Kabupaten Garut, Jawa Barat",    intensity: "4",  cities: "Garut Kota, Tarogong Kidul, Tarogong Kaler" },
-                 { region: "Kabupaten Tasikmalaya, Jawa Barat", intensity: "3", cities: "Singaparna, Manonjaya" },
-                 { region: "Kabupaten Cianjur, Jawa Barat",  intensity: "2",  cities: "Cianjur, Sukaresmi" },
-                 { region: "Kota Bandung, Jawa Barat",       intensity: "1",  cities: "Arcamanik, Ujungberung" }] },
-    { id: 19, date: "2026/05/18 03:16", lat: "6.9S",  lon: "107.6E", epicenter: "Kota Bandung, Jawa Barat",                richter: 2.2, depth: "4km",   intensity: "1",  announce: "2026/05/18 03:19",
-      affected: [{ region: "Kota Bandung, Jawa Barat", intensity: "1", cities: "Coblong, Cidadap" }] },
-    { id: 20, date: "2026/05/17 21:44", lat: "6.0S",  lon: "105.8E", epicenter: "Selat Sunda, Banten",                     richter: 4.4, depth: "19km",  intensity: "2",  announce: "2026/05/17 21:47",
-      affected: [{ region: "Kota Cilegon, Banten",         intensity: "2", cities: "Ciwandan, Pulomerak" },
-                 { region: "Kabupaten Serang, Banten",     intensity: "1", cities: "Bojonegara, Pulo Ampel" }] },
-    { id: 21, date: "2026/05/17 16:30", lat: "6.7S",  lon: "106.6E", epicenter: "Kabupaten Sukabumi, Jawa Barat",          richter: 3.0, depth: "8km",   intensity: "1",  announce: "2026/05/17 16:33",
-      affected: [{ region: "Kabupaten Sukabumi, Jawa Barat", intensity: "1", cities: "Kecamatan Cicantayan" }] },
-    { id: 22, date: "2026/05/17 10:55", lat: "6.3S",  lon: "106.8E", epicenter: "Jakarta Selatan, DKI Jakarta",            richter: 2.7, depth: "6km",   intensity: "1",  announce: "2026/05/17 10:58",
-      affected: [{ region: "Jakarta Selatan, DKI Jakarta", intensity: "1", cities: "Cilandak, Pasar Minggu" }] },
-    { id: 23, date: "2026/05/17 05:20", lat: "5.6S",  lon: "106.7E", epicenter: "Laut Jawa Utara Jakarta",                 richter: 6.2, depth: "35km",  intensity: "5-", announce: "2026/05/17 05:24",
-      affected: [{ region: "Jakarta Utara, DKI Jakarta",     intensity: "5-", cities: "Penjaringan, Tanjung Priok, Pademangan" },
-                 { region: "Jakarta Barat, DKI Jakarta",     intensity: "4",  cities: "Cengkareng, Grogol Petamburan" },
-                 { region: "Jakarta Pusat, DKI Jakarta",     intensity: "4",  cities: "Gambir, Tanah Abang" },
-                 { region: "Kota Tangerang, Banten",         intensity: "3",  cities: "Neglasari, Batuceper, Benda" },
-                 { region: "Kota Bekasi, Jawa Barat",        intensity: "3",  cities: "Bekasi Utara, Medan Satria" },
-                 { region: "Jakarta Selatan, DKI Jakarta",   intensity: "2",  cities: "Pasar Minggu, Jagakarsa" },
-                 { region: "Kota Depok, Jawa Barat",         intensity: "2",  cities: "Sukmajaya, Beji" },
-                 { region: "Kabupaten Bogor, Jawa Barat",    intensity: "1",  cities: "Cibinong, Gunung Putri" }] },
-    { id: 24, date: "2026/05/16 23:11", lat: "6.6S",  lon: "106.0E", epicenter: "Kabupaten Lebak, Banten",                 richter: 4.0, depth: "11km",  intensity: "2",  announce: "2026/05/16 23:14",
-      affected: [{ region: "Kabupaten Lebak, Banten",    intensity: "2", cities: "Rangkasbitung, Cibadak" },
-                 { region: "Kabupaten Serang, Banten",   intensity: "1", cities: "Kecamatan Ciomas" }] },
-    { id: 25, date: "2026/05/16 18:07", lat: "6.5S",  lon: "106.9E", epicenter: "Kabupaten Bogor, Jawa Barat",             richter: 2.5, depth: "5km",   intensity: "1",  announce: "2026/05/16 18:10",
-      affected: [{ region: "Kabupaten Bogor, Jawa Barat", intensity: "1", cities: "Cileungsi, Klapanunggal" }] },
+    {
+      id: 1,
+      date: "2026/05/21 08:11",
+      lat: "6°12.4′ LS", lon: "105°48.2′ BT",
+      epicenter: "Lepas Pantai Selatan Banten",
+      richter: 3.7, depth: "15 km", intensity: "3",
+      affected: [
+        { region:"Kabupaten Pandeglang, Banten", intensity:"3", cities:"Kec. Carita, Kec. Labuan" },
+        { region:"Kabupaten Lebak, Banten",      intensity:"2", cities:"Kec. Malingping" },
+      ],
+      eew: [
+        { rep:1,  time:"08:11:38.8", elapsed:6.3,  lat:"6.0°LS", lon:"105.8°BT", depth:"10km", mag:2.1, intensity:"Maks. Intensitas 1", warn:false },
+        { rep:2,  time:"08:11:39.3", elapsed:6.8,  lat:"6.1°LS", lon:"105.8°BT", depth:"10km", mag:2.8, intensity:"Maks. Intensitas 2", warn:false },
+        { rep:3,  time:"08:11:41.0", elapsed:8.5,  lat:"6.1°LS", lon:"105.8°BT", depth:"12km", mag:3.5, intensity:"Maks. Intensitas 3", warn:false },
+        { rep:4,  time:"08:11:43.2", elapsed:10.7, lat:"6.2°LS", lon:"105.8°BT", depth:"15km", mag:3.7, intensity:"Maks. Intensitas 3", warn:false },
+      ]
+    },
+    {
+      id: 6,
+      date: "2026/05/20 09:46",
+      lat: "5°42.0′ LS", lon: "106°54.0′ BT",
+      epicenter: "Laut Jawa Utara Jakarta",
+      richter: 5.9, depth: "30 km", intensity: "5+",
+      affected: [
+        { region:"Jakarta Utara, DKI Jakarta",  intensity:"5+", cities:"Penjaringan, Pademangan, Tanjung Priok" },
+        { region:"Jakarta Barat, DKI Jakarta",  intensity:"4",  cities:"Tambora, Grogol Petamburan" },
+        { region:"Kota Tangerang, Banten",       intensity:"3",  cities:"Neglasari, Batuceper" },
+      ],
+      eew: [
+        { rep:1,  time:"09:46:08.8", elapsed:5.3,  lat:"5.7°LS", lon:"106.9°BT", depth:"10km", mag:4.7, intensity:"Maks. Intensitas 2",  warn:false },
+        { rep:2,  time:"09:46:09.3", elapsed:5.8,  lat:"5.7°LS", lon:"106.9°BT", depth:"10km", mag:5.4, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:3,  time:"09:46:09.5", elapsed:6.0,  lat:"5.7°LS", lon:"106.9°BT", depth:"10km", mag:5.5, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:4,  time:"09:46:12.5", elapsed:9.0,  lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.0, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:5,  time:"09:46:13.6", elapsed:10.1, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.0, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:6,  time:"09:46:14.5", elapsed:11.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.2, intensity:"Maks. Intensitas 5−", warn:false },
+        { rep:7,  time:"09:46:17.4", elapsed:13.9, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.3, intensity:"Maks. Intensitas 5−", warn:false },
+        { rep:8,  time:"09:46:17.5", elapsed:14.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.5, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:9,  time:"09:46:18.5", elapsed:15.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.3, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:10, time:"09:46:19.5", elapsed:16.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.5, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:11, time:"09:46:20.4", elapsed:16.9, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.9, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:12, time:"09:46:21.7", elapsed:18.2, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:7.0, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:13, time:"09:46:23.3", elapsed:19.8, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:7.1, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:14, time:"09:46:23.4", elapsed:19.9, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.2, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:15, time:"09:46:24.5", elapsed:21.0, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.3, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:16, time:"09:46:25.2", elapsed:21.7, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.2, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:17, time:"09:46:25.8", elapsed:22.3, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:6.9, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:18, time:"09:46:26.3", elapsed:22.8, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.0, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:19, time:"09:46:29.3", elapsed:25.8, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:6.7, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:20, time:"09:46:29.5", elapsed:26.0, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:6.8, intensity:"Maks. Intensitas 5+", warn:true  },
+      ]
+    }
   ];
 
-  function getRichterClass(r) {
+  function rClass(r) {
     if (r < 3.0) return 'richter-low';
     if (r < 4.5) return 'richter-mid';
     if (r < 5.5) return 'richter-high';
     return 'richter-vhigh';
   }
-
-  function getIntensityClass(i) {
-    const map = { '1':'intensity-badge-1','2':'intensity-badge-2','3':'intensity-badge-3','4':'intensity-badge-4','5-':'intensity-badge-5-','5+':'intensity-badge-5+','6-':'intensity-badge-6-','6+':'intensity-badge-6+','7':'intensity-badge-7' };
-    return map[i] || 'intensity-badge-1';
-  }
-
-  function getParams() {
-    const p = new URLSearchParams(window.location.search);
-    return parseInt(p.get('id') || '1', 10);
+  function iClass(i) {
+    const m = {'1':'i-1','2':'i-2','3':'i-3','4':'i-4','5-':'i-5m','5+':'i-5p','6-':'i-6m','6+':'i-6p','7':'i-7'};
+    return m[i] || 'i-1';
   }
 
   function render() {
-    const id = getParams();
+    const id = parseInt(new URLSearchParams(window.location.search).get('id') || '6', 10);
     const ev = eventData.find(e => e.id === id) || eventData[0];
 
-    // Info table
-    const infoBody = document.getElementById('detailInfoBody');
-    if (infoBody) {
-      infoBody.innerHTML = `
-        <tr class="border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
-          <td class="px-6 py-5 font-bold text-slate-900 dark:text-white text-sm">${ev.date}</td>
-          <td class="px-6 py-5 text-center text-sm text-slate-700 dark:text-slate-300">${ev.lat}</td>
-          <td class="px-6 py-5 text-center text-sm text-slate-700 dark:text-slate-300">${ev.lon}</td>
-          <td class="px-6 py-5 text-center">
-            <span class="inline-flex items-center justify-center px-3 py-1.5 rounded-lg font-bold text-xs ${getRichterClass(ev.richter)}">${ev.richter}</span>
-          </td>
-          <td class="px-6 py-5 text-center text-sm text-slate-700 dark:text-slate-300">${ev.depth}</td>
-          <td class="px-6 py-5 text-sm text-slate-700 dark:text-slate-300">${ev.epicenter}</td>
-        </tr>
-      `;
-    }
+    // Ringkasan
+    document.getElementById('ringkasanBody').innerHTML = `
+      <tr class="row-even">
+        <td class="px-4 py-3 font-semibold text-sm">${ev.date}</td>
+        <td class="px-4 py-3 text-center text-sm">${ev.epicenter}</td>
+        <td class="px-4 py-3 text-center text-sm">${ev.lat}</td>
+        <td class="px-4 py-3 text-center text-sm">${ev.lon}</td>
+        <td class="px-4 py-3 text-center text-sm">${ev.depth}</td>
+        <td class="px-4 py-3 text-center">
+          <span class="inline-flex items-center justify-center px-3 py-1 rounded text-xs font-bold ${rClass(ev.richter)}">
+            ${ev.richter}
+          </span>
+        </td>
+        <td class="px-4 py-3 text-center">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded text-sm font-black ${iClass(ev.intensity)}">
+            ${ev.intensity}
+          </span>
+        </td>
+      </tr>`;
 
-    // Intensity table
-    const intensityBody = document.getElementById('detailIntensityBody');
-    if (intensityBody) {
-      if (!ev.affected || ev.affected.length === 0) {
-        intensityBody.innerHTML = `
-          <tr>
-            <td colspan="3" class="px-6 py-8 text-center text-slate-400 text-sm">Tidak ada wilayah terdampak yang tercatat.</td>
-          </tr>`;
-      } else {
-        intensityBody.innerHTML = ev.affected.map((row, i) => `
-          <tr class="border-t border-slate-200 dark:border-slate-700 ${i % 2 === 0 ? 'bg-white dark:bg-slate-900' : 'bg-slate-50 dark:bg-slate-800/50'} hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors">
-            <td class="px-6 py-5 font-bold text-slate-900 dark:text-white text-sm">${row.region}</td>
-            <td class="px-6 py-5 text-center">
-              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full font-black text-sm ${getIntensityClass(row.intensity)}">${row.intensity}</span>
-            </td>
-            <td class="px-6 py-5 text-sm text-slate-700 dark:text-slate-300">${row.cities}</td>
-          </tr>
-        `).join('');
-      }
-    }
+    // EEW
+    document.getElementById('eewBody').innerHTML = (ev.eew || []).map((r, i) => {
+      const rc = r.warn ? 'eew-warn' : i % 2 === 0 ? 'row-even' : 'row-odd';
+      return `<tr class="${rc}">
+        <td class="px-3 py-2 text-center font-bold border border-slate-200">${r.rep}</td>
+        <td class="px-3 py-2 text-center border border-slate-200">${r.time}</td>
+        <td class="px-3 py-2 text-center border border-slate-200">${r.elapsed}</td>
+        <td class="px-3 py-2 text-center border border-slate-200">${r.lat}</td>
+        <td class="px-3 py-2 text-center border border-slate-200">${r.lon}</td>
+        <td class="px-3 py-2 text-center border border-slate-200">${r.depth}</td>
+        <td class="px-3 py-2 text-center font-semibold border border-slate-200">${r.mag}</td>
+        <td class="px-3 py-2 text-center border border-slate-200">${r.intensity}</td>
+      </tr>`;
+    }).join('');
+
+    // Wilayah terdampak
+    document.getElementById('detailIntensityBody').innerHTML = ev.affected.map((row, i) => `
+      <tr class="${i % 2 === 0 ? 'row-even' : 'row-odd'}">
+        <td class="px-5 py-4 font-semibold text-sm">${row.region}</td>
+        <td class="px-5 py-4 text-center">
+          <span class="inline-flex items-center justify-center w-10 h-10 rounded text-sm font-black ${iClass(row.intensity)}">
+            ${row.intensity}
+          </span>
+        </td>
+        <td class="px-5 py-4 text-sm">${row.cities}</td>
+      </tr>`).join('');
   }
 
   render();
-
-  // Leaflet + MarkerCluster + MiniMap initialization: load CSS/JS dynamically and render clustered map + minimap
-  (function loadLeafletAndPlugins() {
-    if (typeof window === 'undefined') return;
-
-    function addCssHref(href, attrName) {
-      if (document.querySelector(`link[data-${attrName}]`)) return;
-      const l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = href;
-      l.setAttribute(`data-${attrName}`, '');
-      document.head.appendChild(l);
-    }
-
-    function loadScript(src, cb) {
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = cb;
-      s.onerror = cb;
-      document.body.appendChild(s);
-    }
-
-    addCssHref('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', 'leaflet');
-    addCssHref('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css', 'mc');
-    addCssHref('https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css', 'mc-default');
-
-    function parseCoord(s) {
-      if (!s) return 0;
-      s = String(s).trim();
-      const dir = s.slice(-1).toUpperCase();
-      const num = parseFloat(s.slice(0, -1));
-      if (isNaN(num)) return 0;
-      if (dir === 'S' || dir === 'W') return -Math.abs(num);
-      return Math.abs(num);
-    }
-
-    // Load Leaflet, then plugins, then init
-    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', function () {
-      loadScript('https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js', function () {
-        loadScript('https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js', function () {
-          try {
-            const id = parseInt(new URLSearchParams(window.location.search).get('id') || '1', 10) || 1;
-            const ev = eventData.find(e => e.id === id) || eventData[0];
-            const lat = parseCoord(ev.lat);
-            const lon = parseCoord(ev.lon);
-
-            const mapEl = document.getElementById('leafletMap');
-            if (!mapEl) return;
-            mapEl.innerHTML = '';
-
-            const map = L.map(mapEl, { scrollWheelZoom: true }).setView([lat || 0, lon || 0], lat && lon ? 6 : 2);
-
-            const mainLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; OpenStreetMap contributors'
-            }).addTo(map);
-
-            // Create marker cluster group and add markers for all events
-            const markers = L.markerClusterGroup();
-            const markerList = [];
-            eventData.forEach(e => {
-              const rlat = parseCoord(e.lat);
-              const rlon = parseCoord(e.lon);
-              if (rlat === 0 && rlon === 0) return;
-              const cm = L.circleMarker([rlat, rlon], { radius: 8, color: '#ef4444', fillColor: '#ef4444', fillOpacity: 0.9 });
-              cm.bindPopup(`<div class="font-bold">${e.epicenter}</div><div class="text-sm">${e.date}</div><div class="text-sm">Richter: ${e.richter}</div>`);
-              markers.addLayer(cm);
-              markerList.push({ id: e.id, marker: cm, lat: rlat, lon: rlon });
-            });
-            map.addLayer(markers);
-
-            // Fit bounds to all markers if available
-            try {
-              const bounds = markers.getBounds();
-              if (bounds.isValid()) map.fitBounds(bounds.pad(0.2));
-            } catch (e) { /* ignore */ }
-
-            // If a specific event is selected, open its popup and center on it
-            const selected = markerList.find(m => m.id === id);
-            if (selected) {
-              map.setView([selected.lat, selected.lon], 8);
-              selected.marker.openPopup();
-            }
-
-            // Add minimap control (small overview map)
-            try {
-              const miniLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-              // eslint-disable-next-line no-undef
-              const miniMap = new L.Control.MiniMap(miniLayer, { toggleDisplay: true, minimized: false, position: 'bottomright' }).addTo(map);
-            } catch (e) {
-              // plugin not available or failed
-              console.warn('MiniMap plugin not available', e);
-            }
-          } catch (err) {
-            console.error(err);
-          }
-        });
-      });
-    });
-  })();
 </script>
