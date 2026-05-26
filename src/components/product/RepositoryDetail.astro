@@ -150,9 +150,9 @@ import gambaranMap from '../../assets/gambaranmap.png';
           <table class="w-full text-sm border-collapse">
             <thead>
               <tr class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 uppercase tracking-wide">
-                <th class="px-3 py-2 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Provinsi / Wilayah</th>
-                <th class="px-3 py-2 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Intensitas</th>
-                <th class="px-3 py-2 text-left font-semibold border-y border-slate-300 dark:border-slate-600">Kota / Kecamatan</th>
+                <th class="px-4 py-3 text-left font-semibold border-y border-slate-300 dark:border-slate-600">Provinsi / Wilayah</th>
+                <th class="px-4 py-3 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Intensitas</th>
+                <th class="px-4 py-3 text-left font-semibold border-y border-slate-300 dark:border-slate-600">Kota / Kecamatan</th>
               </tr>
             </thead>
             <tbody id="detailIntensityBody"></tbody>
@@ -310,13 +310,13 @@ import gambaranMap from '../../assets/gambaranmap.png';
     // Wilayah terdampak
     document.getElementById('detailIntensityBody').innerHTML = ev.affected.map((row, i) => `
       <tr class="${i % 2 === 0 ? 'row-even' : 'row-odd'}">
-        <td class="px-5 py-4 font-semibold text-sm border-y border-slate-200 dark:border-slate-600">${row.region}</td>
-        <td class="px-5 py-4 text-center border-y border-slate-200 dark:border-slate-600">
+        <td class="px-4 py-3 font-semibold text-sm text-left border-y border-slate-200 dark:border-slate-600">${row.region}</td>
+        <td class="px-4 py-3 text-center border-y border-slate-200 dark:border-slate-600">
           <span class="inline-flex items-center justify-center w-8 h-8 rounded text-sm font-black ${iClass(row.intensity)}">
             ${row.intensity}
           </span>
         </td>
-        <td class="px-5 py-4 text-sm border-y border-slate-200 dark:border-slate-600">${row.cities}</td>
+        <td class="px-4 py-3 text-sm text-left border-y border-slate-200 dark:border-slate-600">${row.cities}</td>
       </tr>`).join('');
   }
 
