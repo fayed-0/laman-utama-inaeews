@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import homeIcon from '../../assets/home.svg?url';
 import navigateIcon from '../../assets/navigate.svg?url';
+import gambaranMap from '../../assets/gambaranmap.png';
 ---
 <Layout title="Detail Gempa - Indonesia Earthquake Early Warning System">
   <div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
@@ -47,15 +48,15 @@ import navigateIcon from '../../assets/navigate.svg?url';
           <span class="text-blue-600"> Gempa Bumi</span>
         </h2>
         <p class="text-center text-slate-400 dark:text-slate-400 text-base max-w-2xl">
-          Informasi lengkap tentang kejadian gempa bumi, termasuk ringkasan data seismik, peta distribusi intensitas, riwayat EEW, dan wilayah terdampak.
+          Informasi lengkap tentang kejadian gempa bumi, termasuk ringkasan data seismik, peta distribusi intensitas, riwayat EEWS, dan wilayah terdampak.
         </p>
       </div>
 
 
       <!-- RINGKASAN GEMPA -->
-      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-100 dark:border-slate-600">
         <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3">
-          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Ringkasan Gempa yang Terjadi (Nilai Sementara)</h2>
+          <h2 class="text-white dark:text-slate-900 font-bold text-base">Ringkasan Gempa yang Terjadi (Nilai Sementara)</h2>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-sm border-collapse">
@@ -76,19 +77,13 @@ import navigateIcon from '../../assets/navigate.svg?url';
       </div>
 
       <!-- PETA PLACEHOLDER -->
-      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700">
         <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3">
-          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Peta Distribusi Estimasi Intensitas &amp; Posisi Episentrum</h2>
+          <h2 class="text-white dark:text-slate-900 font-bold text-base">Peta Distribusi Estimasi Intensitas &amp; Posisi Episentrum</h2>
         </div>
         <!-- MAP PLACEHOLDER -->
-        <div class="w-full h-[420px] bg-slate-100 dark:bg-slate-800 flex items-center  justify-center border-b border-slate-200 dark:border-slate-700">
-          <div class="text-center text-slate-400 dark:text-slate-500 select-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto mb-3 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-            <p class="text-sm font-medium">Placeholder Peta</p>
-            <p class="text-xs mt-1">Gambar peta distribusi intensitas akan ditampilkan di sini</p>
-          </div>
+        <div class="w-full h-[420px] bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 overflow-hidden">
+          <img src={gambaranMap.src} alt="Gambaran peta distribusi intensitas" class="w-full h-full object-cover object-center" />
         </div>
         <!-- Legenda -->
         <div class="bg-white dark:bg-slate-900 px-5 py-3 flex flex-wrap items-center gap-3">
@@ -107,43 +102,37 @@ import navigateIcon from '../../assets/navigate.svg?url';
       </div>
 
       <!-- PETA PLACEHOLDER -->
-      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-100 dark:border-slate-600">
         <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3">
-          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Peta Distribusi Estimasi Intensitas &amp; Posisi Episentrum</h2>
+          <h2 class="text-white dark:text-slate-900 font-bold text-base">Peta Distribusi Estimasi Intensitas &amp; Posisi Episentrum</h2>
         </div>
         <!-- MAP PLACEHOLDER -->
-        <div class="w-full h-[420px] bg-slate-100 dark:bg-slate-800 flex items-center justify-center border-b border-slate-200 dark:border-slate-700">
-          <div class="text-center text-slate-400 dark:text-slate-500 select-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto mb-3 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-            </svg>
-            <p class="text-sm font-medium">Placeholder Peta</p>
-            <p class="text-xs mt-1">Gambar peta distribusi intensitas akan ditampilkan di sini</p>
-          </div>
+        <div class="w-full h-[420px] bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 overflow-hidden">
+          <img src={gambaranMap.src} alt="Gambaran peta distribusi intensitas" class="w-full h-full object-cover object-center" />
         </div>
       </div>
 
-      <!-- RIWAYAT EEW -->
-      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+      <!-- RIWAYAT EEWS -->
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-100 dark:border-slate-600">
         <div class="bg-blue-600 dark:bg-blue-200 px-5 py-3 flex flex-wrap items-center justify-between gap-2">
-          <h2 class="text-white dark:text-slate-900 font-bold text-sm">Riwayat Laporan Peringatan Dini Gempa (EEW)</h2>
-          <span class="text-blue-200 dark:text-slate-700 text-xs">(Laporan ke-13 = tingkat PERINGATAN, ditandai latar abu-abu)</span>
+          <h2 class="text-white dark:text-slate-900 font-bold text-base">Riwayat Laporan Peringatan Dini Gempa (EEWS)</h2>
+          <span class="text-blue-200 dark:text-slate-700 text-xs">(Laporan ke-2 = tingkat PERINGATAN, ditandai latar abu-abu)</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-xs border-collapse">
             <thead>
-              <tr class="bg-blue-600 dark:bg-blue-200 text-white dark:text-slate-900 uppercase tracking-wide">
-                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Lap.</th>
-                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Waktu Penyediaan</th>
-                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Waktu sejak<br/>Deteksi (dtk)</th>
-                <th class="px-3 py-3 text-center font-semibold border border-slate-600" colspan="4">Elemen Episentrum</th>
-                <th class="px-3 py-3 text-center font-semibold border border-slate-600" rowspan="2">Prediksi Intensitas Maks.</th>
+              <tr class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 uppercase tracking-wide">
+                <th class="px-3 py-3 text-center font-semibold border border-slate-300 dark:border-slate-600" rowspan="2">Lap.</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-300 dark:border-slate-600" rowspan="2">Waktu Laporan</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-300 dark:border-slate-600" rowspan="2">Waktu sejak<br/>Deteksi (dtk)</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-300 dark:border-slate-600" colspan="4">Elemen Episentrum</th>
+                <th class="px-3 py-3 text-center font-semibold border border-slate-300 dark:border-slate-600" rowspan="2">Prediksi Intensitas Maks.</th>
               </tr>
-              <tr class="bg-blue-600 dark:bg-blue-200 text-white dark:text-slate-900 uppercase tracking-wide">
-                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Lintang</th>
-                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Bujur</th>
-                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Kedalaman</th>
-                <th class="px-3 py-2 text-center font-semibold border border-slate-600">Magnitudo</th>
+              <tr class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 uppercase tracking-wide">
+                <th class="px-3 py-2 text-center font-semibold border border-slate-300">Lintang</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-300">Bujur</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-300">Kedalaman</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-300">Magnitudo</th>
               </tr>
             </thead>
             <tbody id="eewBody"></tbody>
@@ -152,18 +141,18 @@ import navigateIcon from '../../assets/navigate.svg?url';
       </div>
 
       <!-- WILAYAH TERDAMPAK -->
-      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-200 dark:border-slate-600">
+      <div class="rounded-lg overflow-hidden shadow-lg border border-slate-100 dark:border-slate-600">
         <div class="bg-[#2563eb] px-5 py-3">
-          <h2 class="text-white font-bold text-sm">Wilayah Terdampak</h2>
+          <h2 class="text-white font-bold text-base">Wilayah Terdampak</h2>
           <p class="text-blue-200 text-xs mt-0.5">Kota / kecamatan dengan intensitas guncangan 1 atau lebih</p>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-sm border-collapse">
             <thead>
-              <tr class="bg-[#2563eb] text-slate-300 text-xs uppercase tracking-wide">
-                <th class="px-5 py-3 text-left font-semibold border border-slate-600">Provinsi / Wilayah</th>
-                <th class="px-5 py-3 text-center font-semibold border border-slate-600">Intensitas</th>
-                <th class="px-5 py-3 text-left font-semibold border border-slate-600">Kota / Kecamatan</th>
+              <tr class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 uppercase tracking-wide">
+                <th class="px-3 py-2 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Provinsi / Wilayah</th>
+                <th class="px-3 py-2 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Intensitas</th>
+                <th class="px-3 py-2 text-left font-semibold border-y border-slate-300 dark:border-slate-600">Kota / Kecamatan</th>
               </tr>
             </thead>
             <tbody id="detailIntensityBody"></tbody>
@@ -188,8 +177,8 @@ import navigateIcon from '../../assets/navigate.svg?url';
   .dark .row-even { background: #0d1526; color: #e2e8f0; }
   .dark .row-odd  { background: #0a1120; color: #e2e8f0; }
 
-  tbody td { border: 1px solid #e2e8f0; }
-  .dark tbody td { border-color: rgba(51,65,85,0.5); }
+  tbody td { border: 1px solid #e5e7eb; }
+  .dark tbody td { border-color: rgba(71,85,105,0.35); }
 
   /* WARN ROW */
   .eew-warn td { background: #e5e7eb !important; color: #374151; }
@@ -307,27 +296,27 @@ import navigateIcon from '../../assets/navigate.svg?url';
     document.getElementById('eewBody').innerHTML = (ev.eew || []).map((r, i) => {
       const rc = r.warn ? 'eew-warn' : i % 2 === 0 ? 'row-even' : 'row-odd';
       return `<tr class="${rc}">
-        <td class="px-3 py-2 text-center font-bold border border-slate-200">${r.rep}</td>
-        <td class="px-3 py-2 text-center border border-slate-200">${r.time}</td>
-        <td class="px-3 py-2 text-center border border-slate-200">${r.elapsed}</td>
-        <td class="px-3 py-2 text-center border border-slate-200">${r.lat}</td>
-        <td class="px-3 py-2 text-center border border-slate-200">${r.lon}</td>
-        <td class="px-3 py-2 text-center border border-slate-200">${r.depth}</td>
-        <td class="px-3 py-2 text-center font-semibold border border-slate-200">${r.mag}</td>
-        <td class="px-3 py-2 text-center border border-slate-200">${r.intensity}</td>
+        <td class="px-3 py-2 text-center font-bold border border-slate-100">${r.rep}</td>
+        <td class="px-3 py-2 text-center border border-slate-100">${r.time}</td>
+        <td class="px-3 py-2 text-center border border-slate-100">${r.elapsed}</td>
+        <td class="px-3 py-2 text-center border border-slate-100">${r.lat}</td>
+        <td class="px-3 py-2 text-center border border-slate-100">${r.lon}</td>
+        <td class="px-3 py-2 text-center border border-slate-100">${r.depth}</td>
+        <td class="px-3 py-2 text-center font-semibold border border-slate-100">${r.mag}</td>
+        <td class="px-3 py-2 text-center border border-slate-100">${r.intensity}</td>
       </tr>`;
     }).join('');
 
     // Wilayah terdampak
     document.getElementById('detailIntensityBody').innerHTML = ev.affected.map((row, i) => `
       <tr class="${i % 2 === 0 ? 'row-even' : 'row-odd'}">
-        <td class="px-5 py-4 font-semibold text-sm">${row.region}</td>
-        <td class="px-5 py-4 text-center">
-          <span class="inline-flex items-center justify-center w-10 h-10 rounded text-sm font-black ${iClass(row.intensity)}">
+        <td class="px-5 py-4 font-semibold text-sm border-y border-slate-200 dark:border-slate-600">${row.region}</td>
+        <td class="px-5 py-4 text-center border-y border-slate-200 dark:border-slate-600">
+          <span class="inline-flex items-center justify-center w-8 h-8 rounded text-sm font-black ${iClass(row.intensity)}">
             ${row.intensity}
           </span>
         </td>
-        <td class="px-5 py-4 text-sm">${row.cities}</td>
+        <td class="px-5 py-4 text-sm border-y border-slate-200 dark:border-slate-600">${row.cities}</td>
       </tr>`).join('');
   }
 
