@@ -181,8 +181,10 @@ import gambaranMap from '../../assets/gambaranmap.png';
   .dark tbody td { border-color: rgba(71,85,105,0.35); }
 
   /* WARN ROW */
-  .eew-warn td { background: #e5e7eb !important; color: #374151; }
-  .dark .eew-warn td { background: #1f2937 !important; color: #d1d5db; }
+  .eew-warn { background: #999999 !important; }
+  .eew-warn td { background: #999999 !important; color: #ffffff; }
+  .dark .eew-warn { background: #666666 !important; }
+  .dark .eew-warn td { background: #666666 !important; color: #ffffff; }
 
   /* RICHTER badges (align with event.astro) */
   .richter-low   { background-color: #d1fae5; color: #065f46; }
@@ -294,16 +296,17 @@ import gambaranMap from '../../assets/gambaranmap.png';
 
     // EEW
     document.getElementById('eewBody').innerHTML = (ev.eew || []).map((r, i) => {
-      const rc = r.warn ? 'eew-warn' : i % 2 === 0 ? 'row-even' : 'row-odd';
-      return `<tr class="${rc}">
-        <td class="px-3 py-2 text-center font-bold border border-slate-100">${r.rep}</td>
-        <td class="px-3 py-2 text-center border border-slate-100">${r.time}</td>
-        <td class="px-3 py-2 text-center border border-slate-100">${r.elapsed}</td>
-        <td class="px-3 py-2 text-center border border-slate-100">${r.lat}</td>
-        <td class="px-3 py-2 text-center border border-slate-100">${r.lon}</td>
-        <td class="px-3 py-2 text-center border border-slate-100">${r.depth}</td>
-        <td class="px-3 py-2 text-center font-semibold border border-slate-100">${r.mag}</td>
-        <td class="px-3 py-2 text-center border border-slate-100">${r.intensity}</td>
+      const isRow2 = i === 1;
+      const style = isRow2 ? 'style="background: #e2e8f0;"' : '';
+      return `<tr class="${isRow2 ? 'eew-warn' : i % 2 === 0 ? 'row-even' : 'row-odd'}" ${style}>
+        <td class="px-3 py-2 text-center font-bold border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.rep}</td>
+        <td class="px-3 py-2 text-center border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.time}</td>
+        <td class="px-3 py-2 text-center border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.elapsed}</td>
+        <td class="px-3 py-2 text-center border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.lat}</td>
+        <td class="px-3 py-2 text-center border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.lon}</td>
+        <td class="px-3 py-2 text-center border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.depth}</td>
+        <td class="px-3 py-2 text-center font-semibold border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.mag}</td>
+        <td class="px-3 py-2 text-center border border-slate-100" ${isRow2 ? 'style="background: #e2e8f0; color: #1f2937;"' : ''}>${r.intensity}</td>
       </tr>`;
     }).join('');
 
