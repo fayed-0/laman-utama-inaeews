@@ -12,7 +12,8 @@ const allMaterials = [
     tag: "Teknis",
     color: "bg-blue-600",
     pages: 8,
-    category: "SEMUA"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ const allMaterials = [
     tag: "Edukasi",
     color: "bg-red-600",
     pages: 12,
-    category: "SEMUA"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ const allMaterials = [
     tag: "Panduan",
     color: "bg-green-700",
     pages: 6,
-    category: "PANDUAN"
+    category: "PANDUAN",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 4,
@@ -39,7 +42,8 @@ const allMaterials = [
     tag: "Teknis",
     color: "bg-slate-700",
     pages: 15,
-    category: "SEMUA"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 5,
@@ -48,16 +52,18 @@ const allMaterials = [
     tag: "Edukasi",
     color: "bg-purple-600",
     pages: 20,
-    category: "MODUL"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 6,
     title: "Respon Masyarakat dan Edukasi Gempa",
     description: "Studi tentang bagaimana meningkatkan kesadaran dan kesiapsiagaan masyarakat terhadap gempa. Program edukasi berkelanjutan terbukti mengurangi jatuh korban...",
-    tag: "Sosial",
+    tag: "Modul",
     color: "bg-orange-600",
     pages: 10,
-    category: "SEMUA"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 7,
@@ -66,7 +72,8 @@ const allMaterials = [
     tag: "Infografis",
     color: "bg-indigo-600",
     pages: 4,
-    category: "INFOGRAFIS"
+    category: "INFOGRAFIS",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 8,
@@ -75,7 +82,8 @@ const allMaterials = [
     tag: "Leaflet",
     color: "bg-cyan-600",
     pages: 2,
-    category: "LEAFLET"
+    category: "LEAFLET",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 9,
@@ -84,7 +92,8 @@ const allMaterials = [
     tag: "Modul",
     color: "bg-lime-600",
     pages: 25,
-    category: "MODUL"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 10,
@@ -93,7 +102,8 @@ const allMaterials = [
     tag: "Teknis",
     color: "bg-blue-600",
     pages: 18,
-    category: "SEMUA"
+    category: "MODUL",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 11,
@@ -102,7 +112,8 @@ const allMaterials = [
     tag: "Panduan",
     color: "bg-green-700",
     pages: 8,
-    category: "PANDUAN"
+    category: "PANDUAN",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   },
   {
     id: 12,
@@ -111,7 +122,8 @@ const allMaterials = [
     tag: "Teknis",
     color: "bg-slate-700",
     pages: 30,
-    category: "SEMUA"
+    category: "Modul",
+    link: "https://web-meteo.bmkg.go.id/id/peringatan/informasi-khusus-bibit-dan-siklon-tropis"
   }
 ];
 
@@ -214,7 +226,7 @@ const sortOptions = [
     <!-- Materials Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="materialsGrid">
       {allMaterials.slice(0, itemsPerPage).map((material) => (
-        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+        <a href={material.link} target="_blank" rel="noopener noreferrer" class="block bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
           <div class={`h-32 ${material.color}`}></div>
           <div class="p-5 space-y-3">
             <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold uppercase tracking-wider">
@@ -241,7 +253,7 @@ const sortOptions = [
               </div>
             </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
 
@@ -415,7 +427,7 @@ const sortOptions = [
     const paginatedMaterials = filteredMaterials.slice(start, end);
 
     materialsGrid.innerHTML = paginatedMaterials.map(material => `
-      <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+      <a href="${material.link}" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
         <div class="${material.color} h-32"></div>
         <div class="p-5 space-y-3">
           <span class="inline-block px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-600 text-xs font-bold uppercase tracking-wider">
@@ -449,7 +461,7 @@ const sortOptions = [
             </div>
           </div>
         </div>
-      </div>
+      </a>
     `).join('');
   }
 

@@ -10,7 +10,8 @@ const allVideos = [
     tag: "Teknis",
     duration: "5 mnt",
     source: "BMKG Indonesia",
-    category: "SEMUA"
+    category: "SEMUA",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 2,
@@ -19,7 +20,8 @@ const allVideos = [
     tag: "Edukasi",
     duration: "7 mnt",
     source: "BMKG Indonesia",
-    category: "EDUKASI"
+    category: "EDUKASI",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 3,
@@ -28,7 +30,8 @@ const allVideos = [
     tag: "Teknis",
     duration: "8 mnt",
     source: "BMKG Indonesia",
-    category: "TEKNIS"
+    category: "TEKNIS",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 4,
@@ -37,7 +40,8 @@ const allVideos = [
     tag: "Edukasi",
     duration: "6 mnt",
     source: "BMKG Indonesia",
-    category: "EDUKASI"
+    category: "EDUKASI",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 5,
@@ -46,7 +50,8 @@ const allVideos = [
     tag: "Panduan",
     duration: "9 mnt",
     source: "BMKG Indonesia",
-    category: "PANDUAN"
+    category: "PANDUAN",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 6,
@@ -55,7 +60,8 @@ const allVideos = [
     tag: "Teknis",
     duration: "10 mnt",
     source: "BMKG Indonesia",
-    category: "TEKNIS"
+    category: "TEKNIS",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 7,
@@ -64,7 +70,8 @@ const allVideos = [
     tag: "Panduan",
     duration: "4 mnt",
     source: "BMKG Indonesia",
-    category: "PANDUAN"
+    category: "PANDUAN",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 8,
@@ -73,7 +80,8 @@ const allVideos = [
     tag: "Edukasi",
     duration: "11 mnt",
     source: "BMKG Indonesia",
-    category: "EDUKASI"
+    category: "EDUKASI",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   },
   {
     id: 9,
@@ -82,7 +90,8 @@ const allVideos = [
     tag: "Teknis",
     duration: "12 mnt",
     source: "BMKG Indonesia",
-    category: "TEKNIS"
+    category: "TEKNIS",
+    link: "https://youtu.be/PDB2FM7JAYY?si=WSbvhVe73Z2I__JS"
   }
 ];
 
@@ -185,17 +194,17 @@ const sortOptions = [
     <!-- Videos Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="videosGrid">
       {allVideos.slice(0, itemsPerPage).map((video) => (
-        <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+        <a href={video.link} target="_blank" rel="noopener noreferrer" class="block bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
           <!-- Video Thumbnail -->
           <div class="relative h-48 bg-gradient-to-br from-blue-100 to-cyan-50 flex items-center justify-center overflow-hidden">
-            <button class="relative z-10 flex flex-col items-center gap-3 hover:scale-110 transition-transform">
+            <div class="relative z-10 flex flex-col items-center gap-3 hover:scale-110 transition-transform">
               <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
                 <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               </div>
               <span class="text-slate-600 text-xs font-bold uppercase tracking-wide">Tonton Video</span>
-            </button>
+            </div>
           </div>
           
           <!-- Content -->
@@ -219,7 +228,7 @@ const sortOptions = [
               </span>
             </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
 
@@ -393,17 +402,17 @@ const sortOptions = [
     const paginatedVideos = filteredVideos.slice(start, end);
 
     videosGrid.innerHTML = paginatedVideos.map(video => `
-      <div class="bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
+      <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-2xl shadow-md border border-slate-100 overflow-hidden hover:shadow-lg transition-shadow">
         <!-- Video Thumbnail -->
         <div class="relative h-48 bg-gradient-to-br from-blue-100 to-cyan-50 flex items-center justify-center overflow-hidden">
-          <button class="relative z-10 flex flex-col items-center gap-3 hover:scale-110 transition-transform">
+          <div class="relative z-10 flex flex-col items-center gap-3 hover:scale-110 transition-transform">
             <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
               <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
             <span class="text-slate-600 text-xs font-bold uppercase tracking-wide">Tonton Video</span>
-          </button>
+          </div>
         </div>
         
         <!-- Content -->
@@ -427,7 +436,7 @@ const sortOptions = [
             </span>
           </div>
         </div>
-      </div>
+      </a>
     `).join('');
   }
 
