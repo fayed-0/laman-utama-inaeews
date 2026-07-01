@@ -25,7 +25,7 @@
 
 		<div class="relative w-full aspect-video rounded-[2.5rem] overflow-hidden border-2 border-slate-100 shadow-xl group/video" id="video-wrapper">
 			<iframe id="youtube-iframe" class="w-full h-full"
-				src="https://www.youtube-nocookie.com/embed/Gwdp6_1oivI?autoplay=0&mute=1&loop=1&playlist=Gwdp6_1oivI&enablejsapi=1" 
+				src="https://www.youtube-nocookie.com/embed/Gwdp6_1oivI?mute=1&enablejsapi=1"
 				frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
 			</iframe>
 			<div id="video-overlay" class="absolute inset-0 bg-white/60 backdrop-blur-3xl flex flex-col items-center justify-center cursor-pointer transition-all duration-700 hover:backdrop-blur-xl">
@@ -36,17 +36,87 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Video Popup / Modal -->
+	<div
+		id="video-modal"
+		class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-6 opacity-0 transition-opacity duration-300"
+	>
+		<div id="video-modal-panel" class="relative w-full max-w-4xl scale-95 transition-transform duration-300">
+			<button
+				id="video-modal-close"
+				type="button"
+				aria-label="Tutup video"
+				class="absolute -top-4 -right-4 md:-top-5 md:-right-5 size-10 md:size-11 rounded-full bg-white text-slate-700 shadow-xl flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors z-10"
+			>
+				<span class="material-symbols-outlined text-2xl">close</span>
+			</button>
+			<div class="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
+				<iframe id="youtube-iframe-modal" class="w-full h-full" src=""
+					frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+				</iframe>
+			</div>
+		</div>
+	</div>
 </section>
 
 <script>
 	const overlay = document.getElementById('video-overlay');
-	const iframe = document.getElementById('youtube-iframe') as HTMLIFrameElement;
+	const modal = document.getElementById('video-modal');
+	const modalPanel = document.getElementById('video-modal-panel');
+	const modalCloseBtn = document.getElementById('video-modal-close');
+	const modalIframe = document.getElementById('youtube-iframe-modal') as HTMLIFrameElement;
 
-	overlay?.addEventListener('click', () => {
-		overlay.classList.add('opacity-0', 'pointer-events-none');
-		if (iframe) {
-			const currentSrc = iframe.src;
-			iframe.src = currentSrc.replace('autoplay=0', 'autoplay=1');
+	const VIDEO_ID = 'Gwdp6_1oivI';
+	const AUTOPLAY_SRC = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=0&enablejsapi=1`;
+
+	function openVideoModal() {
+		if (!modal || !modalPanel || !modalIframe) return;
+
+		modalIframe.src = AUTOPLAY_SRC;
+		modal.classList.remove('hidden');
+		modal.classList.add('flex');
+		document.body.classList.add('overflow-hidden');
+
+		// Trigger transition on next frame
+		requestAnimationFrame(() => {
+			modal.classList.remove('opacity-0');
+			modalPanel.classList.remove('scale-95');
+			modalPanel.classList.add('scale-100');
+		});
+	}
+
+	function closeVideoModal() {
+		if (!modal || !modalPanel || !modalIframe) return;
+
+		modal.classList.add('opacity-0');
+		modalPanel.classList.remove('scale-100');
+		modalPanel.classList.add('scale-95');
+		document.body.classList.remove('overflow-hidden');
+
+		setTimeout(() => {
+			modal.classList.add('hidden');
+			modal.classList.remove('flex');
+			// Stop playback by clearing the src
+			modalIframe.src = '';
+		}, 300);
+	}
+
+	overlay?.addEventListener('click', openVideoModal);
+
+	modalCloseBtn?.addEventListener('click', closeVideoModal);
+
+	// Close when clicking the backdrop (outside the video panel)
+	modal?.addEventListener('click', (e) => {
+		if (e.target === modal) {
+			closeVideoModal();
+		}
+	});
+
+	// Close on Escape key
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+			closeVideoModal();
 		}
 	});
 </script>

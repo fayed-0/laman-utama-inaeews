@@ -88,7 +88,12 @@ const allVideos = [
 
 const itemsPerPage = 9;
 const categories = ["SEMUA", "TEKNIS", "EDUKASI", "PANDUAN"];
-const sortOptions = ["TERBARU"];
+const sortOptions = [
+  { value: "terbaru", label: "TERBARU" },
+  { value: "terlama", label: "TERLAMA" },
+  { value: "az", label: "JUDUL A-Z" },
+  { value: "za", label: "JUDUL Z-A" },
+];
 ---
 
 <section class="snap-start w-full bg-white py-24 px-12 md:px-24 overflow-hidden">
@@ -106,16 +111,41 @@ const sortOptions = ["TERBARU"];
 
     <!-- Filter and Sort Section -->
     <div class="relative flex items-center w-full">
-    <!-- Sort Button -->
-    <button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-400 text-slate-700 text-sm font-bold uppercase tracking-wider hover:bg-slate-50 transition-colors whitespace-nowrap flex-shrink-0">
-        TERBARU
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-        </svg>
-    </button>
+      <!-- Sort Dropdown -->
+      <div class="relative flex-shrink-0" id="sortDropdownWrapper">
+        <button
+          type="button"
+          id="sortDropdownBtn"
+          class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-400 text-slate-700 text-sm font-bold uppercase tracking-wider hover:bg-slate-50 transition-colors whitespace-nowrap"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span id="sortDropdownLabel">TERBARU</span>
+          <svg id="sortDropdownIcon" class="w-4 h-4 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
 
-    <!-- Category Tabs — absolute center -->
-    <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-6">
+        <!-- Dropdown Menu -->
+        <div
+          id="sortDropdownMenu"
+          class="hidden absolute left-0 top-full mt-2 w-44 bg-white rounded-lg border border-slate-200 shadow-lg overflow-hidden z-20"
+          role="listbox"
+        >
+          {sortOptions.map((opt) => (
+            <button
+              type="button"
+              class="sort-option w-full text-left px-4 py-2.5 text-sm font-semibold uppercase tracking-wider text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+              data-value={opt.value}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Category Tabs — absolute center -->
+      <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-6">
         {categories.map((category) => (
         <button 
             class={`text-sm font-semibold uppercase tracking-wide transition-colors pb-2 border-b-2 whitespace-nowrap ${
@@ -128,22 +158,29 @@ const sortOptions = ["TERBARU"];
             {category}
         </button>
         ))}
+      </div>
+
+      <!-- Search -->
+      <div
+        id="searchWrapper"
+        class="ml-auto h-8 px-4 py-1 rounded-full border border-slate-400 focus-within:border-blue-500 inline-flex items-center gap-2 overflow-hidden hover:border-slate-500 transition-[width] duration-300 ease-in-out flex-shrink-0"
+      >
+        <input
+          type="text"
+          id="videoSearchInput"
+          placeholder="SEARCH"
+          class="flex-1 min-w-0 bg-transparent outline-none text-slate-700 text-xs font-bold uppercase leading-4 tracking-wider placeholder-slate-400"
+        />
+        <button type="button" id="videoSearchBtn" class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 hover:bg-slate-100 transition-colors">
+          <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <!-- Search -->
-    <div class="ml-auto w-48 h-8 px-4 py-1 rounded-full border border-slate-400 inline-flex items-center gap-2 overflow-hidden hover:border-slate-500 transition-colors flex-shrink-0">
-        <input 
-        type="text"
-        placeholder="SEARCH"
-        class="flex-1 bg-transparent outline-none text-slate-700 text-xs font-bold uppercase leading-4 tracking-wider placeholder-slate-400"
-        />
-        <button class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 hover:bg-slate-100 transition-colors">
-        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-        </button>
-    </div>
-    </div>
+    <!-- Result count -->
+    <p id="videoResultCount" class="text-xs text-slate-400 -mt-8"></p>
 
     <!-- Videos Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="videosGrid">
@@ -186,8 +223,13 @@ const sortOptions = ["TERBARU"];
       ))}
     </div>
 
+    <!-- Empty state -->
+    <div id="videoEmptyState" class="hidden flex-col items-center justify-center py-12 text-center">
+      <p class="text-slate-500 text-base">Tidak ada video yang cocok dengan pencarian atau kategori Anda.</p>
+    </div>
+
     <!-- Pagination -->
-    <div class="flex items-center justify-end gap-2">
+    <div class="flex items-center justify-end gap-2" id="videoPaginationWrapper">
       <button class="p-2 text-slate-600 hover:text-slate-900 transition-colors" id="prevBtn">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -220,14 +262,54 @@ const sortOptions = ["TERBARU"];
 
 <script define:vars={{ allVideos, itemsPerPage, timeIconSrc: timeIcon.src }}>
   let currentPage = 1;
-  let filteredVideos = allVideos;
+  let searchQuery = '';
+  let sortValue = 'terbaru';
+  let activeCategory = 'SEMUA';
+  let filteredVideos = [...allVideos];
 
   const videosGrid = document.getElementById('videosGrid');
   const paginationContainer = document.getElementById('paginationContainer');
+  const paginationWrapper = document.getElementById('videoPaginationWrapper');
+  const emptyState = document.getElementById('videoEmptyState');
+  const resultCount = document.getElementById('videoResultCount');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
-  // Category filter
+  const searchInput = document.getElementById('videoSearchInput');
+  const searchBtn = document.getElementById('videoSearchBtn');
+  const searchWrapper = document.getElementById('searchWrapper');
+
+  const sortDropdownWrapper = document.getElementById('sortDropdownWrapper');
+  const sortDropdownBtn = document.getElementById('sortDropdownBtn');
+  const sortDropdownMenu = document.getElementById('sortDropdownMenu');
+  const sortDropdownLabel = document.getElementById('sortDropdownLabel');
+  const sortDropdownIcon = document.getElementById('sortDropdownIcon');
+
+  // --- Search box sizing: matches the sort button's width by default,
+  // and expands a bit wider when focused/clicked ---
+  function syncSearchWidth() {
+    const baseWidth = sortDropdownBtn.offsetWidth;
+    searchWrapper.dataset.baseWidth = baseWidth;
+    if (document.activeElement !== searchInput) {
+      searchWrapper.style.width = baseWidth + 'px';
+    }
+  }
+  syncSearchWidth();
+  window.addEventListener('resize', syncSearchWidth);
+
+  searchInput.addEventListener('focus', () => {
+    const baseWidth = parseInt(searchWrapper.dataset.baseWidth || '128', 10);
+    searchWrapper.style.width = (baseWidth + 96) + 'px';
+  });
+
+  searchInput.addEventListener('blur', () => {
+    if (searchInput.value.trim() === '') {
+      const baseWidth = parseInt(searchWrapper.dataset.baseWidth || '128', 10);
+      searchWrapper.style.width = baseWidth + 'px';
+    }
+  });
+
+  // --- Category filter (existing behavior, kept) ---
   document.querySelectorAll('[data-category]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-category]').forEach(b => {
@@ -237,19 +319,75 @@ const sortOptions = ["TERBARU"];
       btn.classList.add('text-blue-600', 'border-b-blue-600');
       btn.classList.remove('text-slate-400', 'border-b-transparent');
 
-      const category = btn.getAttribute('data-category');
-      if (category === 'SEMUA') {
-        filteredVideos = allVideos;
-      } else {
-        filteredVideos = allVideos.filter(v => v.category === category);
-      }
-      currentPage = 1;
-      renderVideos();
-      renderPagination();
+      activeCategory = btn.getAttribute('data-category');
+      applyFilters();
     });
   });
 
+  function getBaseByCategory() {
+    if (activeCategory === 'SEMUA') return allVideos;
+    return allVideos.filter(v => v.category === activeCategory);
+  }
+
+  function applySort(list) {
+    const sorted = [...list];
+    switch (sortValue) {
+      case 'terbaru':
+        sorted.sort((a, b) => b.id - a.id);
+        break;
+      case 'terlama':
+        sorted.sort((a, b) => a.id - b.id);
+        break;
+      case 'az':
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'za':
+        sorted.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+    }
+    return sorted;
+  }
+
+  function applyFilters() {
+    const query = searchQuery.trim().toLowerCase();
+
+    let result = getBaseByCategory().filter((video) => {
+      if (query === '') return true;
+      const haystack = [video.title, video.description, video.tag, video.source].join(' ').toLowerCase();
+      return haystack.includes(query);
+    });
+
+    result = applySort(result);
+    filteredVideos = result;
+    currentPage = 1;
+    renderVideos();
+    renderPagination();
+    updateResultCount();
+  }
+
+  function updateResultCount() {
+    if (!resultCount) return;
+    if (searchQuery.trim() === '' && activeCategory === 'SEMUA') {
+      resultCount.textContent = `Menampilkan semua ${allVideos.length} video`;
+    } else {
+      resultCount.textContent = `Ditemukan ${filteredVideos.length} dari ${allVideos.length} video`;
+    }
+  }
+
   function renderVideos() {
+    if (filteredVideos.length === 0) {
+      videosGrid.classList.add('hidden');
+      paginationWrapper.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      emptyState.classList.add('flex');
+      return;
+    } else {
+      videosGrid.classList.remove('hidden');
+      paginationWrapper.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      emptyState.classList.remove('flex');
+    }
+
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const paginatedVideos = filteredVideos.slice(start, end);
@@ -366,7 +504,80 @@ const sortOptions = ["TERBARU"];
     }
   });
 
+  // --- Search ---
+  let searchDebounce;
+  searchInput.addEventListener('input', (e) => {
+    clearTimeout(searchDebounce);
+    const value = e.target.value;
+    searchDebounce = setTimeout(() => {
+      searchQuery = value;
+      applyFilters();
+    }, 200);
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      clearTimeout(searchDebounce);
+      searchQuery = searchInput.value;
+      applyFilters();
+    }
+  });
+
+  searchBtn.addEventListener('click', () => {
+    clearTimeout(searchDebounce);
+    searchQuery = searchInput.value;
+    applyFilters();
+    searchInput.focus();
+  });
+
+  // --- Sort dropdown ---
+  function closeSortDropdown() {
+    sortDropdownMenu.classList.add('hidden');
+    sortDropdownBtn.setAttribute('aria-expanded', 'false');
+    sortDropdownIcon.style.transform = 'rotate(0deg)';
+  }
+
+  function openSortDropdown() {
+    sortDropdownMenu.classList.remove('hidden');
+    sortDropdownBtn.setAttribute('aria-expanded', 'true');
+    sortDropdownIcon.style.transform = 'rotate(180deg)';
+  }
+
+  sortDropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = !sortDropdownMenu.classList.contains('hidden');
+    if (isOpen) {
+      closeSortDropdown();
+    } else {
+      openSortDropdown();
+    }
+  });
+
+  document.querySelectorAll('.sort-option').forEach((option) => {
+    option.addEventListener('click', () => {
+      sortValue = option.getAttribute('data-value');
+      sortDropdownLabel.textContent = option.textContent.trim();
+      closeSortDropdown();
+      syncSearchWidth();
+      applyFilters();
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!sortDropdownWrapper.contains(e.target)) {
+      closeSortDropdown();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeSortDropdown();
+    }
+  });
+
   // Initialize
+  filteredVideos = applySort(allVideos);
   renderVideos();
   renderPagination();
+  updateResultCount();
 </script>

@@ -7,7 +7,7 @@ import navigateIcon from '../../assets/navigate.svg?url';
 ---
 
 <Layout title="Repository - Indonesia Earthquake Early Warning System">
-	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white">
+	<div class="theme-app h-screen overflow-y-scroll snap-y snap-mandatory bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white" style="scrollbar-gutter: stable;">
 		<Header />
 		<main>
 			<!-- Hero Section -->
@@ -90,23 +90,137 @@ import navigateIcon from '../../assets/navigate.svg?url';
 						</p>
 					</div>
 
+					<!-- Search & Filter Toolbar -->
+					<div class="flex flex-col md:flex-row items-stretch md:items-center gap-4">
+						<!-- Search -->
+						<div class="relative flex-1">
+							<svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104 4a7.5 7.5 0 0012.65 12.65z"/>
+							</svg>
+							<input
+								type="text"
+								id="searchInput"
+								placeholder="Cari nama episentrum..."
+								class="w-full pl-11 pr-10 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+							/>
+							<button
+								id="clearSearchBtn"
+								class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors"
+								aria-label="Bersihkan pencarian"
+							>
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+								</svg>
+							</button>
+						</div>
+
+						<!-- Magnitude Filter -->
+						<div class="w-full md:w-56">
+							<select
+								id="richterFilter"
+								class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow cursor-pointer"
+							>
+								<option value="all">Semua Magnitudo</option>
+								<option value="low">Rendah (&lt; 3.0)</option>
+								<option value="mid">Sedang (3.0 - 4.4)</option>
+								<option value="high">Tinggi (4.5 - 5.4)</option>
+								<option value="vhigh">Sangat Tinggi (&ge; 5.5)</option>
+							</select>
+						</div>
+
+						<!-- Intensity Filter -->
+						<div class="w-full md:w-56">
+							<select
+								id="intensityFilter"
+								class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow cursor-pointer"
+							>
+								<option value="all">Semua Intensitas</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5-">5-</option>
+								<option value="5+">5+</option>
+							</select>
+						</div>
+
+						<!-- Reset -->
+						<button
+							id="resetFiltersBtn"
+							class="w-full md:w-auto px-5 py-3 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors whitespace-nowrap"
+						>
+							Reset
+						</button>
+					</div>
+
+					<!-- Result count -->
+					<div id="resultCount" class="text-sm text-slate-500 dark:text-slate-400 -mt-6"></div>
+
 					<!-- Table Wrapper -->
-					<div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-600">
-						<table class="w-full">
+					<div class="overflow-x-auto rounded-lg shadow-lg border border-slate-200 dark:border-slate-600" style="min-width: 1000px;">
+						<table class="w-full border-collapse" style="table-layout: fixed;">
+							<colgroup>
+								<col style="width: 4%;" />
+								<col style="width: 16%;" />
+								<col style="width: 26%;" />
+								<col style="width: 14%;" />
+								<col style="width: 12%;" />
+								<col style="width: 18%;" />
+							</colgroup>
 							<thead class="bg-blue-600 dark:bg-blue-200 text-white">
 								<tr>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest w-12">#</th>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Tanggal Deteksi Gempa</th>
-									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">Nama Episentrum</th>
-									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Magnetudo</th>
-									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Intensitas</th>
-									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest">Waktu Pengumuman</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest">#</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none sortable-header min-w-max" data-column="date">
+										<div class="flex items-center gap-2">
+											<span>Tanggal Deteksi Gempa</span>
+											<svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
+											</svg>
+										</div>
+									</th>
+									<th class="px-6 py-4 text-left text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none sortable-header" data-column="epicenter">
+										<div class="flex items-center gap-2">
+											<span>Nama Episentrum</span>
+											<svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
+											</svg>
+										</div>
+									</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none sortable-header min-w-max" data-column="richter">
+										<div class="flex items-center justify-center gap-2">
+											<span>Magnetudo</span>
+											<svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
+											</svg>
+										</div>
+									</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none sortable-header min-w-max" data-column="intensity">
+										<div class="flex items-center justify-center gap-2">
+											<span>Intensitas</span>
+											<svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
+											</svg>
+										</div>
+									</th>
+									<th class="px-6 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none sortable-header min-w-max" data-column="announce">
+										<div class="flex items-center justify-center gap-2">
+											<span>Waktu pengiriman</span>
+											<svg class="w-4 h-4 sort-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
+											</svg>
+										</div>
+									</th>
 								</tr>
 							</thead>
 							<tbody id="tableBody">
 								<!-- Diisi oleh JavaScript -->
 							</tbody>
 						</table>
+					</div>
+
+					<!-- Empty state -->
+					<div id="emptyState" class="hidden flex-col items-center justify-center py-12 text-center">
+						<p class="text-slate-500 dark:text-slate-400 text-base">Tidak ada data yang cocok dengan pencarian atau filter Anda.</p>
 					</div>
 
 					<!-- Pagination -->
@@ -134,6 +248,45 @@ import navigateIcon from '../../assets/navigate.svg?url';
 	.richter-mid   { background-color: #fef3c7; color: #92400e; }
 	.richter-high  { background-color: #fee2e2; color: #991b1b; }
 	.richter-vhigh { background-color: #991b1b; color: #fee2e2; }
+
+	/* Table styling */
+	table {
+		border-collapse: collapse;
+	}
+
+	table th {
+		vertical-align: middle;
+		white-space: nowrap;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+	}
+
+	table td {
+		vertical-align: middle;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
+
+	/* Prevent column shifts during sorting */
+	.sortable-header {
+		user-select: none;
+		width: 100%;
+	}
+
+	.sortable-header > div {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		height: 1.5rem;
+	}
+
+	.sort-icon {
+		flex-shrink: 0;
+		width: 1rem;
+		height: 1rem;
+		transition: transform 0.2s ease;
+		stroke-width: 2;
+	}
 </style>
 
 <script>
@@ -167,7 +320,13 @@ import navigateIcon from '../../assets/navigate.svg?url';
 
 	const PER_PAGE = 10;
 	let currentPage = 1;
-	const totalPages = Math.ceil(eventData.length / PER_PAGE);
+	let sortColumn = null;
+	let sortDirection = 'asc'; // 'asc' or 'desc'
+	let searchQuery = '';
+	let richterFilterValue = 'all';
+	let intensityFilterValue = 'all';
+	let filteredData = [...eventData];  // After search + filter
+	let displayData = [...eventData];   // After search + filter + sort
 
 	function getRichterClass(r) {
 		if (r < 3.0) return 'richter-low';
@@ -176,11 +335,143 @@ import navigateIcon from '../../assets/navigate.svg?url';
 		return 'richter-vhigh';
 	}
 
+	function matchesRichterFilter(r) {
+		switch (richterFilterValue) {
+			case 'low': return r < 3.0;
+			case 'mid': return r >= 3.0 && r < 4.5;
+			case 'high': return r >= 4.5 && r < 5.5;
+			case 'vhigh': return r >= 5.5;
+			default: return true;
+		}
+	}
+
+	function applyFilters() {
+		const query = searchQuery.trim().toLowerCase();
+
+		filteredData = eventData.filter((row) => {
+			const matchesSearch = query === '' || row.epicenter.toLowerCase().includes(query);
+			const matchesRichter = matchesRichterFilter(row.richter);
+			const matchesIntensity = intensityFilterValue === 'all' || row.intensity === intensityFilterValue;
+			return matchesSearch && matchesRichter && matchesIntensity;
+		});
+
+		applySort();
+		currentPage = 1;
+		renderTable(currentPage);
+		renderPagination(currentPage);
+		updateResultCount();
+	}
+
+	function applySort() {
+		displayData = [...filteredData];
+
+		if (!sortColumn) return;
+
+		displayData.sort((a, b) => {
+			let aVal, bVal;
+
+			switch (sortColumn) {
+				case 'date':
+					aVal = new Date(a.date.replace(' ', 'T')).getTime();
+					bVal = new Date(b.date.replace(' ', 'T')).getTime();
+					break;
+				case 'epicenter':
+					aVal = a.epicenter.toLowerCase();
+					bVal = b.epicenter.toLowerCase();
+					return sortDirection === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+				case 'richter':
+					aVal = a.richter;
+					bVal = b.richter;
+					break;
+				case 'intensity':
+					const intensityOrder = { '1': 1, '2': 2, '3': 3, '4': 4, '5-': 5, '5+': 6 };
+					aVal = intensityOrder[a.intensity] || 0;
+					bVal = intensityOrder[b.intensity] || 0;
+					break;
+				case 'announce':
+					aVal = new Date(a.announce.replace(' ', 'T')).getTime();
+					bVal = new Date(b.announce.replace(' ', 'T')).getTime();
+					break;
+				default:
+					return 0;
+			}
+
+			if (sortDirection === 'asc') {
+				return aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
+			} else {
+				return aVal < bVal ? 1 : aVal > bVal ? -1 : 0;
+			}
+		});
+	}
+
+	function sortData(column) {
+		// If clicking the same column, toggle direction
+		if (sortColumn === column) {
+			sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+		} else {
+			sortColumn = column;
+			sortDirection = 'asc';
+		}
+
+		applySort();
+		currentPage = 1;
+		updateSortIndicators();
+		renderTable(currentPage);
+		renderPagination(currentPage);
+	}
+
+	function updateSortIndicators() {
+		document.querySelectorAll('.sortable-header').forEach(header => {
+			const column = header.getAttribute('data-column');
+			const icon = header.querySelector('.sort-icon');
+
+			if (column === sortColumn) {
+				header.style.opacity = '1';
+				if (sortDirection === 'asc') {
+					icon.style.transform = 'scaleY(1)';
+				} else {
+					icon.style.transform = 'scaleY(-1)';
+				}
+			} else {
+				header.style.opacity = '0.5';
+				icon.style.transform = 'scaleY(1)';
+			}
+		});
+	}
+
+	function updateResultCount() {
+		const el = document.getElementById('resultCount');
+		if (!el) return;
+		if (filteredData.length === eventData.length) {
+			el.textContent = `Menampilkan semua ${eventData.length} data`;
+		} else {
+			el.textContent = `Ditemukan ${filteredData.length} dari ${eventData.length} data`;
+		}
+	}
+
 	function renderTable(page) {
 		const tbody = document.getElementById('tableBody');
+		const emptyState = document.getElementById('emptyState');
+		const tableWrapper = tbody.closest('.overflow-x-auto');
 		tbody.innerHTML = '';
+
+		if (displayData.length === 0) {
+			if (tableWrapper) tableWrapper.classList.add('hidden');
+			if (emptyState) {
+				emptyState.classList.remove('hidden');
+				emptyState.classList.add('flex');
+			}
+			return;
+		} else {
+			if (tableWrapper) tableWrapper.classList.remove('hidden');
+			if (emptyState) {
+				emptyState.classList.add('hidden');
+				emptyState.classList.remove('flex');
+			}
+		}
+
 		const start = (page - 1) * PER_PAGE;
-		const slice = eventData.slice(start, start + PER_PAGE);
+		const slice = displayData.slice(start, start + PER_PAGE);
 
 		slice.forEach((row, index) => {
 			const rowNumber = start + index + 1;
@@ -209,11 +500,13 @@ import navigateIcon from '../../assets/navigate.svg?url';
 		const container = document.getElementById('paginationContainer');
 		container.innerHTML = '';
 
+		if (displayData.length === 0) return;
+
 		const info = document.createElement('span');
 		info.className = 'text-xs text-slate-500 dark:text-slate-400 mr-2';
 		const start = (page - 1) * PER_PAGE + 1;
-		const end = Math.min(page * PER_PAGE, eventData.length);
-		info.textContent = `${start}–${end} dari ${eventData.length}`;
+		const end = Math.min(page * PER_PAGE, displayData.length);
+		info.textContent = `${start}–${end} dari ${displayData.length}`;
 		container.appendChild(info);
 
 		const prev = document.createElement('button');
@@ -225,7 +518,8 @@ import navigateIcon from '../../assets/navigate.svg?url';
 		prev.addEventListener('click', () => goTo(currentPage - 1));
 		container.appendChild(prev);
 
-		for (let i = 1; i <= totalPages; i++) {
+		const totalDisplayPages = Math.ceil(displayData.length / PER_PAGE);
+		for (let i = 1; i <= totalDisplayPages; i++) {
 			const btn = document.createElement('button');
 			btn.className = `w-8 h-8 rounded text-sm font-bold transition-colors ${
 				i === page
@@ -239,20 +533,82 @@ import navigateIcon from '../../assets/navigate.svg?url';
 
 		const next = document.createElement('button');
 		next.className = 'p-2 text-slate-600 hover:text-slate-900 dark:hover:text-white transition-colors';
-		next.disabled = page === totalPages;
-		next.style.opacity = page === totalPages ? '0.3' : '1';
-		next.style.cursor = page === totalPages ? 'not-allowed' : 'pointer';
+		next.disabled = page === totalDisplayPages;
+		next.style.opacity = page === totalDisplayPages ? '0.3' : '1';
+		next.style.cursor = page === totalDisplayPages ? 'not-allowed' : 'pointer';
 		next.innerHTML = `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>`;
 		next.addEventListener('click', () => goTo(currentPage + 1));
 		container.appendChild(next);
 	}
 
 	function goTo(page) {
-		if (page < 1 || page > totalPages) return;
+		const totalDisplayPages = Math.ceil(displayData.length / PER_PAGE);
+		if (page < 1 || page > totalDisplayPages) return;
 		currentPage = page;
 		renderTable(currentPage);
 		renderPagination(currentPage);
 	}
 
+	// Add event listeners to sortable headers
+	document.querySelectorAll('.sortable-header').forEach(header => {
+		header.addEventListener('click', () => {
+			const column = header.getAttribute('data-column');
+			sortData(column);
+		});
+	});
+
+	// Search input
+	const searchInput = document.getElementById('searchInput');
+	const clearSearchBtn = document.getElementById('clearSearchBtn');
+	let searchDebounce;
+	searchInput.addEventListener('input', (e) => {
+		clearTimeout(searchDebounce);
+		const value = e.target.value;
+		clearSearchBtn.classList.toggle('hidden', value.length === 0);
+		searchDebounce = setTimeout(() => {
+			searchQuery = value;
+			applyFilters();
+		}, 200);
+	});
+
+	clearSearchBtn.addEventListener('click', () => {
+		searchInput.value = '';
+		searchQuery = '';
+		clearSearchBtn.classList.add('hidden');
+		applyFilters();
+		searchInput.focus();
+	});
+
+	// Magnitude filter
+	const richterFilter = document.getElementById('richterFilter');
+	richterFilter.addEventListener('change', (e) => {
+		richterFilterValue = e.target.value;
+		applyFilters();
+	});
+
+	// Intensity filter
+	const intensityFilter = document.getElementById('intensityFilter');
+	intensityFilter.addEventListener('change', (e) => {
+		intensityFilterValue = e.target.value;
+		applyFilters();
+	});
+
+	// Reset
+	const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+	resetFiltersBtn.addEventListener('click', () => {
+		searchQuery = '';
+		richterFilterValue = 'all';
+		intensityFilterValue = 'all';
+		searchInput.value = '';
+		clearSearchBtn.classList.add('hidden');
+		richterFilter.value = 'all';
+		intensityFilter.value = 'all';
+		sortColumn = null;
+		sortDirection = 'asc';
+		updateSortIndicators();
+		applyFilters();
+	});
+
 	goTo(1);
+	updateResultCount();
 </script>
