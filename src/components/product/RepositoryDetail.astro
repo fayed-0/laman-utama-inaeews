@@ -67,8 +67,8 @@ import gambaranMap from '../../assets/gambaranmap.png';
                 <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Lintang</th>
                 <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Bujur</th>
                 <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Kedalaman</th>
-                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Magnitudo</th>
-                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Intensitas Maks.</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Magnitudo (Mpd)</th>
+                <th class="px-4 py-3 text-center text-xs font-black uppercase tracking-widest">Estimasi Intensitas Maks.</th>
               </tr>
             </thead>
             <tbody id="ringkasanBody"></tbody>
@@ -132,7 +132,7 @@ import gambaranMap from '../../assets/gambaranmap.png';
                 <th class="px-3 py-2 text-center font-semibold border border-slate-300">Lintang</th>
                 <th class="px-3 py-2 text-center font-semibold border border-slate-300">Bujur</th>
                 <th class="px-3 py-2 text-center font-semibold border border-slate-300">Kedalaman</th>
-                <th class="px-3 py-2 text-center font-semibold border border-slate-300">Magnitudo</th>
+                <th class="px-3 py-2 text-center font-semibold border border-slate-300">Magnitudo (Mpd)</th>
               </tr>
             </thead>
             <tbody id="eewBody"></tbody>
@@ -151,7 +151,7 @@ import gambaranMap from '../../assets/gambaranmap.png';
             <thead>
               <tr class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-100 uppercase tracking-wide">
                 <th class="px-4 py-3 text-left font-semibold border-y border-slate-300 dark:border-slate-600">Provinsi / Wilayah</th>
-                <th class="px-4 py-3 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Intensitas</th>
+                <th class="px-4 py-3 text-center font-semibold border-y border-slate-300 dark:border-slate-600">Estimasi Intensitas Maksimum</th>
                 <th class="px-4 py-3 text-left font-semibold border-y border-slate-300 dark:border-slate-600">Kota / Kecamatan</th>
               </tr>
             </thead>
@@ -209,7 +209,7 @@ import gambaranMap from '../../assets/gambaranmap.png';
     {
       id: 1,
       date: "2026/05/21 08:11",
-      lat: "6°12.4′ LS", lon: "105°48.2′ BT",
+      lat: "6.207° LS", lon: "105.803° BT",
       epicenter: "Lepas Pantai Selatan Banten",
       richter: 3.7, depth: "15 km", intensity: "3",
       affected: [
@@ -217,16 +217,16 @@ import gambaranMap from '../../assets/gambaranmap.png';
         { region:"Kabupaten Lebak, Banten",      intensity:"2", cities:"Kec. Malingping" },
       ],
       eew: [
-        { rep:1,  time:"08:11:38.8", elapsed:6.3,  lat:"6.0°LS", lon:"105.8°BT", depth:"10km", mag:2.1, intensity:"Maks. Intensitas 1", warn:false },
-        { rep:2,  time:"08:11:39.3", elapsed:6.8,  lat:"6.1°LS", lon:"105.8°BT", depth:"10km", mag:2.8, intensity:"Maks. Intensitas 2", warn:false },
-        { rep:3,  time:"08:11:41.0", elapsed:8.5,  lat:"6.1°LS", lon:"105.8°BT", depth:"12km", mag:3.5, intensity:"Maks. Intensitas 3", warn:false },
-        { rep:4,  time:"08:11:43.2", elapsed:10.7, lat:"6.2°LS", lon:"105.8°BT", depth:"15km", mag:3.7, intensity:"Maks. Intensitas 3", warn:false },
+        { rep:1,  time:"08:11:38.8", elapsed:6.3,  lat:"6.0° LS", lon:"105.8° BT", depth:"10km", mag:2.1, intensity:"Maks. Intensitas 1", warn:false },
+        { rep:2,  time:"08:11:39.3", elapsed:6.8,  lat:"6.1° LS", lon:"105.8° BT", depth:"10km", mag:2.8, intensity:"Maks. Intensitas 2", warn:false },
+        { rep:3,  time:"08:11:41.0", elapsed:8.5,  lat:"6.1° LS", lon:"105.8° BT", depth:"12km", mag:3.5, intensity:"Maks. Intensitas 3", warn:false },
+        { rep:4,  time:"08:11:43.2", elapsed:10.7, lat:"6.2° LS", lon:"105.8° BT", depth:"15km", mag:3.7, intensity:"Maks. Intensitas 3", warn:false },
       ]
     },
     {
       id: 6,
       date: "2026/05/20 09:46",
-      lat: "5°42.0′ LS", lon: "106°54.0′ BT",
+      lat: "5.700° LS", lon: "106.900° BT",
       epicenter: "Laut Jawa Utara Jakarta",
       richter: 5.9, depth: "30 km", intensity: "5+",
       affected: [
@@ -235,26 +235,26 @@ import gambaranMap from '../../assets/gambaranmap.png';
         { region:"Kota Tangerang, Banten",       intensity:"3",  cities:"Neglasari, Batuceper" },
       ],
       eew: [
-        { rep:1,  time:"09:46:08.8", elapsed:5.3,  lat:"5.7°LS", lon:"106.9°BT", depth:"10km", mag:4.7, intensity:"Maks. Intensitas 2",  warn:false },
-        { rep:2,  time:"09:46:09.3", elapsed:5.8,  lat:"5.7°LS", lon:"106.9°BT", depth:"10km", mag:5.4, intensity:"Maks. Intensitas 3",  warn:false },
-        { rep:3,  time:"09:46:09.5", elapsed:6.0,  lat:"5.7°LS", lon:"106.9°BT", depth:"10km", mag:5.5, intensity:"Maks. Intensitas 3",  warn:false },
-        { rep:4,  time:"09:46:12.5", elapsed:9.0,  lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.0, intensity:"Maks. Intensitas 3",  warn:false },
-        { rep:5,  time:"09:46:13.6", elapsed:10.1, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.0, intensity:"Maks. Intensitas 3",  warn:false },
-        { rep:6,  time:"09:46:14.5", elapsed:11.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.2, intensity:"Maks. Intensitas 5−", warn:false },
-        { rep:7,  time:"09:46:17.4", elapsed:13.9, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.3, intensity:"Maks. Intensitas 5−", warn:false },
-        { rep:8,  time:"09:46:17.5", elapsed:14.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.5, intensity:"Maks. Intensitas 5+", warn:false },
-        { rep:9,  time:"09:46:18.5", elapsed:15.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.3, intensity:"Maks. Intensitas 5+", warn:false },
-        { rep:10, time:"09:46:19.5", elapsed:16.0, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.5, intensity:"Maks. Intensitas 5+", warn:false },
-        { rep:11, time:"09:46:20.4", elapsed:16.9, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:6.9, intensity:"Maks. Intensitas 5+", warn:false },
-        { rep:12, time:"09:46:21.7", elapsed:18.2, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:7.0, intensity:"Maks. Intensitas 5+", warn:false },
-        { rep:13, time:"09:46:23.3", elapsed:19.8, lat:"5.7°LS", lon:"106.9°BT", depth:"20km", mag:7.1, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:14, time:"09:46:23.4", elapsed:19.9, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.2, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:15, time:"09:46:24.5", elapsed:21.0, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.3, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:16, time:"09:46:25.2", elapsed:21.7, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.2, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:17, time:"09:46:25.8", elapsed:22.3, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:6.9, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:18, time:"09:46:26.3", elapsed:22.8, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:7.0, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:19, time:"09:46:29.3", elapsed:25.8, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:6.7, intensity:"Maks. Intensitas 5+", warn:true  },
-        { rep:20, time:"09:46:29.5", elapsed:26.0, lat:"5.7°LS", lon:"106.9°BT", depth:"30km", mag:6.8, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:1,  time:"09:46:08.8", elapsed:5.3,  lat:"5.7° LS", lon:"106.9° BT", depth:"10km", mag:4.7, intensity:"Maks. Intensitas 2",  warn:false },
+        { rep:2,  time:"09:46:09.3", elapsed:5.8,  lat:"5.7° LS", lon:"106.9° BT", depth:"10km", mag:5.4, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:3,  time:"09:46:09.5", elapsed:6.0,  lat:"5.7° LS", lon:"106.9° BT", depth:"10km", mag:5.5, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:4,  time:"09:46:12.5", elapsed:9.0,  lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.0, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:5,  time:"09:46:13.6", elapsed:10.1, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.0, intensity:"Maks. Intensitas 3",  warn:false },
+        { rep:6,  time:"09:46:14.5", elapsed:11.0, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.2, intensity:"Maks. Intensitas 5−", warn:false },
+        { rep:7,  time:"09:46:17.4", elapsed:13.9, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.3, intensity:"Maks. Intensitas 5−", warn:false },
+        { rep:8,  time:"09:46:17.5", elapsed:14.0, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.5, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:9,  time:"09:46:18.5", elapsed:15.0, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.3, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:10, time:"09:46:19.5", elapsed:16.0, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.5, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:11, time:"09:46:20.4", elapsed:16.9, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:6.9, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:12, time:"09:46:21.7", elapsed:18.2, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:7.0, intensity:"Maks. Intensitas 5+", warn:false },
+        { rep:13, time:"09:46:23.3", elapsed:19.8, lat:"5.7° LS", lon:"106.9° BT", depth:"20km", mag:7.1, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:14, time:"09:46:23.4", elapsed:19.9, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:7.2, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:15, time:"09:46:24.5", elapsed:21.0, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:7.3, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:16, time:"09:46:25.2", elapsed:21.7, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:7.2, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:17, time:"09:46:25.8", elapsed:22.3, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:6.9, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:18, time:"09:46:26.3", elapsed:22.8, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:7.0, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:19, time:"09:46:29.3", elapsed:25.8, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:6.7, intensity:"Maks. Intensitas 5+", warn:true  },
+        { rep:20, time:"09:46:29.5", elapsed:26.0, lat:"5.7° LS", lon:"106.9° BT", depth:"30km", mag:6.8, intensity:"Maks. Intensitas 5+", warn:true  },
       ]
     }
   ];
