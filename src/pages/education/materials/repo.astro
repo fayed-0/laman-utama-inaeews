@@ -1,0 +1,18 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import RepoMaterial from '../../../components/Education/Repo-Material/repo.astro';
+---
+
+<Layout title="Materi EEWS | InaEEWS">
+  <div class="theme-app min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500 text-slate-900 dark:text-white flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <RepoMaterial />
+    </main>
+    <div class="snap-start flex flex-col justify-end">
+      <Footer />
+    </div>
+  </div>
+</Layout>
