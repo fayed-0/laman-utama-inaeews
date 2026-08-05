@@ -174,42 +174,42 @@ import eyeIcon from '../../../assets/eye.svg';
 		<thead class="bg-blue-600 dark:bg-blue-200 text-white">
 			<tr>
 				<th class="px-2 py-4 text-left text-xs font-black uppercase tracking-widest whitespace-nowrap">#</th>
-				<th class="px-3 py-4 text-left text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="date">
+				<th class="sortable-header px-3 py-4 text-left text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="date">
 					<div class="flex flex-wrap items-center gap-x-1 gap-y-0.5 leading-tight">
 						<span>Tanggal Deteksi Gempa</span>
-						<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg class="sort-icon w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
 						</svg>
 					</div>
 				</th>
-				<th class="px-3 py-4 text-left text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="epicenter">
+				<th class="sortable-header px-3 py-4 text-left text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="epicenter">
 					<div class="flex flex-wrap items-center gap-x-1 gap-y-0.5 leading-tight">
 						<span>Nama Episentrum</span>
-						<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg class="sort-icon w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
 						</svg>
 					</div>
 				</th>
-				<th class="px-3 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="richter">
+				<th class="sortable-header px-3 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="richter">
 					<div class="flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5 leading-tight">
 						<span>Magnitudo (Mpd)</span>
-						<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg class="sort-icon w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
 						</svg>
 					</div>
 				</th>
-				<th class="px-3 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="intensity">
+				<th class="sortable-header px-3 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="intensity">
 					<div class="flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5 leading-tight">
 						<span>Estimasi Intensitas</span>
-						<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg class="sort-icon w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
 						</svg>
 					</div>
 				</th>
-				<th class="px-3 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="announce">
+				<th class="sortable-header px-3 py-4 text-center text-xs font-black uppercase tracking-widest cursor-pointer hover:opacity-80 transition-opacity select-none whitespace-normal" data-column="announce">
 					<div class="flex flex-wrap items-center justify-center gap-x-1 gap-y-0.5 leading-tight">
 						<span>Waktu Pengiriman</span>
-						<svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<svg class="sort-icon w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m0 0l4 4m10-4v12m0 0l4-4m0 0l-4-4"/>
 						</svg>
 					</div>
@@ -606,7 +606,7 @@ import eyeIcon from '../../../assets/eye.svg';
 	}
 
 	// Add event listeners to sortable headers
-	document.querySelectorAll('.sortable-header').forEach(header => {
+	document.querySelectorAll('th[data-column]').forEach(header => {
 		header.addEventListener('click', () => {
 			const column = header.getAttribute('data-column');
 			sortData(column);
