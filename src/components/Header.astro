@@ -315,39 +315,55 @@ const isActive = (href: string) => {
 
 		function setGoogleTranslateCookie(lang) {
 			const googleLang = lang === 'zh' ? 'zh-CN' : lang;
-			if (lang === 'id') {
-				document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-				document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
-				document.cookie = "googtrans=/id/id; path=/;";
-			} else {
+			const hostname = window.location.hostname;
+			const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1' || !hostname.includes('.');
+
+			document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			if (!isLocalhost) {
+				document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + hostname;
+				document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + hostname;
+			}
+
+			if (lang !== 'id') {
 				document.cookie = "googtrans=/id/" + googleLang + "; path=/;";
-				document.cookie = "googtrans=/id/" + googleLang + "; path=/; domain=" + window.location.hostname;
+				if (!isLocalhost) {
+					document.cookie = "googtrans=/id/" + googleLang + "; path=/; domain=" + hostname;
+				}
 			}
 		}
 
 		function triggerGoogleTranslate(lang) {
-			const target = lang === 'zh' ? 'zh-CN' : lang;
+			const target = lang === 'id' ? '' : (lang === 'zh' ? 'zh-CN' : lang);
 			setGoogleTranslateCookie(lang);
 
-			const selectEl = document.querySelector('.goog-te-combo');
-			if (selectEl) {
-				if (selectEl.value !== target) {
+			function doDispatch() {
+				const selectEl = document.querySelector('.goog-te-combo');
+				if (selectEl) {
 					selectEl.value = target;
-					selectEl.dispatchEvent(new Event('change'));
+					for (let i = 0; i < selectEl.options.length; i++) {
+						if (selectEl.options[i].value === target) {
+							selectEl.selectedIndex = i;
+							break;
+						}
+					}
+					if (typeof selectEl.onchange === 'function') {
+						try { selectEl.onchange(); } catch (_) {}
+					}
+					selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+					selectEl.dispatchEvent(new Event('input', { bubbles: true }));
+					return true;
 				}
-			} else {
+				return false;
+			}
+
+			if (!doDispatch()) {
 				let attempts = 0;
 				const interval = setInterval(() => {
 					attempts++;
-					const el = document.querySelector('.goog-te-combo');
-					if (el) {
-						el.value = target;
-						el.dispatchEvent(new Event('change'));
-						clearInterval(interval);
-					} else if (attempts > 15) {
+					if (doDispatch() || attempts > 20) {
 						clearInterval(interval);
 					}
-				}, 200);
+				}, 150);
 			}
 		}
 

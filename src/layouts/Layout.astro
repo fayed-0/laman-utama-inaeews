@@ -36,11 +36,19 @@ const { title } = Astro.props;
 					}
 					el.setAttribute('lang', eff);
 					var gLang = eff === 'zh' ? 'zh-CN' : eff;
+					var hostname = window.location.hostname;
+					var isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1' || !hostname.includes('.');
+
+					document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+					if (!isLocalhost) {
+						document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + hostname;
+						document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + hostname;
+					}
 					if (eff !== 'id') {
 						document.cookie = "googtrans=/id/" + gLang + "; path=/;";
-						document.cookie = "googtrans=/id/" + gLang + "; path=/; domain=" + window.location.hostname;
-					} else {
-						document.cookie = "googtrans=/id/id; path=/;";
+						if (!isLocalhost) {
+							document.cookie = "googtrans=/id/" + gLang + "; path=/; domain=" + hostname;
+						}
 					}
 				} catch(e) {}
 			})();
@@ -53,6 +61,29 @@ const { title } = Astro.props;
 					includedLanguages: 'id,en,zh-CN,ja,pt,ru,hi,af',
 					autoDisplay: false
 				}, 'google_translate_element');
+
+				setTimeout(function() {
+					try {
+						var s = localStorage.getItem('inaeews-lang') || 'system';
+						var sup = ['id','en','zh','ja','pt','ru','hi','af'];
+						var eff = 'id';
+						if (s === 'system' && navigator.languages) {
+							for (var i = 0; i < navigator.languages.length; i++) {
+								var c = navigator.languages[i].toLowerCase().substring(0, 2);
+								var m = c === 'in' ? 'id' : c;
+								if (sup.indexOf(m) !== -1) { eff = m; break; }
+							}
+						} else if (s !== 'system' && sup.indexOf(s) !== -1) {
+							eff = s;
+						}
+						var target = eff === 'zh' ? 'zh-CN' : eff;
+						var selectEl = document.querySelector('.goog-te-combo');
+						if (selectEl) {
+							selectEl.value = target;
+							selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+						}
+					} catch(e) {}
+				}, 150);
 			};
 		</script>
 		<script is:inline src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
