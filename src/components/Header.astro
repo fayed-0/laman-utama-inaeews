@@ -56,12 +56,12 @@ const isActive = (href: string) => {
 <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50 header-theme">
 	<div class="w-full flex items-center justify-between px-4 md:px-6 py-4 md:py-4">
 		<!-- Logo -->
-		<a href="/" class="flex items-center gap-2">
+		<a href="/" class="flex items-center gap-2 notranslate" translate="no">
 			<img src={logoBmkg.src} alt="BMKG" class="h-8 w-auto logo-bmkg-light" />
 			<img src={logoBmkgWhite.src} alt="BMKG" class="h-8 w-auto logo-bmkg-dark hidden" />
 			<img src={logo.src} alt="InaEEWS" class="h-8 w-auto logo-light" />
 			<img src={logoDark.src} alt="InaEEWS" class="h-8 w-auto logo-dark hidden" />
-			<span class="text-xl font-black tracking-tighter text-slate-900 header-logo-text italic hidden sm:inline-block">InaEEWS</span>
+			<span class="text-xl font-black tracking-tighter text-slate-900 header-logo-text italic hidden sm:inline-block notranslate" translate="no">InaEEWS</span>
 		</a>
 
 		<!-- Right Side: Navigation + Controls -->
@@ -124,11 +124,12 @@ const isActive = (href: string) => {
 				<select
 					id="lang-select"
 					name="lang"
-					class="lang-select pr-7 py-2 text-[10px] md:text-[11px] font-black uppercase tracking-widest bg-transparent text-slate-700 appearance-none cursor-pointer focus:outline-none focus:ring-0 rounded-l-full"
+					class="lang-select pr-7 py-2 text-[10px] md:text-[11px] font-black uppercase tracking-widest bg-transparent text-slate-700 appearance-none cursor-pointer focus:outline-none focus:ring-0 rounded-l-full notranslate"
+					translate="no"
 					aria-label="Pilih bahasa"
 				>
 					{languages.map((lang) => (
-						<option value={lang.value}>{lang.label}</option>
+						<option value={lang.value} class="notranslate" translate="no">{lang.label}</option>
 					))}
 				</select>
 			</div>
@@ -312,9 +313,48 @@ const isActive = (href: string) => {
 			return 'id';
 		}
 
+		function setGoogleTranslateCookie(lang) {
+			const googleLang = lang === 'zh' ? 'zh-CN' : lang;
+			if (lang === 'id') {
+				document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+				document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+				document.cookie = "googtrans=/id/id; path=/;";
+			} else {
+				document.cookie = "googtrans=/id/" + googleLang + "; path=/;";
+				document.cookie = "googtrans=/id/" + googleLang + "; path=/; domain=" + window.location.hostname;
+			}
+		}
+
+		function triggerGoogleTranslate(lang) {
+			const target = lang === 'zh' ? 'zh-CN' : lang;
+			setGoogleTranslateCookie(lang);
+
+			const selectEl = document.querySelector('.goog-te-combo');
+			if (selectEl) {
+				if (selectEl.value !== target) {
+					selectEl.value = target;
+					selectEl.dispatchEvent(new Event('change'));
+				}
+			} else {
+				let attempts = 0;
+				const interval = setInterval(() => {
+					attempts++;
+					const el = document.querySelector('.goog-te-combo');
+					if (el) {
+						el.value = target;
+						el.dispatchEvent(new Event('change'));
+						clearInterval(interval);
+					} else if (attempts > 15) {
+						clearInterval(interval);
+					}
+				}, 200);
+			}
+		}
+
 		function applyLang(lang) {
 			const effective = lang === 'system' ? getSystemLang() : lang;
 			document.documentElement.setAttribute('lang', effective);
+			triggerGoogleTranslate(effective);
 		}
 
 		const langSelect = document.getElementById('lang-select');
@@ -333,6 +373,12 @@ const isActive = (href: string) => {
 				applyLang(val);
 			});
 		}
+
+		// Direct material icons to be ignored by translation
+		document.querySelectorAll('.material-symbols-outlined').forEach((el) => {
+			el.classList.add('notranslate');
+			el.setAttribute('translate', 'no');
+		});
 	}
 
 	if (document.readyState === 'loading') {

@@ -21,12 +21,83 @@ const { title } = Astro.props;
 		
 		<script is:inline>
 			(function() { try { var t = localStorage.getItem('inaeews-theme') || 'light'; if (t === 'warm') t = 'light'; var el = document.documentElement; el.classList.remove('theme-light','theme-dark'); if (t === 'system') { el.setAttribute('data-theme', 'system'); var dark = window.matchMedia('(prefers-color-scheme: dark)').matches; el.classList.add(dark ? 'theme-dark' : 'theme-light'); } else { el.classList.add('theme-' + t); el.setAttribute('data-theme', t); } } catch (e) {} })();
-			(function() { try { var L='inaeews-lang', s=localStorage.getItem(L)||'system', el=document.documentElement, sup=['id','en','zh','ja','pt','ru','hi','af']; if(s==='system'&&navigator.languages){ for(var i=0;i<navigator.languages.length;i++){ var c=navigator.languages[i].toLowerCase().substring(0,2); var m=c==='in'?'id':c; if(sup.indexOf(m)!==-1){ el.setAttribute('lang',m); break; } } } else if(s!=='system'&&sup.indexOf(s)!==-1) el.setAttribute('lang',s); } catch(e) {} })();
+			(function() {
+				try {
+					var L='inaeews-lang', s=localStorage.getItem(L)||'system', el=document.documentElement, sup=['id','en','zh','ja','pt','ru','hi','af'];
+					var eff = 'id';
+					if(s==='system'&&navigator.languages){
+						for(var i=0;i<navigator.languages.length;i++){
+							var c=navigator.languages[i].toLowerCase().substring(0,2);
+							var m=c==='in'?'id':c;
+							if(sup.indexOf(m)!==-1){ eff = m; break; }
+						}
+					} else if(s!=='system'&&sup.indexOf(s)!==-1) {
+						eff = s;
+					}
+					el.setAttribute('lang', eff);
+					var gLang = eff === 'zh' ? 'zh-CN' : eff;
+					if (eff !== 'id') {
+						document.cookie = "googtrans=/id/" + gLang + "; path=/;";
+						document.cookie = "googtrans=/id/" + gLang + "; path=/; domain=" + window.location.hostname;
+					} else {
+						document.cookie = "googtrans=/id/id; path=/;";
+					}
+				} catch(e) {}
+			})();
 		</script>
+
+		<script is:inline>
+			window.googleTranslateElementInit = function() {
+				new google.translate.TranslateElement({
+					pageLanguage: 'id',
+					includedLanguages: 'id,en,zh-CN,ja,pt,ru,hi,af',
+					autoDisplay: false
+				}, 'google_translate_element');
+			};
+		</script>
+		<script is:inline src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 		
 		<style is:global>
 			@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;600;700&family=Varela+Round&family=Work+Sans:wght@400;500;600;700;800&display=swap');
 			
+			/* Google Translate UI Cleanup */
+			.goog-te-banner-frame,
+			iframe.goog-te-banner-frame,
+			.goog-te-balloon-frame,
+			#goog-gt-tt,
+			.goog-te-spinner-pos,
+			.goog-tooltip,
+			.goog-tooltip:hover,
+			.goog-te-gadget,
+			.goog-te-banner,
+			.skiptranslate iframe,
+			iframe[id*=":1.container"],
+			iframe[src*="translate.google"] {
+				display: none !important;
+				visibility: hidden !important;
+				width: 0 !important;
+				height: 0 !important;
+			}
+			body {
+				top: 0 !important;
+				position: static !important;
+				margin-top: 0 !important;
+			}
+			html {
+				top: 0 !important;
+			}
+			header {
+				top: 0 !important;
+			}
+			.goog-text-highlight {
+				background-color: transparent !important;
+				box-shadow: none !important;
+			}
+			font {
+				background-color: transparent !important;
+				box-shadow: none !important;
+			}
+
 			html {
 				scroll-behavior: smooth;
 			}
@@ -127,6 +198,8 @@ const { title } = Astro.props;
 		</style>
 	</head>
 	<body class="antialiased overflow-x-hidden">
+		<div id="google_translate_element" style="display:none !important; visibility:hidden !important; position:absolute; left:-9999px;"></div>
 		<slot />
 	</body>
+</html>
 </html>
